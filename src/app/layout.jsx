@@ -17,7 +17,9 @@ const vazirFont = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <body className={` container mx-auto bg-[#F5F5F5] ${vazirFont.className}`}>
+      <body
+        className={` container mx-auto  flex justify-center items-center flex-col bg-[#F5F5F5] ${vazirFont.className}`}
+      >
         <Navbar />
         {children}
       </body>

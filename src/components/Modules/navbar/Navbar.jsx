@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 export default function Navbar() {
   return (
-    <nav className=" flex justify-center items-center flex-col">
+    <nav className="">
       <div className="w-[1300px]  h-[144px] bg-[#FFFFFF] rounded-[10px]">
-        <div className=" ml-[30px] mr-[30px] mt-[15px] flex items-center justify-between">
+        <div className=" ml-[30px] mr-[30px] pt-[10px] flex items-center justify-between">
           <div className="flex items-center ">
             <div className="ml-[20px]  w-[99px]  h-[28px] bg-[#EBEEF6] rounded-[6px] ">
               <p className="pt-[6px] pr-3 text-[13px]">Hotline 24/7</p>
