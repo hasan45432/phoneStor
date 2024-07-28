@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Header() {
   return (
     <>
-      <header className="mb-[200px]">
+      <header className="mb-[20px]">
         <div className="flex gap-[15px] mt-[15px]">
           <div className=" bg-[#FFFFFF] w-[309px] h-[447px] rounded-[10px]">
             <ul className=" child:text-[15px] child:font-semibold mr-[55px] pt-[55px] flex flex-col gap-6">
