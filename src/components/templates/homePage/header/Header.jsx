@@ -32,7 +32,7 @@ export default function Header() {
           <div className="w-[650px] h-[446px]">
             <div className="relative w-[650px] h-[310px] rounded-[10px] overflow-hidden">
               <Image
-                src="/img/slider3.png.png"
+                src="/img/imageHomePage/slider3.png.png"
                 width={900}
                 height={600}
                 className="w-full h-full object-cover"
@@ -53,14 +53,14 @@ export default function Header() {
             </div>
             <div className="flex gap-[15px] mt-[15px]">
               <Image
-                src="/img/div.img.png"
+                src="/img/imageHomePage/div.img.png"
                 width={900}
                 height={600}
                 className="w-[316px] h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
               <Image
-                src="/img/keybord.img.png"
+                src="/img/imageHomePage/keybord.img.png"
                 width={900}
                 height={600}
                 className="w-[316px] h-[120px] rounded-[10px]"
@@ -70,14 +70,14 @@ export default function Header() {
           </div>
           <div>
             <Image
-              src="/img/wach.img.png"
+              src="/img/imageHomePage/wach.png.png"
               width={900}
               height={600}
               className="w-[308px] h-[215px] rounded-[10px]"
               alt="shop"
             ></Image>
             <Image
-              src="/img/dorbin.img.png"
+              src="/img/imageHomePage/dorbin.img.png"
               width={900}
               height={600}
               className="w-[308px] h-[215px] rounded-[10px] mt-[15px]"
@@ -88,14 +88,14 @@ export default function Header() {
 
         <div className="flex gap-[15px] mt-[15px]">
           <Image
-            src="/img/topcategory.png"
+            src="/img/imageHomePage/topcategory.png"
             width={900}
             height={600}
             className="w-[642px] h-[226px] rounded-[10px]"
             alt="shop"
           ></Image>
           <Image
-            src="/img/main.png"
+            src="/img/imageHomePage/main.png"
             width={900}
             height={600}
             className="w-[642px] h-[226px] rounded-[10px]"
@@ -113,7 +113,7 @@ export default function Header() {
             <div className="w-[971px] h-[480px] bg-[#FFFFFF] rounded-[10PX] flex flex-row-reverse">
               <div className="flex flex-row-reverse">
                 <Image
-                  src="/img/divswiper-wrapper-fb61d9569454cc6d.png"
+                  src="/img/imageHomePage/divswiper-wrapper-fb61d9569454cc6d.png"
                   width={900}
                   height={600}
                   className="w-[35px] mt-[35px] ml-[30px] h-[380px] rounded-[10px] "
@@ -121,7 +121,7 @@ export default function Header() {
                 ></Image>
                 <div className=" relative">
                   <Image
-                    src="/img/prod5.png.png"
+                    src="/img/imageHomePage/prod5.png.png"
                     width={900}
                     height={600}
                     className="w-[400px] mt-[85px]  h-[280px] rounded-[10px]"
@@ -167,21 +167,21 @@ export default function Header() {
           </div>
           <div className="ml-[30px]">
             <Image
-              src="/img/Main → Section → Link → ban1.png.png"
+              src="/img/imageHomePage/Main → Section → Link → ban1.png.png"
               width={900}
               height={600}
               className="w-[296px] h-[177px] rounded-[10px] mt-[14px]"
               alt="shop"
             ></Image>
             <Image
-              src="/img/Main → Section → Link → ban2.png.png"
+              src="/img/imageHomePage/Main → Section → Link → ban2.png.png"
               width={900}
               height={600}
               className="w-[296px] h-[177px] rounded-[10px] mt-[7px]"
               alt="shop"
             ></Image>
             <Image
-              src="/img/MainMobil → Section → Link → ban2.png.png"
+              src="/img/imageHomePage/MainMobil → Section → Link → ban2.png.png"
               width={900}
               height={600}
               className="w-[296px] h-[177px] rounded-[10px] mt-[7px]"

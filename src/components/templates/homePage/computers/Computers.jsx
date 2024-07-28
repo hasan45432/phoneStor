@@ -5,7 +5,7 @@ import Product from "@/components/Modules/product/Product";
 export default function Computers() {
   return (
     <>
-      <div className="w-[100%] h-[700px] bg-white mb-[20px]">
+      <div className="w-[100%] h-[700px] rounded-[10px] bg-white mb-[20px]">
         <div className="flex flex-row-reverse pt-[50px] mr-[30px] ml-[30px]">
           <div className="w-[605px]  h-[200px] relative">
             <Image

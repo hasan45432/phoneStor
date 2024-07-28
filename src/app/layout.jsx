@@ -1,6 +1,8 @@
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import Navbar from "@/components/Modules/navbar/Navbar";
+import Footer from "@/components/Modules/footer/Footer";
+import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +22,12 @@ export default function RootLayout({ children }) {
       <body
         className={` container mx-auto  flex justify-center items-center flex-col bg-[#F5F5F5] ${vazirFont.className}`}
       >
-        <Navbar />
+        <div className="hidden lg:block">
+          <Navbar />
+        </div>
+        <div className="block lg:hidden container mx-auto p-2">
+          <MobilNavbar />
+        </div>
         {children}
       </body>
     </html>

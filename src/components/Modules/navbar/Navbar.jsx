@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <nav className="">
-      <div className="w-[1300px]  h-[144px] bg-[#FFFFFF] rounded-[10px]">
+      <div className="w-[100%]  h-[144px] bg-[#FFFFFF] rounded-[10px]">
         <div className=" ml-[30px] mr-[30px] pt-[10px] flex items-center justify-between">
           <div className="flex items-center ">
             <div className="ml-[20px]  w-[99px]  h-[28px] bg-[#EBEEF6] rounded-[6px] ">
@@ -30,8 +30,8 @@ export default function Navbar() {
             priority
           />
 
-          <div className="w-[493px] h-[41px] ml-[40px]">
-            <ul className=" flex gap-8 pt-2 font-bold child:text-lg ">
+          <div className="w-[493px] h-[41px] xl:ml-[40px] lg:ml-[20px]">
+            <ul className=" flex xl:gap-8 lg:gap-5 pt-2 font-bold xl:child:text-lg lg:child:text-[17px] ">
               <li>
                 <Link href="/">صفحه اصلی</Link>
               </li>
@@ -47,7 +47,7 @@ export default function Navbar() {
             </ul>
           </div>
           <div className=" flex flex-row-reverse">
-            <div className=" ml-[200px]">
+            <div className=" xl:ml-[200px] lg:ml-[60px]">
               <p>خوش امدید</p>
               <ul className="flex flex-row-reverse items-center gap-2">
                 <div className="w-[40px] h-[40px] rounded-[100%] bg-[#EBEEF6]">
@@ -64,12 +64,12 @@ export default function Navbar() {
                     />
                   </svg>
                 </div>
-                <li className="text-lg font-bold">
+                <li className="xl:text-lg lg:text-[15px] font-bold">
                   <Link href="/">ورود</Link>
                 </li>
                 <p className="text-[25px]">/</p>
-                <li className="text-lg font-bold">
-                  <Link href="/">ثبت نام </Link>
+                <li className="xl:text-lg lg:text-[15px]  font-bold">
+                  <Link   href="/">ثبت نام</Link>
                 </li>
               </ul>
             </div>
@@ -98,10 +98,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="w-[1300px] h-[75px] rounded-[10px] bg-[#1ABA1A] flex">
+      <div className="w-[100%] h-[75px] rounded-[10px] bg-[#1ABA1A] flex">
         <div className=" relative">
           <input
-            className="w-[516px] h-[45px] pr-3 rounded-[30px] bg-[#FFFFFF] mt-[15px] mr-[30px]"
+            className="  lg:w-[360px] xl:w-[500px] h-[45px] pr-3 rounded-[30px] bg-[#FFFFFF] mt-[15px] mr-[30px]"
             placeholder="جستجوی محصول....."
           ></input>
           <svg
@@ -117,7 +117,7 @@ export default function Navbar() {
             />
           </svg>
         </div>
-        <div className="mt-[25px] flex child:text-[16px] gap-10 mr-[60px]">
+        <div className="mt-[25px] flex xl:child:text-[16px] lg:child:text-[14px] lg:gap-5 xl:gap-10 mr-[60px]">
           <p>ارسال رایگان برای سفارش‌های بالای 199 هزار تومان</p>
           <p>هفت روز قابلیت برگشت پول</p>
           <p>خرید امن</p>

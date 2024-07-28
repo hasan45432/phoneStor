@@ -4,15 +4,12 @@ import Articles from "@/components/templates/homePage/articles/Articles";
 import TopProducts from "@/components/templates/homePage/topProducts/TopProducts";
 import Computers from "@/components/templates/homePage/computers/Computers";
 import PopularCategories from "@/components/templates/homePage/popularCategories/PopularCategories";
+import NewProducts from "@/components/templates/homePage/newProducts/NewProducts";
 export default function Home() {
   return (
     <main>
-      <Header />
-      <PopularProducts />
-      <Articles />
-      <TopProducts />
-      <Computers />
-      <PopularCategories />
+      
+    
     </main>
   );
 }
