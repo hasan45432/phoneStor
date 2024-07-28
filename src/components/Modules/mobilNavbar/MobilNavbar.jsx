@@ -27,11 +27,11 @@ export default function MobilNavbar() {
                 />
               </svg>
             </div>
-            <li className="xl:text-lg lg:text-[15px] font-bold">
+            <li className="text-sm xl:text-lg lg:text-[15px] font-bold">
               <Link href="/">ورود</Link>
             </li>
             <p className="text-[25px]">/</p>
-            <li className="xl:text-lg lg:text-[15px]  font-bold">
+            <li className="text-sm xl:text-lg lg:text-[15px]  font-bold">
               <Link href="/">ثبت نام </Link>
             </li>
           </ul>
