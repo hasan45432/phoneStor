@@ -8,8 +8,8 @@ import NewProducts from "@/components/templates/homePage/newProducts/NewProducts
 export default function Home() {
   return (
     <main>
-      
-    
+      <Header />
+      <PopularProducts />
     </main>
   );
 }

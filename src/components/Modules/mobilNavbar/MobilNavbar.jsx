@@ -9,16 +9,16 @@ export default function MobilNavbar() {
 
   return (
     <>
-      <div className="flex flex-row-reverse w-[100%] transition-all   justify-between  py-8">
+      <div className="flex flex-row-reverse w-[100%] transition-all   justify-between  py-8 ">
         <div className=" xl:ml-[200px]  lg:ml-[60px]">
           <p>خوش امدید</p>
           <ul className="flex flex-row-reverse  items-center gap-2">
-            <div className="w-[40px] h-[40px] rounded-[100%] bg-[#EBEEF6]">
+            <div className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] rounded-[100%] bg-[#EBEEF6]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-6 mt-2 mr-2"
+                className="size-5 sm:size-6 mt-1 mr-1 sm:mt-2 sm:mr-2"
               >
                 <path
                   fillRule="evenodd"

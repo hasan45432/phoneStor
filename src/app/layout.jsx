@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body
-        className={` container mx-auto  flex justify-center items-center flex-col bg-[#F5F5F5] ${vazirFont.className}`}
+        className={` container mx-auto pr-2 flex items-center justify-center flex-col sm:p-0 bg-[#F5F5F5] ${vazirFont.className}`}
       >
         <div className="hidden lg:block">
           <Navbar />
@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
           <MobilNavbar />
         </div>
         {children}
+        <Footer />
       </body>
     </html>
   );
