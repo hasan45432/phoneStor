@@ -80,13 +80,13 @@ export default function Header() {
               src="/img/imageHomePage/dorbin.img.png"
               width={900}
               height={600}
-              className="w-[47%] sm:w-[48.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover  rounded-[10px] xl:mt-[15px]"
+              className="w-[47%] sm:w-[48.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover  rounded-[10px] "
               alt="shop"
             ></Image>
           </div>
         </div>
 
-        <div className=" w-[100%] flex flex-col md:flex-row gap-[15px] mt-[15px]">
+        <div className=" w-[100%] pl-2 sm:pl-0 flex flex-col md:flex-row gap-[15px] mt-[15px]">
           <Image
             src="/img/imageHomePage/topcategory.png"
             width={900}
@@ -103,7 +103,7 @@ export default function Header() {
           ></Image>
         </div>
 
-        <div className="w-[100%] flex flex-col xl:flex-row-reverse">
+        <div className="w-[100%] pl-1 sm:pl-0 flex flex-col xl:flex-row-reverse">
           <div className="w-[100%]">
             <div className="w-[100%] mt-[15px] h-[62px] bg-[#1ABA1A] rounded-[10px] text-left">
               <p className="text-[20px] text-white p-4 ml-[10px] font-bold">
@@ -165,7 +165,7 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <div className="w-[100%] pl-2  mt-[15px] xl:mt-0 xl:w-[30%] flex items-center gap-[10px] xl:block">
+          <div className="w-[100%] pl-2 sm:pl-0   mt-[15px] xl:mt-0 xl:w-[30%] flex items-center gap-[10px] xl:block">
             <Image
               src="/img/imageHomePage/Main → Section → Link → ban1.png.png"
               width={900}
