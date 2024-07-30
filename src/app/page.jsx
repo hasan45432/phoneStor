@@ -9,7 +9,9 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <PopularProducts/>
+      <PopularProducts />
+      <Articles />
+      <TopProducts />
     </main>
   );
 }

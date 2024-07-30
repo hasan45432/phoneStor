@@ -2,51 +2,20 @@
 import React from "react";
 import Product from "@/components/Modules/product/Product";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation, Autoplay } from "swiper/modules";
-
 export default function PopularProducts() {
   return (
-    <div className="mb-[20px]">
-      <div className="w-full h-[600px] p-[90px] bg-[#FFFFFF] rounded-[10px] flex items-center relative">
-        <Swiper
-          navigation={false}
-          modules={[Navigation, Autoplay]}
-          autoplay={{ delay: 2000 }}
-          loop={true}
-          rewind={true}
-          slidesPerView={5}
-          className="h-[400px] w-[1120px] text-center"
-        >
-          <SwiperSlide>
-            <Product />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Product />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Product />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Product />
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <Product />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Product />
-          </SwiperSlide>
-        </Swiper>
-        <div className="text-left mt-[10px]  absolute bottom-[60px] left-[580px]">
-          <button className="w-[150px] h-[40px] rounded-[6px] bg-green-50 text-[#1ABA1A] text-[18px]">
-            تمامی محصولات
-          </button>
-        </div>
+    <div className="mb-[20px] w-[100%]  bg-white rounded-[10px] ">
+      <div className=" md:p-[80px]  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+        <Product />
+      </div>
+      <div className="mx-auto text-center pb-3">
+        <button className="w-[100px]  h-[20px] sm:w-[150px] sm:h-[40px] rounded-[6px] bg-green-50 text-[#1ABA1A] text-[15px] sm:text-[18px]">
+          تمامی محصولات
+        </button>
       </div>
     </div>
   );
