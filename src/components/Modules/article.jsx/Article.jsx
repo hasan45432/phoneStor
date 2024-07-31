@@ -3,13 +3,13 @@ import Image from "next/image";
 export default function Article() {
   return (
     <>
-      <div className="w-[150px]   sm:w-[300px] mx-auto h-[400px]">
+      <div className=" w-[150px] sm:w-[300px] mx-auto h-[400px] mt-4">
         <div>
           <Image
             src="/img/imageHomePage/prod17.jpg.png"
             width={600}
             height={400}
-            className="w-[150px] mx-auto h-[200px] sm:w-[302px] sm:h-[230px]  rounded-[10px]"
+            className="w-[150px] mx-auto h-[170px] sm:w-[302px] sm:h-[230px]  rounded-[10px]"
             alt="shop"
           ></Image>
         </div>

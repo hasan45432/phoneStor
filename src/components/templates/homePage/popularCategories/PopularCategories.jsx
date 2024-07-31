@@ -5,8 +5,8 @@ export default function PopularCategories() {
   return (
     <>
       <div>
-        <div className="flex items-center gap-[15px] mb-[20px]">
-          <div className="w-[428px] h-[742px] rounded-[10px] bg-[#FFFFFF] p-9">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-3 items-center  mb-[20px]">
+          <div className="w-[300px] sm:w-[415px] h-[742px] mx-auto rounded-[10px] bg-[#FFFFFF] p-9">
             <div>
               <Image
                 src="/img/imageHomePage/prod43.png.png"
@@ -29,7 +29,7 @@ export default function PopularCategories() {
           </div>
 
           <div>
-            <div className="w-[428px] h-[742px] rounded-[10px] bg-[#FFFFFF] p-9">
+            <div className="w-[300px] sm:w-[415px]  h-[742px] mx-auto rounded-[10px] bg-[#FFFFFF] p-9">
               <div>
                 <Image
                   src="/img/imageHomePage/prod44.png.png"
@@ -53,7 +53,7 @@ export default function PopularCategories() {
           </div>
 
           <div>
-            <div className="w-[428px] h-[742px] rounded-[10px] bg-[#FFFFFF] p-9">
+            <div className="w-[300px] sm:w-[415px]  h-[742px] mx-auto rounded-[10px] bg-[#FFFFFF] p-9">
               <div>
                 <Image
                   src="/img/imageHomePage/prod45.png.png"
@@ -77,19 +77,19 @@ export default function PopularCategories() {
           </div>
         </div>
 
-        <div className="flex gap-[17px] mb-[20px]">
+        <div className="sm:flex hidden flex-col xl:flex-row items-center justify-center gap-[17px] mb-[20px]">
           <Image
             src="/img/imageHomePage/mainFooter1.png"
             width={1200}
             height={900}
-            className="w-[648px] h-[180px] rounded-[10px]"
+            className="w-[630px] h-[180px] rounded-[10px]"
             alt="shodp"
           ></Image>
           <Image
             src="/img/imageHomePage/Main → Section.png"
             width={1200}
             height={900}
-            className="w-[648px] h-[180px] rounded-[10px]"
+            className="w-[630px] h-[180px] rounded-[10px]"
             alt="shodp"
           ></Image>
         </div>

@@ -12,6 +12,9 @@ export default function Home() {
       <PopularProducts />
       <Articles />
       <TopProducts />
+      <Computers />
+      <PopularCategories />
+      <NewProducts />
     </main>
   );
 }

@@ -9,12 +9,12 @@ export default function NewProduct() {
             src="/img/imageHomePage/Link → prod60.png.png"
             width={1200}
             height={900}
-            className="w-[120px] h-[90px] rounded-[10px]"
+            className="w-[100px] sm:w-[120px] h-[90px] rounded-[10px]"
             alt="shod"
           ></Image>
           <div className="text-left">
-            <p className="text-[14px] font-bold ">Microte Surface 2.0 Laptop</p>
-            <p className="text-[15px] font-bold">$579.00</p>
+            <p className="text-[11px] sm:text-[14px] font-bold ">Microte Surface 2.0 Laptop</p>
+            <p className="text-[11px] sm:text-[15px] font-bold">$579.00</p>
           </div>
         </div>
       </div>

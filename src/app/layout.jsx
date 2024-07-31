@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body
-        className={` container mx-auto flex items-center justify-center pr-2 flex-col  bg-[#F5F5F5] ${vazirFont.className}`}
+        className={` container mx-auto pr-1 sm:pr-0 flex items-center justify-center  flex-col  bg-[#F5F5F5] ${vazirFont.className}`}
       >
         <div className="hidden lg:block">
           <Navbar />

@@ -3,13 +3,13 @@ import Image from "next/image";
 export default function Product() {
   return (
     <>
-      <div className="w-[120px] h-[350px] mx-auto sm:w-[214px] sm:h-[421px] ">
+      <div className="w-[115px] h-[350px] mx-auto sm:w-[214px] sm:h-[360px] ">
         <div className="flex flex-col items-center">
           <Image
             src="/img/imageHomePage/prod10.png.png"
             width={1200}
             height={900}
-            className="w-[150px] h-[160px] sm:w-[192px] sm:h-[199px] mr-12"
+            className="w-[150px] h-[160px] sm:w-[192px] sm:h-[199px] mr-10"
             alt="shop"
           ></Image>
           <p className="text-[15px] font-bold text-left">

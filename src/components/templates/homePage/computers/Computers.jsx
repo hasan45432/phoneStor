@@ -5,14 +5,14 @@ import Product from "@/components/Modules/product/Product";
 export default function Computers() {
   return (
     <>
-      <div className="w-[100%] h-[700px] rounded-[10px] bg-white mb-[20px]">
-        <div className="flex flex-row-reverse pt-[50px] mr-[30px] ml-[30px]">
-          <div className="w-[605px]  h-[200px] relative">
+      <div className="w-[100%]  rounded-[10px] bg-white mb-[20px]">
+        <div className="flex  flex-col xl:flex-row-reverse pt-[50px] ">
+          <div className="w-[605px] hidden sm:block mx-auto    h-[200px] relative">
             <Image
               src="/img/imageHomePage/prod19.png.png"
-              width={1200}
-              height={900}
-              className=" w-full h-full object-cover rounded-[10px]"
+              width={900}
+              height={400}
+              className=" w-[100%] h-full object-cover rounded-[10px]"
               alt="shop"
             ></Image>
 
@@ -20,12 +20,11 @@ export default function Computers() {
               Mobok 2 superchard by M2
             </p>
           </div>
-          <div>
+          <div className="mx-auto pl-4">
             <Categories />
           </div>
         </div>
-
-        <div className="mt-[40px] mr-[80px] ml-[80px] flex items-center">
+        <div className="mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           <Product />
           <Product />
           <Product />
