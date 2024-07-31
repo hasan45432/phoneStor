@@ -5,7 +5,11 @@ export default function PopularCategories() {
   return (
     <>
       <div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-3 items-center  mb-[20px]">
+        <div
+           data-aos="fade-up"
+              data-aos-duration="1200"
+          className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-3 items-center  mb-[20px]"
+        >
           <div className="w-[300px] sm:w-[415px] h-[742px] mx-auto rounded-[10px] bg-[#FFFFFF] p-9">
             <div>
               <Image
@@ -29,7 +33,11 @@ export default function PopularCategories() {
           </div>
 
           <div>
-            <div className="w-[300px] sm:w-[415px]  h-[742px] mx-auto rounded-[10px] bg-[#FFFFFF] p-9">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              className="w-[300px] sm:w-[415px]  h-[742px] mx-auto rounded-[10px] bg-[#FFFFFF] p-9"
+            >
               <div>
                 <Image
                   src="/img/imageHomePage/prod44.png.png"
@@ -53,7 +61,11 @@ export default function PopularCategories() {
           </div>
 
           <div>
-            <div className="w-[300px] sm:w-[415px]  h-[742px] mx-auto rounded-[10px] bg-[#FFFFFF] p-9">
+            <div
+              data-aos="fade-up"
+              data-aos-duration="1200"
+              className="w-[300px] sm:w-[415px]  h-[742px] mx-auto rounded-[10px] bg-[#FFFFFF] p-9"
+            >
               <div>
                 <Image
                   src="/img/imageHomePage/prod45.png.png"

@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <>
       <footer className="w-[100%] 2xl:w-[84.7%]  rounded-[10px]   bg-white">
-        <div className=" grid gap-8 xl:gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5    text-left pt-16  ">
+        <div data-aos="fade-up" data-aos-duration="1500" className=" grid gap-8 xl:gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5    text-left pt-16  ">
           <div className="">
             <p className="text-[20px] font-bold">top Categories</p>
             <ul className=" child:mt-4 child:text-[14px]  text-[#666666]">
@@ -110,7 +110,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="sm:mt-16 mt-8 mb-4 ">
+        <div  className="sm:mt-16 mt-8 mb-4 ">
           <p className="text-[20px]  font-bold text-center">
             subscribe & get{" "}
             <span className="text-[#F1352B] text-[20px]">10% off</span> for your

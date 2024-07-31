@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default function Navbar() {
   return (
-    <nav className="w-[100%]">
+    <nav className="w-[100%] " data-aos="fade-up" data-aos-duration="1000">
       <div className="  h-[144px] bg-[#FFFFFF] rounded-[10px]">
         <div className=" ml-[30px] mr-[30px] pt-[10px] flex items-center justify-between">
           <div className="flex items-center ">
@@ -69,7 +69,7 @@ export default function Navbar() {
                 </li>
                 <p className="text-[25px]">/</p>
                 <li className="xl:text-lg lg:text-[15px]  font-bold">
-                  <Link   href="/">ثبت نام</Link>
+                  <Link href="/">ثبت نام</Link>
                 </li>
               </ul>
             </div>

@@ -6,7 +6,7 @@ export default function Computers() {
   return (
     <>
       <div className=" rounded-[10px] bg-white mb-[20px]">
-        <div className="flex  flex-col xl:flex-row-reverse pt-[50px] ">
+        <div data-aos="fade-up" data-aos-duration="1500" className="flex  flex-col xl:flex-row-reverse pt-[50px] ">
           <div className="w-[605px] hidden sm:block mx-auto    h-[200px] relative">
             <Image
               src="/img/imageHomePage/prod19.png.png"
@@ -24,7 +24,7 @@ export default function Computers() {
             <Categories />
           </div>
         </div>
-        <div className="mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div data-aos="fade-up" data-aos-duration="1000" className="mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           <Product />
           <Product />
           <Product />

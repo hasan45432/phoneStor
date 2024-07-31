@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default function LoginDetails() {
   return (
-    <div className=" bg-white rounded-[10px] mt-[15px] mb-[15px]">
+    <div data-aos="zoom-in" data-aos-duration="1500" className=" bg-white rounded-[10px] mt-[15px] mb-[15px]">
       <div className="flex  flex-col mb-[15px] lg:mb-0 lg:flex-row-reverse justify-between items-center ml-[60px]">
         <div className="p-[90px]  w-[350px] sm:w-auto">
           <Image

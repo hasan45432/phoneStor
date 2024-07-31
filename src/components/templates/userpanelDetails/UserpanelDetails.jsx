@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 export default function UserpanelDetails() {
   return (
-    <div className="flex flex-col items-center md:flex-row-reverse p-[30px] ">
+    <div  data-aos="zoom-in" data-aos-duration="1500" className="flex flex-col items-center md:flex-row-reverse p-[30px] ">
       <div className="bg-[#FAFAFA] w-[60%] mb-[15px] md:mb-0 sm:w-[30%] text-left rounded-[10px] flex  items-end flex-col">
         <div>
           <Image

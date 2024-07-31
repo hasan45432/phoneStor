@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function SingleProductDetails() {
   return (
-    <div className="  bg-[#FFFFFF] rounded-[10PX] flex flex-col md:justify-around  items-center sm:flex-row-reverse">
+    <div  data-aos="zoom-in" data-aos-duration="1500" className="  bg-[#FFFFFF] rounded-[10PX] flex flex-col md:justify-around  items-center sm:flex-row-reverse">
       <div className="flex flex-row-reverse ">
         <div className="">
           <Image

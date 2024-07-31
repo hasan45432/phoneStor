@@ -4,8 +4,8 @@ import Product from "@/components/Modules/product/Product";
 
 export default function PopularProducts() {
   return (
-    <div className="mb-[20px] p-1 w-[100%]  bg-white rounded-[10px] ">
-      <div className=" md:p-[80px]  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div  className="mb-[20px] p-1 w-[100%]   bg-white rounded-[10px] ">
+      <div data-aos="fade-up" data-aos-duration="1500" className=" md:p-[80px]  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         <Product />
         <Product />
         <Product />

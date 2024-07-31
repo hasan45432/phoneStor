@@ -6,7 +6,7 @@ export default function TopProducts() {
   return (
     <>
       <div className="w-[100%]  bg-white rounded-[10px] mb-[20px]">
-        <div className="flex flex-col  xl:flex-row-reverse items-center pt-[50px] mr-[30px] ml-[30px]">
+        <div data-aos="fade-up" data-aos-duration="1500" className="flex flex-col  xl:flex-row-reverse items-center pt-[50px] mr-[30px] ml-[30px]">
           <div className=" hidden sm:block w-[605px]  h-[200px] relative">
             <Image
               src="/img/imageHomePage/prod18.png.png"
@@ -29,7 +29,7 @@ export default function TopProducts() {
           </div>
         </div>
 
-        <div className="mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5   items-center">
+        <div data-aos="fade-up" data-aos-duration="1200" className="mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5   items-center">
           <Product />
           <Product />
           <Product />

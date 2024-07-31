@@ -4,9 +4,9 @@ import Image from "next/image";
 export default function Header() {
   return (
     <>
-      <header className="mb-[20px] w-[100%]  ">
+      <header className="mb-[20px] w-[100%]  " >
         <div className="flex flex-col xl:flex-row gap-[15px] mt-[15px]">
-          <div className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]">
+          <div data-aos="fade-left" data-aos-duration="1000" className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]">
             <ul className=" child:text-[15px] child:font-semibold pt-10 child:mx-auto xl:pt-[55px] flex xl:flex-col xl:gap-6">
               <li>
                 <Link href="/">لپ تاپ</Link>
@@ -29,7 +29,7 @@ export default function Header() {
             </ul>
           </div>
 
-          <div className="w-[99%] xl:w-[650px] xl:h-[446px]">
+          <div className="w-[99%] xl:w-[650px] xl:h-[446px]" data-aos="fade-up" data-aos-duration="1000">
             <div className="relative h-[200px] sm:h-[300px]  xl:w-[650px] xl:h-[310px] rounded-[10px] overflow-hidden">
               <Image
                 src="/img/imageHomePage/slider3.png.png"
@@ -68,7 +68,7 @@ export default function Header() {
               ></Image>
             </div>
           </div>
-          <div className="flex xl:flex-col items-center  gap-[15px]">
+          <div className="flex xl:flex-col items-center  gap-[15px]" data-aos="fade-right" data-aos-duration="1000">
             <Image
               src="/img/imageHomePage/wach.png.png"
               width={900}
@@ -86,7 +86,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className=" w-[100%] pl-2 sm:pl-0 flex flex-col md:flex-row gap-[15px] mt-[15px]">
+        <div data-aos="fade-up" data-aos-duration="1000" className=" w-[100%] pl-2 sm:pl-0 flex flex-col md:flex-row gap-[15px] mt-[15px]">
           <Image
             src="/img/imageHomePage/topcategory.png"
             width={900}
@@ -103,7 +103,7 @@ export default function Header() {
           ></Image>
         </div>
 
-        <div className="w-[100%] pl-1 sm:pl-0 flex flex-col xl:flex-row-reverse">
+        <div className="w-[100%] pl-1 sm:pl-0 flex flex-col xl:flex-row-reverse" data-aos="fade-up" data-aos-duration="1200">
           <div className="w-[100%]">
             <div className="w-[100%] mt-[15px] h-[62px] bg-[#1ABA1A] rounded-[10px] text-left">
               <p className="text-[20px] text-white p-4 ml-[10px] font-bold">

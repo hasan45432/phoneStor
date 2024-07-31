@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Navbar from "@/components/Modules/navbar/Navbar";
 import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
+import AOSInit from "@/utils/aos";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       <body
         className={` container mx-auto pr-1 sm:pr-0 flex items-center justify-center  flex-col  bg-[#F5F5F5] ${vazirFont.className}`}
       >
+        <AOSInit />
         <div className="hidden lg:block">
           <Navbar />
         </div>
