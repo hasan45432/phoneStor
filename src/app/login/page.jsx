@@ -36,7 +36,7 @@ export default function Login() {
               <Link href="/" className="text-[13px] text-[#999999] mt-[15px]">
                 پس ورد خود را فراموش کردین؟
               </Link>
-              <button className="mt-[25px] text-white w-[138px] h-[50px] rounded-[10px] bg-[#1ABA1A]">
+              <button className="mt-[25px] text-[20px] pt-1 text-white w-[138px] h-[50px] rounded-[10px] bg-[#1ABA1A]">
                 Login
               </button>
               <Link href="/" className="text-[#1ABA1A] text-[15px] mt-[15px]">

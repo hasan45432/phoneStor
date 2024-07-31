@@ -34,12 +34,17 @@ export default function Register() {
                 className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
               />
               <input
+                type="number"
+                placeholder="شماره موبایل را وارد کنید"
+                className="border w-[90%] xl:w-[75%] mt-[15px] h-[43px] text-left pl-2 rounded-[6px]"
+              />
+              <input
                 type="password"
                 placeholder="....password"
                 className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
               />
-            
-              <button className="mt-[25px] text-white w-[138px] h-[50px] rounded-[10px] bg-[#1ABA1A]">
+
+              <button className="mt-[25px] text-[20px] pt-1 text-white w-[138px] h-[50px] rounded-[10px] bg-[#1ABA1A]">
                 REGISTER
               </button>
               <Link href="/" className="text-[#1ABA1A] text-[15px] mt-[15px]">
