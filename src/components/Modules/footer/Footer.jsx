@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      <footer className="w-[85%]  rounded-[10px]   bg-white">
+      <footer className="w-[100%] 2xl:w-[84%]  rounded-[10px]   bg-white">
         <div className=" grid gap-8 xl:gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5    text-left pt-16  ">
           <div className="">
             <p className="text-[20px] font-bold">top Categories</p>
@@ -60,7 +60,7 @@ export default function Footer() {
               <li>Sitemap</li>
             </ul>
           </div>
-          <div className="lg:mt-8 2xl:pl-[40px] w-[250px] xl:mt-0 mx-auto mr-16 xl:mr-0 xl:ml-20  ">
+          <div className="lg:mt-8 2xl:pl-[40px] 2-[200px] pr-3 pl-3 xl:w-[250px] xl:mt-0 mx-auto xl:mr-0 xl:ml-20  ">
             <p className="text-[20px] font-bold">
               Swoo - 1st NYC tech online market
             </p>
