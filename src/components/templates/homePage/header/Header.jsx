@@ -56,14 +56,14 @@ export default function Header() {
                 src="/img/imageHomePage/div.img.png"
                 width={900}
                 height={600}
-                className="w-[47.5%] sm:w-[48.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[47.5%] sm:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
               <Image
                 src="/img/imageHomePage/keybord.img.png"
                 width={900}
                 height={600}
-                className="w-[47.5%] sm:w-[48.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[47.5%] sm:w-[50%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
             </div>
@@ -73,14 +73,14 @@ export default function Header() {
               src="/img/imageHomePage/wach.png.png"
               width={900}
               height={600}
-              className="w-[47%] sm:w-[48.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover rounded-[10px]"
+              className="w-[47%] sm:w-[49%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover rounded-[10px]"
               alt="shop"
             ></Image>
             <Image
               src="/img/imageHomePage/dorbin.img.png"
               width={900}
               height={600}
-              className="w-[47%] sm:w-[48.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover  rounded-[10px] "
+              className="w-[47%] sm:w-[49%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover  rounded-[10px] "
               alt="shop"
             ></Image>
           </div>
@@ -91,14 +91,14 @@ export default function Header() {
             src="/img/imageHomePage/topcategory.png"
             width={900}
             height={600}
-            className="md:w-[48%] bg-cover bg-center xl:w-[642px] h-[130px] sm:h-[226px] rounded-[10px]"
+            className="md:w-[49%] bg-cover bg-center xl:w-[642px] h-[130px] sm:h-[226px] rounded-[10px]"
             alt="shop"
           ></Image>
           <Image
             src="/img/imageHomePage/main.png"
             width={900}
             height={600}
-            className="md:w-[48%] bg-cover bg-center xl:w-[642px] h-[130px] sm:h-[226px] rounded-[10px]"
+            className="md:w-[49%] bg-cover bg-center xl:w-[642px] h-[130px] sm:h-[226px] rounded-[10px]"
             alt="shop"
           ></Image>
         </div>

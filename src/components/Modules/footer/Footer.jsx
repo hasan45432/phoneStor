@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <>
-      <footer className="w-[100%] 2xl:w-[84%]  rounded-[10px]   bg-white">
+      <footer className="w-[100%] 2xl:w-[84.7%]  rounded-[10px]   bg-white">
         <div className=" grid gap-8 xl:gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5    text-left pt-16  ">
           <div className="">
             <p className="text-[20px] font-bold">top Categories</p>
