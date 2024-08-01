@@ -21,9 +21,7 @@ export default function Article() {
             <p className="text-[13px] mx-auto w-[140px] sm:w-[300px] mt-[10px]">
               Limited time offer. Hurry up
             </p>
-            <button className=" mt-[10px]   pt-1 border-solid text-[#1ABA1A] border-[#1ABA1A] border w-[122px] h-[35px] rounded-[10px]">
-              shop now
-            </button>
+         
           </div>
         </div>
       </div>

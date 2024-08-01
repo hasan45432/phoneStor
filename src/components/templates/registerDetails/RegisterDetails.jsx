@@ -46,10 +46,10 @@ export default function RegisterDetails() {
             className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
           />
 
-          <button className="mt-[25px] text-[20px] pt-1 text-white w-[138px] h-[50px] rounded-[10px] bg-[#1ABA1A]">
+          <button className="hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1 w-[138px] h-[50px] rounded-[10px] ">
             REGISTER
           </button>
-          <Link href="/" className="text-[#1ABA1A] text-[15px] mt-[15px]">
+          <Link href="/login" className="text-[#1ABA1A] text-[15px] mt-[15px]">
             Login
           </Link>
         </form>

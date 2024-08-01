@@ -4,7 +4,11 @@ import Link from "next/link";
 export default function LoginDetails() {
   return (
     <div className=" bg-white rounded-[10px] mt-[15px] mb-[15px]">
-      <div  data-aos="zoom-in" data-aos-duration="1500" className="flex  flex-col mb-[15px] lg:mb-0 lg:flex-row-reverse justify-between items-center ml-[60px]">
+      <div
+        data-aos="zoom-in"
+        data-aos-duration="1500"
+        className="flex  flex-col mb-[15px] lg:mb-0 lg:flex-row-reverse justify-between items-center ml-[60px]"
+      >
         <div className="p-[90px]  w-[350px] sm:w-auto">
           <Image
             src="/img/imageLoginPage/login.svg.png"
@@ -32,13 +36,19 @@ export default function LoginDetails() {
               placeholder="....password"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
             />
-            <Link href="/" className="text-[13px] text-[#999999] mt-[15px]">
+            <Link
+              href="/"
+              className="hover:text-[#1ABA1A] hover:transition-colors hover:duration-300 text-[13px] text-[#999999] mt-[15px]"
+            >
               پس ورد خود را فراموش کردین؟
             </Link>
-            <button className="mt-[25px] text-[20px] pt-1 text-white w-[138px] h-[50px] rounded-[10px] bg-[#1ABA1A]">
+            <button className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1  w-[138px] h-[50px] rounded-[10px] ">
               Login
             </button>
-            <Link href="/" className="text-[#1ABA1A] text-[15px] mt-[15px]">
+            <Link
+              href="/register"
+              className="text-[#1ABA1A] text-[15px] mt-[15px]"
+            >
               Sign Up
             </Link>
           </form>

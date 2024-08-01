@@ -6,8 +6,8 @@ export default function Header() {
     <>
       <header className="mb-[20px] w-[100%]  " >
         <div className="flex flex-col xl:flex-row gap-[15px] mt-[15px]">
-          <div data-aos="fade-left" data-aos-duration="1000" className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]">
-            <ul className=" child:text-[15px] child:font-semibold pt-10 child:mx-auto xl:pt-[55px] flex xl:flex-col xl:gap-6">
+          <div data-aos="fade-left" data-aos-duration="1500" className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]">
+            <ul className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 child:text-[15px] child:font-semibold pt-10 child:mx-auto xl:pt-[55px] flex xl:flex-col xl:gap-6">
               <li>
                 <Link href="/">لپ تاپ</Link>
               </li>
@@ -63,12 +63,12 @@ export default function Header() {
                 src="/img/imageHomePage/keybord.img.png"
                 width={900}
                 height={600}
-                className="w-[47.5%] sm:w-[50%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[47.5%] sm:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
             </div>
           </div>
-          <div className="flex xl:flex-col items-center  gap-[15px]" data-aos="fade-right" data-aos-duration="1000">
+          <div className="flex xl:flex-col items-center  gap-[15px]" data-aos="fade-right" data-aos-duration="1500">
             <Image
               src="/img/imageHomePage/wach.png.png"
               width={900}

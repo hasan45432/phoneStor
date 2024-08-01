@@ -41,7 +41,7 @@ export default function SingleProductDetails() {
             </div>
           </div>
         </div>
-        <button className="text-[15px] w-[200px] h-[35px] sm:text-[18px] mb-[15px] sm:h-[70px] mr-[85px] mx-auto mt-[15px] sm:w-[240px] rounded-[10px] text-white bg-[#1ABA1A]">
+        <button className="text-[15px] hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[200px] h-[35px] sm:text-[18px] mb-[15px] sm:h-[70px] mr-[85px] mx-auto mt-[15px] sm:w-[240px] rounded-[10px] ">
           اضافه کردن به سبد خرید
         </button>
       </div>

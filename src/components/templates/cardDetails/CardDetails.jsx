@@ -15,9 +15,8 @@ export default function CardDetails() {
               alt="shop"
             />
           </div>
-          <div>details</div>{" "}
-          {/* اینجا می‌توانید متن‌های دیگری اضافه کنید اگر لازم است */}
-          <div className="w-[260px] sm:pt-20 pl-8 pb-4">
+      
+          <div className="w-[260px] sm:pt-12 pl-8 pb-4">
             <p className="text-[15px] font-bold">
               SROK Smart Phone 128GB, Oled Retina
             </p>
@@ -28,7 +27,7 @@ export default function CardDetails() {
       <div  data-aos="zoom-in" data-aos-duration="1500" className="w-[70%] lg:w-[40%] mx-auto h-[200px] mt-[15px] mb-[15px] rounded-[15px] bg-white border-green-400 border flex justify-center items-center">
         <div className="flex flex-col items-center">
           <p className="text-[20px] font-bold mb-[15px]">جمع خرید: 1,737.00</p>
-          <button className="w-[150px] h-[50px] text-white bg-[#1ABA1A] rounded-[10px]">
+          <button className="hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[150px] h-[50px]  rounded-[10px]">
             تکمیل خرید
           </button>
         </div>

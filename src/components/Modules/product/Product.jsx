@@ -21,7 +21,7 @@ export default function Product() {
           $569.00{" "}
         </p>
         <div className="text-left mt-[10px]">
-          <button className=" w-[97px] h-[21px] bg-green-50 text-[#1ABA1A] rounded-[6px] text-[13px] pb-1 ">
+          <button className=" hover:bg-[#1ABA1A] hover:text-white transition-all duration-500  w-[97px] h-[21px] bg-green-50 text-[#1ABA1A] rounded-[6px] text-[13px] pb-1 ">
             خرید سریع
           </button>
         </div>

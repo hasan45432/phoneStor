@@ -31,18 +31,18 @@ export default function Navbar() {
           />
 
           <div className="w-[493px] h-[41px] xl:ml-[40px] lg:ml-[20px]">
-            <ul className=" flex xl:gap-8 lg:gap-5 pt-2 font-bold xl:child:text-lg lg:child:text-[17px] ">
+            <ul className=" child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 flex xl:gap-8 lg:gap-5 pt-2 font-bold xl:child:text-lg lg:child:text-[17px] ">
               <li>
                 <Link href="/">صفحه اصلی</Link>
               </li>
               <li>
-                <Link href="/">تمامی صفحات</Link>
+                <Link href="/">گوشی</Link>
               </li>
               <li>
-                <Link href="/">محصولات</Link>
+                <Link href="/products">محصولات</Link>
               </li>
               <li>
-                <Link href="/">درباره ی سایت</Link>
+                <Link href="/abut">درباره ی سایت</Link>
               </li>
             </ul>
           </div>
@@ -50,12 +50,12 @@ export default function Navbar() {
             <div className=" xl:ml-[200px] lg:ml-[60px]">
               <p>خوش امدید</p>
               <ul className="flex flex-row-reverse items-center gap-2">
-                <div className="w-[40px] h-[40px] rounded-[100%] bg-[#EBEEF6]">
+                <div className=" child-hover:text-[#1ABA1A] cursor-pointer transition-colors duration-300 w-[40px] h-[40px] rounded-[100%] bg-[#EBEEF6]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    className="size-6 mt-2 mr-2"
+                    className=" size-6 mt-2 mr-2"
                   >
                     <path
                       fillRule="evenodd"
@@ -64,12 +64,12 @@ export default function Navbar() {
                     />
                   </svg>
                 </div>
-                <li className="xl:text-lg lg:text-[15px] font-bold">
-                  <Link href="/">ورود</Link>
+                <li className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 xl:text-lg lg:text-[15px] font-bold">
+                  <Link href="/login">ورود</Link>
                 </li>
                 <p className="text-[25px]">/</p>
-                <li className="xl:text-lg lg:text-[15px]  font-bold">
-                  <Link href="/">ثبت نام</Link>
+                <li className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 xl:text-lg lg:text-[15px]  font-bold">
+                  <Link href="/register">ثبت نام</Link>
                 </li>
               </ul>
             </div>
@@ -101,7 +101,7 @@ export default function Navbar() {
       <div className="w-[100%] h-[75px] rounded-[10px] bg-[#1ABA1A] flex">
         <div className=" relative">
           <input
-            className="  lg:w-[360px] xl:w-[500px] h-[45px] pr-3 rounded-[30px] bg-[#FFFFFF] mt-[15px] mr-[30px]"
+            className="   lg:w-[360px] xl:w-[500px] h-[45px] pr-3 rounded-[30px] bg-[#FFFFFF] mt-[15px] mr-[30px]"
             placeholder="جستجوی محصول....."
           ></input>
           <svg
