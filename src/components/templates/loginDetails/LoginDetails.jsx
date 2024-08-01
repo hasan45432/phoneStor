@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 export default function LoginDetails() {
   return (
-    <div className=" bg-white rounded-[10px] mt-[15px] mb-[15px]">
+    <div className=" w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mt-[15px] mb-[15px]">
       <div
         data-aos="zoom-in"
         data-aos-duration="1500"
-        className="flex  flex-col mb-[15px] lg:mb-0 lg:flex-row-reverse justify-between items-center ml-[60px]"
+        className="flex   flex-col mb-[15px] lg:mb-0 lg:flex-row-reverse justify-between items-center ml-[60px]"
       >
         <div className="p-[90px]  w-[350px] sm:w-auto">
           <Image
@@ -43,13 +43,13 @@ export default function LoginDetails() {
               پس ورد خود را فراموش کردین؟
             </Link>
             <button className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1  w-[138px] h-[50px] rounded-[10px] ">
-              Login
+              ورورد
             </button>
             <Link
               href="/register"
               className="text-[#1ABA1A] text-[15px] mt-[15px]"
             >
-              Sign Up
+              ثبت نام
             </Link>
           </form>
         </div>

@@ -4,9 +4,9 @@ import Image from "next/image";
 export default function Header() {
   return (
     <>
-      <header className="mb-[20px] w-[100%]  " >
+      <header className="mb-[20px]  " >
         <div className="flex flex-col xl:flex-row gap-[15px] mt-[15px]">
-          <div data-aos="fade-left" data-aos-duration="1500" className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]">
+          <div data-aos="fade-up" data-aos-duration="1000"  className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]">
             <ul className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 child:text-[15px] child:font-semibold pt-10 child:mx-auto xl:pt-[55px] flex xl:flex-col xl:gap-6">
               <li>
                 <Link href="/">لپ تاپ</Link>
@@ -56,31 +56,31 @@ export default function Header() {
                 src="/img/imageHomePage/div.img.png"
                 width={900}
                 height={600}
-                className="w-[47.5%] sm:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[48%] md:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
               <Image
                 src="/img/imageHomePage/keybord.img.png"
                 width={900}
                 height={600}
-                className="w-[47.5%] sm:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[47%]  md:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
             </div>
           </div>
-          <div className="flex xl:flex-col items-center  gap-[15px]" data-aos="fade-right" data-aos-duration="1500">
+          <div data-aos="fade-up" data-aos-duration="1000" className="flex xl:flex-col items-center  gap-[15px]" >
             <Image
               src="/img/imageHomePage/wach.png.png"
               width={900}
               height={600}
-              className="w-[47%] sm:w-[49%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover rounded-[10px]"
+              className="w-[47.5%] md:w-[50.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover rounded-[10px]"
               alt="shop"
             ></Image>
             <Image
               src="/img/imageHomePage/dorbin.img.png"
               width={900}
               height={600}
-              className="w-[47%] sm:w-[49%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover  rounded-[10px] "
+              className="w-[47%] md:w-[50.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover  rounded-[10px] "
               alt="shop"
             ></Image>
           </div>
@@ -170,21 +170,21 @@ export default function Header() {
               src="/img/imageHomePage/Main → Section → Link → ban1.png.png"
               width={900}
               height={600}
-              className="w-[32%] md:w-[32%] bg-cover bg-center xl:w-[296px] lg:w-[33%] h-[100px]  sm:h-[177px] rounded-[10px] xl:mt-[14px]"
+              className="w-[32%] md:w-[32.5%] bg-cover bg-center xl:w-[296px] lg:w-[33%] h-[100px]  sm:h-[177px] rounded-[10px] xl:mt-[14px]"
               alt="shop"
             ></Image>
             <Image
               src="/img/imageHomePage/Main → Section → Link → ban2.png.png"
               width={900}
               height={600}
-              className="w-[32%] md:w-[32%] bg-cover bg-center lg:w-[33%] xl:w-[296px]  h-[100px] sm:h-[177px] rounded-[10px] xl:mt-[7px]"
+              className="w-[33%] md:w-[32.5%] bg-cover bg-center lg:w-[33%] xl:w-[296px]  h-[100px] sm:h-[177px] rounded-[10px] xl:mt-[7px]"
               alt="shop"
             ></Image>
             <Image
               src="/img/imageHomePage/MainMobil → Section → Link → ban2.png.png"
               width={900}
               height={600}
-              className="w-[32%] md:w-[32%] bg-cover bg-center lg:w-[33%] xl:w-[296px]  h-[100px] sm:h-[177px] rounded-[10px] xl:mt-[7px]"
+              className="w-[32%] md:w-[32.5%] bg-cover bg-center lg:w-[33%] xl:w-[296px]  h-[100px] sm:h-[177px] rounded-[10px] xl:mt-[7px]"
               alt="shop"
             ></Image>
           </div>

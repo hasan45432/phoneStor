@@ -5,7 +5,7 @@ import Product from "@/components/Modules/product/Product";
 export default function TopProducts() {
   return (
     <>
-      <div className="w-[100%]  bg-white rounded-[10px] mb-[20px]">
+      <div className="w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mb-[20px]">
         <div data-aos="fade-up" data-aos-duration="1500" className="flex flex-col  xl:flex-row-reverse items-center pt-[50px] mr-[30px] ml-[30px]">
           <div className=" hidden sm:block w-[605px]  h-[200px] relative">
             <Image

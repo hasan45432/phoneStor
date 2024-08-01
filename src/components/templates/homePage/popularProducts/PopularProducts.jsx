@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function PopularProducts() {
   return (
-    <div className="mb-[20px] p-1 w-[100%]   bg-white rounded-[10px] ">
+    <div className="mb-[20px] p-1 w-[100%] 2xl:w-[85%]  bg-white rounded-[10px] ">
       <div
         data-aos="fade-up"
         data-aos-duration="1500"

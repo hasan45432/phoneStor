@@ -1,11 +1,17 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+
 export default function Footer() {
   return (
     <>
-      <footer className="w-[100%] 2xl:w-[84.3%]  rounded-[10px]   bg-white">
-        <div data-aos="fade-up" data-aos-duration="1500" className=" grid gap-8 xl:gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5    text-left pt-16  ">
+      <footer className={` container mx-auto pr-1 sm:pr-0 flex items-center justify-center  flex-col  w-[100%] 2xl:w-[85%]  rounded-[10px]   bg-white `}>
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1500"
+          className=" grid gap-8 xl:gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5    text-left pt-16  "
+        >
           <div className="">
             <p className="text-[20px] font-bold">top Categories</p>
             <ul className=" child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 child:mt-4 child:text-[14px]  text-[#666666]">
@@ -110,7 +116,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div  className="sm:mt-16 mt-8 mb-4 ">
+        <div className="sm:mt-16 mt-8 mb-4 ">
           <p className="text-[20px]  font-bold text-center">
             subscribe & get{" "}
             <span className="text-[#F1352B] text-[20px]">10% off</span> for your
