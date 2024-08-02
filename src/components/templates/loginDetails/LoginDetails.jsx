@@ -42,8 +42,8 @@ export default function LoginDetails() {
             >
               پس ورد خود را فراموش کردین؟
             </Link>
-            <button className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1  w-[138px] h-[50px] rounded-[10px] ">
-              ورورد
+            <button className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[22px] pb-1  w-[138px] h-[50px] rounded-[10px] ">
+              ورود
             </button>
             <Link
               href="/register"
