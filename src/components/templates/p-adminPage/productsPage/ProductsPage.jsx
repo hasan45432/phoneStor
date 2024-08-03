@@ -1,7 +1,48 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Sidbar from "@/components/templates/p-adminPage/sidbar/Sidbar";
 import SidbarResponsive from "@/components/templates/p-adminPage/sidbar/SidbarResponsive";
+import { useCombinedStore } from "@/app/store";
+import connectToDB from "../../../../../configs/db";
 export default function ProductsPage() {
+  const { fetchPostData, fetchGetData } = useCombinedStore();
+
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
+  const [longDescription, setLongDescription] = useState("");
+  const [img, setImg] = useState({});
+
+  const addNewProduct = async (e) => {
+    e.preventDefault();
+
+    const formData = await new FormData();
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("shortDescription", shortDescription);
+    formData.append("longDescription", longDescription);
+    formData.append("img", img);
+
+    let url = "http://localhost:3000/api/products";
+
+    await fetchPostData({ url, formData });
+    console.log(formData);
+  };
+  // در یک فایل جاوا اسکریپت در سمت کلاینت
+  async function fetchProducts() {
+    await fetch("http://localhost:3000/api/products")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
+  fetchProducts();
+  useEffect(() => {
+    fetchProducts();
+  }, []);
   return (
     <div className="flex">
       <div className=" hidden xl:block">
@@ -11,108 +52,135 @@ export default function ProductsPage() {
         <SidbarResponsive />
       </div>
       <div className="flex flex-col w-[100%]">
-        <section class="max-w-4xl p-6 mx-auto mt-6 bg-white rounded-md shadow-md dark:bg-gray-800">
-          <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">
-            Account settings
+        <section className="w-[75%] lg:w-[50%] max-w-4xl p-6 mx-auto mt-6 bg-white rounded-md shadow-md dark:bg-gray-800">
+          <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
+            ایا می خواهید محصولی اضافه کنید؟
           </h2>
 
           <form>
-            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
               <div>
-                <label class="text-gray-700 dark:text-gray-200" for="username">
-                  Username
+                <label
+                  className="text-gray-700 dark:text-gray-200"
+                  for="username"
+                >
+                  نام محصول
                 </label>
                 <input
                   id="username"
                   type="text"
-                  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                  onInput={(e) => setName(e.target.value)}
                 />
               </div>
 
               <div>
                 <label
-                  class="text-gray-700 dark:text-gray-200"
+                  className="text-gray-700 dark:text-gray-200"
                   for="emailAddress"
                 >
-                  Email Address
+                  مبلغ محصول
                 </label>
                 <input
                   id="emailAddress"
-                  type="email"
-                  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                />
-              </div>
-
-              <div>
-                <label class="text-gray-700 dark:text-gray-200" for="password">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  type="password"
-                  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                  type="text"
+                  onInput={(e) => setPrice(e.target.value)}
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
               </div>
 
               <div>
                 <label
-                  class="text-gray-700 dark:text-gray-200"
-                  for="passwordConfirmation"
+                  className="text-gray-700 dark:text-gray-200"
+                  for="password"
                 >
-                  Password Confirmation
+                  توضیح کوتاه
                 </label>
                 <input
-                  id="passwordConfirmation"
-                  type="password"
-                  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                  type="text"
+                  onInput={(e) => setShortDescription(e.target.value)}
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                />
+              </div>
+
+              <div>
+                <label
+                  className="text-gray-700 dark:text-gray-200"
+                  for="password"
+                >
+                  توضیح بلند
+                </label>
+                <input
+                  id="text"
+                  type="text"
+                  onInput={(e) => setLongDescription(e.target.value)}
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                />
+              </div>
+
+              <div>
+                <label
+                  className="text-gray-700 dark:text-gray-200"
+                  for="passwordConfirmation"
+                >
+                  تصویر محصول
+                </label>
+                <input
+                  id="file"
+                  type="file"
+                  onChange={(e) => setImg(e.target.files[0])}
+                  className="block w-full px-3 border-none py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
               </div>
             </div>
 
-            <div class="flex justify-end mt-6">
-              <button class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-                Save
+            <div className="flex justify-end mt-6">
+              <button
+                onClick={addNewProduct}
+                className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+              >
+                اضافه کردن
               </button>
             </div>
           </form>
         </section>
 
-        <section class="w-[90%] px-4  mx-auto mt-6 mb-16">
-          <div class="flex items-center gap-x-3">
-            <h2 class="text-lg font-medium text-gray-800 dark:text-white">
+        <section className="w-[90%] px-4  mx-auto mt-6 mb-16">
+          <div className="flex items-center gap-x-3">
+            <h2 className="text-lg font-medium text-gray-800 dark:text-white">
               Team members
             </h2>
 
-            <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+            <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
               100 users
             </span>
           </div>
 
-          <div class="flex flex-col mt-6">
-            <div class="-mx-6 -my-6  overflow-x-auto sm:-mx-16 lg:-mx-16">
-              <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                  <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead class="bg-gray-50 dark:bg-gray-800">
+          <div className="flex flex-col mt-6">
+            <div className="-mx-6 -my-6  overflow-x-auto sm:-mx-16 lg:-mx-16">
+              <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div className="overflow-hidden h-[450px] overflow-y-auto  border border-gray-200 dark:border-gray-700 md:rounded-lg">
+                  <table className="min-w-full  divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead className="bg-gray-50 dark:bg-gray-800">
                       <tr>
                         <th
                           scope="col"
-                          class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
-                          <div class="flex items-center gap-x-3">
-                            <span>Name</span>
+                          <div className="flex items-center gap-x-3">
+                            <span>نام محصول</span>
                           </div>
                         </th>
 
                         <th
                           scope="col"
-                          class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          className="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
-                          <button class="flex items-center gap-x-2">
-                            <span>Status</span>
+                          <button className="flex items-center gap-x-2">
+                            <span> محصو</span>
 
                             <svg
-                              class="h-3"
+                              className="h-3"
                               viewBox="0 0 10 11"
                               fill="none"
                               xmlns="http://www.w3.org/2000/svg"
@@ -141,9 +209,9 @@ export default function ProductsPage() {
 
                         <th
                           scope="col"
-                          class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
-                          <button class="flex items-center gap-x-2">
+                          <button className="flex items-center gap-x-2">
                             <span>Role</span>
 
                             <svg
@@ -152,7 +220,7 @@ export default function ProductsPage() {
                               viewBox="0 0 24 24"
                               stroke-width="2"
                               stroke="currentColor"
-                              class="w-4 h-4"
+                              className="w-4 h-4"
                             >
                               <path
                                 stroke-linecap="round"
@@ -165,87 +233,87 @@ export default function ProductsPage() {
 
                         <th
                           scope="col"
-                          class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
                           Email address
                         </th>
 
                         <th
                           scope="col"
-                          class="px-4 py-3.5 text-sm font-normal pr-[94px] rtl:text-right text-gray-500 dark:text-gray-400"
+                          className="px-4 py-3.5 text-sm font-normal pr-[94px] rtl:text-right text-gray-500 dark:text-gray-400"
                         >
                           Teams
                         </th>
 
-                        <th scope="col" class="relative py-3.5 px-4">
-                          <span class="sr-only">Edit</span>
+                        <th scope="col" className="relative py-3.5 px-4">
+                          <span className="sr-only">Edit</span>
                         </th>
                       </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                    <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                       <tr>
-                        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center gap-x-3">
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3">
                             <input
                               type="checkbox"
-                              class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                              className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                             />
 
-                            <div class="flex items-center gap-x-2">
+                            <div className="flex items-center gap-x-2">
                               <img
-                                class="object-cover w-10 h-10 rounded-full"
+                                className="object-cover w-10 h-10 rounded-full"
                                 src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                                 alt=""
                               />
                               <div>
-                                <h2 class="font-medium text-gray-800 dark:text-white ">
+                                <h2 className="font-medium text-gray-800 dark:text-white ">
                                   Arthur Melo
                                 </h2>
-                                <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
                                   @authurmelo
                                 </p>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                            <h2 class="text-sm font-normal text-emerald-500">
+                            <h2 className="text-sm font-normal text-emerald-500">
                               Active
                             </h2>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           Design Director
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           authurmelo@example.com
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-2">
-                            <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-2">
+                            <p className="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
                               Design
                             </p>
-                            <p class="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
+                            <p className="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
                               Product
                             </p>
-                            <p class="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
+                            <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
                               Marketing
                             </p>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-6">
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-6">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -255,14 +323,14 @@ export default function ProductsPage() {
                               </svg>
                             </button>
 
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -276,68 +344,68 @@ export default function ProductsPage() {
                       </tr>
 
                       <tr>
-                        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center gap-x-3">
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3">
                             <input
                               type="checkbox"
-                              class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                              className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                             />
 
-                            <div class="flex items-center gap-x-2">
+                            <div className="flex items-center gap-x-2">
                               <img
-                                class="object-cover w-10 h-10 rounded-full"
+                                className="object-cover w-10 h-10 rounded-full"
                                 src="https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
                                 alt=""
                               />
                               <div>
-                                <h2 class="font-medium text-gray-800 dark:text-white ">
+                                <h2 className="font-medium text-gray-800 dark:text-white ">
                                   Amelia. Anderson
                                 </h2>
-                                <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
                                   @ameliaanderson
                                 </p>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                            <h2 class="text-sm font-normal text-emerald-500">
+                            <h2 className="text-sm font-normal text-emerald-500">
                               Active
                             </h2>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           Lead Developer
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           ameliaanderson@example.com
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-2">
-                            <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-2">
+                            <p className="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
                               Design
                             </p>
-                            <p class="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
+                            <p className="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
                               Product
                             </p>
-                            <p class="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
+                            <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
                               Marketing
                             </p>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-6">
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-6">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -347,14 +415,14 @@ export default function ProductsPage() {
                               </svg>
                             </button>
 
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -368,68 +436,68 @@ export default function ProductsPage() {
                       </tr>
 
                       <tr>
-                        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center gap-x-3">
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3">
                             <input
                               type="checkbox"
-                              class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                              className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                             />
 
-                            <div class="flex items-center gap-x-2">
+                            <div className="flex items-center gap-x-2">
                               <img
-                                class="object-cover w-10 h-10 rounded-full"
+                                className="object-cover w-10 h-10 rounded-full"
                                 src="https://images.unsplash.com/photo-1608174386344-80898cec6beb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
                                 alt=""
                               />
                               <div>
-                                <h2 class="font-medium text-gray-800 dark:text-white ">
+                                <h2 className="font-medium text-gray-800 dark:text-white ">
                                   junior REIS
                                 </h2>
-                                <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
                                   @junior
                                 </p>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                            <h2 class="text-sm font-normal text-emerald-500">
+                            <h2 className="text-sm font-normal text-emerald-500">
                               Active
                             </h2>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           Products Managers
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           junior@example.com
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-2">
-                            <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-2">
+                            <p className="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
                               Design
                             </p>
-                            <p class="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
+                            <p className="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
                               Product
                             </p>
-                            <p class="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
+                            <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
                               Marketing
                             </p>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-6">
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-6">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -439,14 +507,14 @@ export default function ProductsPage() {
                               </svg>
                             </button>
 
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -460,68 +528,68 @@ export default function ProductsPage() {
                       </tr>
 
                       <tr>
-                        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center gap-x-3">
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3">
                             <input
                               type="checkbox"
-                              class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                              className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                             />
 
-                            <div class="flex items-center gap-x-2">
+                            <div className="flex items-center gap-x-2">
                               <img
-                                class="object-cover w-10 h-10 rounded-full"
+                                className="object-cover w-10 h-10 rounded-full"
                                 src="https://images.unsplash.com/photo-1488508872907-592763824245?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                                 alt=""
                               />
                               <div>
-                                <h2 class="font-medium text-gray-800 dark:text-white ">
+                                <h2 className="font-medium text-gray-800 dark:text-white ">
                                   Olivia Wathan
                                 </h2>
-                                <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
                                   @oliviawathan
                                 </p>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                            <h2 class="text-sm font-normal text-emerald-500">
+                            <h2 className="text-sm font-normal text-emerald-500">
                               Active
                             </h2>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           Lead Designer
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           oliviawathan@example.com
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-2">
-                            <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-2">
+                            <p className="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
                               Design
                             </p>
-                            <p class="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
+                            <p className="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
                               Product
                             </p>
-                            <p class="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
+                            <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
                               Marketing
                             </p>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-6">
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-6">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -531,14 +599,14 @@ export default function ProductsPage() {
                               </svg>
                             </button>
 
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -552,68 +620,68 @@ export default function ProductsPage() {
                       </tr>
 
                       <tr>
-                        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center gap-x-3">
+                        <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center gap-x-3">
                             <input
                               type="checkbox"
-                              class="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                              className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
                             />
 
-                            <div class="flex items-center gap-x-2">
+                            <div className="flex items-center gap-x-2">
                               <img
-                                class="object-cover w-10 h-10 rounded-full"
+                                className="object-cover w-10 h-10 rounded-full"
                                 src="https://images.unsplash.com/photo-1499470932971-a90681ce8530?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                                 alt=""
                               />
                               <div>
-                                <h2 class="font-medium text-gray-800 dark:text-white ">
+                                <h2 className="font-medium text-gray-800 dark:text-white ">
                                   Mia
                                 </h2>
-                                <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
+                                <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
                                   @mia
                                 </p>
                               </div>
                             </div>
                           </div>
                         </td>
-                        <td class="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                          <div class="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                        <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                          <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
 
-                            <h2 class="text-sm font-normal text-emerald-500">
+                            <h2 className="text-sm font-normal text-emerald-500">
                               Active
                             </h2>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           Graphic Designer
                         </td>
-                        <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                           mia@example.com
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-2">
-                            <p class="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-2">
+                            <p className="px-3 py-1 text-xs text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60">
                               Design
                             </p>
-                            <p class="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
+                            <p className="px-3 py-1 text-xs text-blue-500 rounded-full dark:bg-gray-800 bg-blue-100/60">
                               Product
                             </p>
-                            <p class="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
+                            <p className="px-3 py-1 text-xs text-pink-500 rounded-full dark:bg-gray-800 bg-pink-100/60">
                               Marketing
                             </p>
                           </div>
                         </td>
-                        <td class="px-4 py-4 text-sm whitespace-nowrap">
-                          <div class="flex items-center gap-x-6">
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                        <td className="px-4 py-4 text-sm whitespace-nowrap">
+                          <div className="flex items-center gap-x-6">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"
@@ -623,14 +691,14 @@ export default function ProductsPage() {
                               </svg>
                             </button>
 
-                            <button class="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                            <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke-width="1.5"
                                 stroke="currentColor"
-                                class="w-5 h-5"
+                                className="w-5 h-5"
                               >
                                 <path
                                   stroke-linecap="round"

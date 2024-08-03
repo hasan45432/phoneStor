@@ -24,7 +24,8 @@
     "recharts": "^2.12.7",
     "request": "^2.88.2",
     "sweetalert": "^2.1.2",
-    "swiper": "^11.1.8"
+    "swiper": "^11.1.8",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "postcss": "^8",
