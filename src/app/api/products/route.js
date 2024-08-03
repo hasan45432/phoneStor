@@ -1,5 +1,5 @@
-import connectToDB from "@/configs/db";
-import ProductModel from "@/models/Product";
+import connectToDB from "../../../../configs/db";
+import ProductModel from "../../../../models/Product";
 // import fs from "fs";
 import { writeFile } from "fs/promises";
 import path from "path";
