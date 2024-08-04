@@ -1,19 +1,37 @@
 import { create } from "zustand";
 
 const getDataStore = (set) => ({
-  getData: [],
-  fetchGetData: async () => {
-    await fetch()
-      .then((response) => response.json())
-      .then((data) => set({ getData: data.results }));
+  GetResponse: "",
+  getDataState: [],
+
+  GetData: async (props) => {
+    console.log(props.url);
+    try {
+      const res = await fetch(props.url);
+      console.log(res);
+
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await res.json();
+      console.log(data);
+
+      set((state) => ({
+        ...state,
+        getDataState: data, // به روزرسانی getDataState
+      }));
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
   },
 });
 
 const postDataStore = (set, get) => ({
-  response: "",
-  postData: [],
+  PostResponse: {},
+  postDataState: [],
 
-  fetchPostData: async (props) => {
+  PostData: async (props) => {
     console.log(props);
     await fetch(props.url, {
       method: "POST",
@@ -21,6 +39,10 @@ const postDataStore = (set, get) => ({
     })
       .then((res) => {
         console.log(res);
+        set((state) => ({
+          ...state,
+          PostResponse: res, // به روزرسانی getDataState
+        }));
         return res.json();
       })
       .then((data) => set({ postData: data.results }));
