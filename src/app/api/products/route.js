@@ -71,6 +71,7 @@ export async function PUT(req) {
 }
 
 export async function GET() {
+  connectToDB();
   const products = await ProductModel.find({}, "-__v").populate("comments");
   return Response.json(products);
 }
