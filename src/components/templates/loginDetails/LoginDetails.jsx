@@ -57,10 +57,10 @@ export default function LoginDetails() {
       password,
     };
     await PostData({ url, body });
-  };
 
-  useEffect(() => {
-    if (PostResponse.status === 419) {
+    const PostResponses = useCombinedStore.getState().PostResponse;
+
+    if (PostResponses.status === 419) {
       swal({
         title: "رمز عبور یا ایمیل اشتباه می باشد",
         icon: "error",
@@ -68,7 +68,7 @@ export default function LoginDetails() {
       });
     }
 
-    if (PostResponse.status === 401 || PostResponse.status === 422) {
+    if (PostResponses.status === 401 || PostResponses.status === 422) {
       swal({
         title: "اطلاعات وارد شده صحیح نمی باشد",
         icon: "error",
@@ -76,11 +76,12 @@ export default function LoginDetails() {
       });
     }
 
-    if (PostResponse.status === 200) {
+    if (PostResponses.status === 200) {
       router.push("/");
     }
-    console.log(PostResponse);
-  }, [postDataState, PostResponse]);
+    console.log(PostResponses);
+  };
+
   return (
     <div className=" w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mt-[15px] mb-[15px]">
       <div

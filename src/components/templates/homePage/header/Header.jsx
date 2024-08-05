@@ -38,7 +38,7 @@ export default function Header() {
             data-aos="fade-up"
             data-aos-duration="1000"
           >
-            <div className="relative h-[200px] sm:h-[300px]  xl:w-[650px] xl:h-[310px] rounded-[10px] overflow-hidden">
+            <div className="relative h-[200px] sm:h-[300px]  xl:w-[650px] xl:h-[310px] lg:h-[400px] rounded-[10px] overflow-hidden">
               <Image
                 src="/img/imageHomePage/slider3.png.png"
                 width={900}
@@ -64,14 +64,14 @@ export default function Header() {
                 src="/img/imageHomePage/div.img.png"
                 width={900}
                 height={600}
-                className="w-[48%]  sm:w-[48.9%] md:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[48%]  sm:w-[48.9%] md:w-[50.5%] bg-cover bg-center xl:w-[320px] xl:mr-[5px] 2xl:mr-0 h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
               <Image
                 src="/img/imageHomePage/keybord.img.png"
                 width={900}
                 height={600}
-                className="w-[48%]  sm:w-[48.9%]  md:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[48%]  sm:w-[48.9%]  md:w-[50.5%] bg-cover bg-center xl:w-[315px] h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
             </div>
@@ -114,7 +114,7 @@ export default function Header() {
             src="/img/imageHomePage/main.png"
             width={900}
             height={600}
-            className=" md:w-[49%] bg-cover bg-center xl:w-[642px] h-[130px] sm:h-[226px] rounded-[10px]"
+            className=" md:w-[49%] bg-cover bg-center xl:w-[625px] 2xl:w-[640px] h-[130px] sm:h-[226px] rounded-[10px]"
             alt="shop"
           ></Image>
         </div>
@@ -130,7 +130,7 @@ export default function Header() {
                 Deals of the day
               </p>
             </div>
-            <div className="w-[100%] h-[550px] sm:h-[480px] bg-[#FFFFFF] rounded-[10PX] flex flex-col md:justify-around items-center sm:flex-row-reverse">
+            <div className="w-[100%] h-[580px] sm:h-[480px] bg-[#FFFFFF] rounded-[10PX] flex flex-col md:justify-around lg:justify-center xl:justify-around items-center sm:flex-row-reverse">
               <div className="flex flex-row-reverse">
                 <Image
                   src="/img/imageHomePage/divswiper-wrapper-fb61d9569454cc6d.png"
@@ -144,7 +144,7 @@ export default function Header() {
                     src="/img/imageHomePage/prod5.png.png"
                     width={400}
                     height={300}
-                    className="w-[250px]  mt-8 h-[150px]  bg-cover bg-center pl-7 sm:h-[200px]  xl:mt-[85px]  xl:h-[280px] rounded-[10px]"
+                    className="w-[280px] md:w-[300px] lg:w-[350px]  mt-8 h-[180px]  bg-cover bg-center pl-7 sm:h-[200px]  xl:mt-[85px]  xl:h-[280px] rounded-[10px]"
                     alt="shop"
                   ></Image>
                   <div className="w-[80px] top-4 left-4  h-[30px] sm:w-[90px] sm:top-0 sm:left-1 md:top-[0]  xl:top-[50px] md:left-8 xl:left-[30px] absolute sm:h-[40px] bg-[#1ABA1A] rounded-[10px]">

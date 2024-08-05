@@ -1,7 +1,7 @@
-import connectToDB from "@/configs/db";
+import connectToDB from "../../../../../configs/db";
 import { verifyAccessToken } from "@/utils/auth";
 import { cookies } from "next/headers";
-import UserModel from "@/models/User";
+import UserModel from "../../../../../models/User";
 
 export async function GET(req) {
   connectToDB();

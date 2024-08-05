@@ -1,10 +1,52 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { useCombinedStore } from "@/app/store";
+import swal from "sweetalert";
+import { useRouter } from "next/navigation";
 export default function Navbar() {
+  const router = useRouter();
+
+  const [valid, setValid] = useState(false);
+  const { GetData, PostData } = useCombinedStore();
+
+  const getMy = async () => {
+    let url = "http://localhost:3000/api/auth/me";
+
+    await GetData({ url });
+    const GetResponses = useCombinedStore.getState().GetResponse;
+    if (GetResponses.status === 200) {
+      setValid(true);
+    }
+    console.log(GetResponses);
+  };
+
+  const logout = async () => {
+    swal({
+      title: "ایا می خواهید خارج شوید",
+      icon: "warning",
+      buttons: ["نه", "اره"],
+    }).then(async (res) => {
+      if (res) {
+        let url = "http://localhost:3000/api/auth/signout";
+        await PostData({ url });
+        setValid(false);
+        router.push("/");
+      }
+    });
+  };
+
+  useEffect(() => {
+    getMy();
+  }, []);
+
   return (
-    <nav className={`container lg:pl-[10px] xl:pl-0 mx-auto pr-1 sm:pr-0 flex items-center justify-center   flex-col  `} data-aos="fade-up" data-aos-duration="1000">
+    <nav
+      className={`container lg:pl-[10px] xl:pl-0 mx-auto pr-1 sm:pr-0 flex items-center justify-center   flex-col  `}
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
       <div className="  h-[144px] bg-[#FFFFFF] rounded-[10px]">
         <div className=" ml-[30px] mr-[30px] pt-[10px] flex items-center justify-between">
           <div className="flex items-center ">
@@ -48,32 +90,45 @@ export default function Navbar() {
             </ul>
           </div>
           <div className=" flex flex-row-reverse">
-            <div className=" xl:ml-[200px] lg:ml-[60px]">
-              <p>خوش امدید</p>
-              <ul className="flex flex-row-reverse items-center gap-2">
-                <div className=" child-hover:text-[#1ABA1A] cursor-pointer transition-colors duration-300 w-[40px] h-[40px] rounded-[100%] bg-[#EBEEF6]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className=" size-6 mt-2 mr-2"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.5 3.75A1.5 1.5 0 0 0 6 5.25v13.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5-1.5V15a.75.75 0 0 1 1.5 0v3.75a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V5.25a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3V9A.75.75 0 0 1 15 9V5.25a1.5 1.5 0 0 0-1.5-1.5h-6Zm5.03 4.72a.75.75 0 0 1 0 1.06l-1.72 1.72h10.94a.75.75 0 0 1 0 1.5H10.81l1.72 1.72a.75.75 0 1 1-1.06 1.06l-3-3a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+            {valid === true ? (
+              <div className=" xl:ml-[200px] lg:ml-[60px]">
+                <p>خوش امدید</p>
+                <div className="flex items-center gap-3 w-[120px] xl:w-[144px] 2xl:w-[160px] ">
+                  <p className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 xl:text-lg lg:text-[15px] font-bold">
+                    <Link href="/userpanel">پنل کاربری </Link>
+                  </p>
+                  <div className=" child-hover:text-[#1ABA1A] cursor-pointer transition-colors duration-300 w-[40px] h-[40px] rounded-[100%] bg-[#EBEEF6]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className=" size-6 mt-2 mr-2"
+                      onClick={logout}
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.5 3.75A1.5 1.5 0 0 0 6 5.25v13.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5-1.5V15a.75.75 0 0 1 1.5 0v3.75a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V5.25a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3V9A.75.75 0 0 1 15 9V5.25a1.5 1.5 0 0 0-1.5-1.5h-6Zm5.03 4.72a.75.75 0 0 1 0 1.06l-1.72 1.72h10.94a.75.75 0 0 1 0 1.5H10.81l1.72 1.72a.75.75 0 1 1-1.06 1.06l-3-3a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
                 </div>
-                <li className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 xl:text-lg lg:text-[15px] font-bold">
-                  <Link href="/login">ورود</Link>
-                </li>
-                <p className="text-[25px]">/</p>
-                <li className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 xl:text-lg lg:text-[15px]  font-bold">
-                  <Link href="/register">ثبت نام</Link>
-                </li>
-              </ul>
-            </div>
+              </div>
+            ) : (
+              <div className=" xl:ml-[200px] lg:ml-[60px]">
+                <p className="pr-8 2xl:pr-12">خوش امدید</p>
+                <ul className="flex w-[144px] 2xl:w-[160px] flex-row-reverse items-center gap-2">
+                  <li className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 xl:text-lg lg:text-[15px] font-bold">
+                    <Link href="/login">ورود</Link>
+                  </li>
+                  <p className="text-[25px]">/</p>
+                  <li className="child-hover:text-[#1ABA1A]  child-hover:transition-colors child-hover:duration-300 xl:text-lg lg:text-[15px]  font-bold">
+                    <Link href="/register">ثبت نام</Link>
+                  </li>
+                </ul>
+              </div>
+            )}
+
             <div className="ml-[50px]">
               <p className="">سبد خرید</p>
               <div className="flex flex-row-reverse items-center gap-2">

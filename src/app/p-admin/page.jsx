@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import Sidbar from "@/components/templates/p-adminPage/sidbar/Sidbar";
 import Rechart from "@/components/templates/p-adminPage/index/rechart";
 import MyLineChart from "@/components/templates/p-adminPage/index/LineChart";
@@ -6,6 +7,9 @@ import Informations from "@/components/templates/p-adminPage/index/informations/
 import SidbarResponsive from "@/components/templates/p-adminPage/sidbar/SidbarResponsive";
 
 export default function Page() {
+  useEffect(()=>{
+    
+  },[])
   return (
     <>
       <div className="flex">

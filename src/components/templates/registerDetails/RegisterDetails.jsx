@@ -8,14 +8,7 @@ import { useRouter } from "next/navigation";
 import swal from "sweetalert";
 
 export default function RegisterDetails() {
-  const {
-    GetData,
-    PostData,
-    getDataState,
-    PostResponse,
-    GetResponse,
-    postDataState,
-  } = useCombinedStore();
+  const { PostData, PostResponse, postDataState } = useCombinedStore();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -68,11 +61,10 @@ export default function RegisterDetails() {
       password,
     };
     await PostData({ url, body });
-    
-  };
 
-  useEffect(() => {
-    if (PostResponse.status === 422) {
+    const PostResponses = useCombinedStore.getState().PostResponse;
+
+    if (PostResponses.status === 422) {
       swal({
         title: "نام یا ایمیل شما تکراری می باشد",
         icon: "error",
@@ -80,11 +72,11 @@ export default function RegisterDetails() {
       });
     }
 
-    if (PostResponse.status === 201) {
+    if (PostResponses.status === 201) {
       router.push("/");
     }
-    console.log(PostResponse);
-  }, [postDataState, PostResponse]);
+    console.log(PostResponses);
+  };
 
   return (
     <div className=" w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mt-[15px] mb-[15px]">
@@ -144,11 +136,11 @@ export default function RegisterDetails() {
               placeholder="....password"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
               onChange={(e) => {
-                const newPassword = e.target.value; 
+                const newPassword = e.target.value;
                 setPassword(newPassword);
 
                 if (newPassword.trim().length === 0) {
-                  setAlertPasswordLength(""); 
+                  setAlertPasswordLength("");
                 }
               }}
             />
