@@ -10,11 +10,11 @@ import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 export default function Home() {
   return (
-    <main className="  container mx-auto pr-1 sm:pr-0 flex items-center justify-center  flex-col">
-      <div className="hidden lg:block">
+    <main className="  container mx-auto pr-[5px] sm:pr-0 flex items-center justify-center  flex-col">
+      <div className="hidden  lg:block">
         <Navbar />
       </div>
-      <div className="block lg:hidden container mx-auto p-2">
+      <div className="block lg:hidden container mx-auto pl-[7px]">
         <MobilNavbar />
       </div>
       <Header />

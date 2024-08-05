@@ -1,12 +1,9 @@
-
 import localFont from "next/font/local";
 
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import AOSInit from "@/utils/aos";
 
 import "./globals.css";
-
-
 
 export const metadata = {
   title: "Create Next App",
@@ -18,17 +15,14 @@ const vazirFont = localFont({
 });
 
 export default function RootLayout({ children }) {
-
-  
   return (
     <html lang="en" dir="rtl">
       <body
-        className={` overflow-x-hidden  bg-[#F5F5F5] ${vazirFont.className}`}
+        className={` overflow-x-hidden   bg-[#F5F5F5] ${vazirFont.className}`}
       >
         <AOSInit />
-   
+
         {children}
-    
       </body>
     </html>
   );

@@ -28,11 +28,11 @@ export default function MobilNavbar() {
               </svg>
             </div>
             <li className="text-sm xl:text-lg lg:text-[15px] font-bold">
-              <Link href="/">ورود</Link>
+              <Link href="/login">ورود</Link>
             </li>
             <p className="text-[25px]">/</p>
             <li className="text-sm xl:text-lg lg:text-[15px]  font-bold">
-              <Link href="/">ثبت نام </Link>
+              <Link href="/register">ثبت نام </Link>
             </li>
           </ul>
         </div>

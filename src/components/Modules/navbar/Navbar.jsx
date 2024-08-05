@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className={`container mx-auto pr-1 sm:pr-0 flex items-center justify-center   flex-col  `} data-aos="fade-up" data-aos-duration="1000">
+    <nav className={`container lg:pl-[10px] xl:pl-0 mx-auto pr-1 sm:pr-0 flex items-center justify-center   flex-col  `} data-aos="fade-up" data-aos-duration="1000">
       <div className="  h-[144px] bg-[#FFFFFF] rounded-[10px]">
         <div className=" ml-[30px] mr-[30px] pt-[10px] flex items-center justify-between">
           <div className="flex items-center ">

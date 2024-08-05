@@ -4,9 +4,13 @@ import Image from "next/image";
 export default function Header() {
   return (
     <>
-      <header className="mb-[20px]  " >
+      <header className="mb-[20px]  ">
         <div className="flex flex-col xl:flex-row gap-[15px] mt-[15px]">
-          <div data-aos="fade-up" data-aos-duration="1000"  className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]"
+          >
             <ul className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 child:text-[15px] child:font-semibold pt-10 child:mx-auto xl:pt-[55px] flex xl:flex-col xl:gap-6">
               <li>
                 <Link href="/">لپ تاپ</Link>
@@ -29,7 +33,11 @@ export default function Header() {
             </ul>
           </div>
 
-          <div className="w-[99%] xl:w-[650px] xl:h-[446px]" data-aos="fade-up" data-aos-duration="1000">
+          <div
+            className="w-[99%] xl:w-[650px] xl:h-[446px]"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
             <div className="relative h-[200px] sm:h-[300px]  xl:w-[650px] xl:h-[310px] rounded-[10px] overflow-hidden">
               <Image
                 src="/img/imageHomePage/slider3.png.png"
@@ -51,42 +59,50 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <div className="w-[100%] flex gap-[15px] mt-[15px]">
+            <div className="w-[100%]  flex  gap-[15px] mt-[15px]">
               <Image
                 src="/img/imageHomePage/div.img.png"
                 width={900}
                 height={600}
-                className="w-[48%] md:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[48%]  sm:w-[48.9%] md:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
               <Image
                 src="/img/imageHomePage/keybord.img.png"
                 width={900}
                 height={600}
-                className="w-[47%]  md:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
+                className="w-[48%]  sm:w-[48.9%]  md:w-[50.5%] bg-cover bg-center xl:w-[316px] h-[90px] sm:h-[120px] rounded-[10px]"
                 alt="shop"
               ></Image>
             </div>
           </div>
-          <div data-aos="fade-up" data-aos-duration="1000" className="flex xl:flex-col items-center  gap-[15px]" >
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            className="flex xl:flex-col  items-center  gap-[15px]"
+          >
             <Image
               src="/img/imageHomePage/wach.png.png"
               width={900}
               height={600}
-              className="w-[47.5%] md:w-[50.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover rounded-[10px]"
+              className="w-[47.5%]   sm:w-[48.6%] md:w-[50.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover rounded-[10px]"
               alt="shop"
             ></Image>
             <Image
               src="/img/imageHomePage/dorbin.img.png"
               width={900}
               height={600}
-              className="w-[47%] md:w-[50.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover  rounded-[10px] "
+              className="w-[47.5%]   sm:w-[48.6%] md:w-[50.5%] xl:w-[308px]  bg-center h-[130px] sm:h-[215px] bg-cover  rounded-[10px] "
               alt="shop"
             ></Image>
           </div>
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1000" className=" w-[100%] pl-2 sm:pl-0 flex flex-col md:flex-row gap-[15px] mt-[15px]">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          className=" w-[100%] pl-2 sm:pl-0 flex flex-col md:flex-row gap-[15px] mt-[15px]"
+        >
           <Image
             src="/img/imageHomePage/topcategory.png"
             width={900}
@@ -98,12 +114,16 @@ export default function Header() {
             src="/img/imageHomePage/main.png"
             width={900}
             height={600}
-            className="md:w-[49%] bg-cover bg-center xl:w-[642px] h-[130px] sm:h-[226px] rounded-[10px]"
+            className=" md:w-[49%] bg-cover bg-center xl:w-[642px] h-[130px] sm:h-[226px] rounded-[10px]"
             alt="shop"
           ></Image>
         </div>
 
-        <div className="w-[100%] pl-1 sm:pl-0 flex flex-col xl:flex-row-reverse" data-aos="fade-up" data-aos-duration="1200">
+        <div
+          className="w-[100%] pl-1 sm:pl-0 flex flex-col xl:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-duration="1200"
+        >
           <div className="w-[100%]">
             <div className="w-[100%] mt-[15px] h-[62px] bg-[#1ABA1A] rounded-[10px] text-left">
               <p className="text-[20px] text-white p-4 ml-[10px] font-bold">
@@ -124,11 +144,11 @@ export default function Header() {
                     src="/img/imageHomePage/prod5.png.png"
                     width={400}
                     height={300}
-                    className="w-[250px] mr-[50px] mt-8 h-[150px] sm:w-[400px] bg-cover bg-center pl-7 sm:h-[250px]  xl:mt-[85px]  xl:h-[280px] rounded-[10px]"
+                    className="w-[250px]  mt-8 h-[150px]  bg-cover bg-center pl-7 sm:h-[200px]  xl:mt-[85px]  xl:h-[280px] rounded-[10px]"
                     alt="shop"
                   ></Image>
                   <div className="w-[80px] top-4 left-4  h-[30px] sm:w-[90px] sm:top-0 sm:left-1 md:top-[0]  xl:top-[50px] md:left-8 xl:left-[30px] absolute sm:h-[40px] bg-[#1ABA1A] rounded-[10px]">
-                    <p className=" text-[15px] sm:text-[17px] md:text-[20px] text-white pt-1 pr-2 font-medium">
+                    <p className=" text-[15px] pt-[5px] pr-[13px] sm:text-[17px] md:text-[20px] text-white sm:pt-2 sm:pr-3 font-medium">
                       $199.00
                     </p>
                   </div>
