@@ -3,13 +3,9 @@ const mongoose = require("mongoose");
 const schema = new mongoose.Schema({
   name: {
     type: String,
-    default: "کاربر ست کافی",
+    required: true,
   },
   email: {
-    type: String,
-    required: false,
-  },
-  phone: {
     type: String,
     required: true,
   },
@@ -29,6 +25,6 @@ const schema = new mongoose.Schema({
   refreshToken: String,
 });
 
-const model = mongoose.models.User || mongoose.model("User", schema);
+const UserModel = mongoose.models.User || mongoose.model("User", schema);
 
-module.exports = model;
+module.exports = UserModel;

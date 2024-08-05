@@ -1,7 +1,82 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useCombinedStore } from "@/app/store";
+import { valiadteEmail } from "@/utils/auth";
+import { useRouter } from "next/router";
+import swal from "sweetalert";
+
 export default function RegisterDetails() {
+  
+  const {
+    GetData,
+    PostData,
+    getDataState,
+    PostResponse,
+    GetResponse,
+    postDataState,
+  } = useCombinedStore();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [alertName, setAlertName] = useState("");
+  const [alertEmail, setAlertEmail] = useState("");
+  const [alertPassword, setAlertPassword] = useState("");
+
+  const [isValiadteEmail, setIsValiadteEmail] = useState("");
+
+  const registerUser = async (e) => {
+    e.preventDefault();
+
+    setAlertName("");
+    setAlertEmail("");
+    setAlertPassword("");
+    setIsValiadteEmail("");
+
+    if (!name.trim().length) {
+      return setAlertName("لطفا نام خود را وارد کنید");
+    }
+    if (!email.trim().length) {
+      return setAlertEmail("ایمیل را وارد کنید");
+    }
+
+    if (email.length) {
+      let isValiadteEmail = valiadteEmail(email);
+      if (!isValiadteEmail) {
+        return setIsValiadteEmail("ایمیل نامعتبر است");
+      }
+    }
+
+    if (!password.trim().length) {
+      return setAlertPassword("لطفا پسورد خود را وارد کنید");
+    }
+
+    let url = "http://localhost:3000/api/auth/signup";
+    let body = {
+      name,
+      email,
+      password,
+    };
+    await PostData({ url, body });
+    console.log();
+  };
+
+  useEffect(() => {
+    if (PostResponse.status === 422) {
+      swal({
+        title: "نام یا ایمیل شما تکراری می باشد",
+        icon: "error",
+        buttons: "تلاش دوباره",
+      });
+    }
+   
+
+    console.log(PostResponse);
+  }, [postDataState, PostResponse]);
+
   return (
     <div className=" w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mt-[15px] mb-[15px]">
       <div
@@ -25,34 +100,56 @@ export default function RegisterDetails() {
             </p>
           </div>
 
-          <form className="flex flex-col items-end text-left mt-4">
+          <form className="flex flex-col items-end text-left mt-4 mb-4">
             <input
               type="text"
               placeholder="نام خود را وارد کنید"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px]"
+              onInput={(e) => setName(e.target.value)}
             />
+            {!name && <p className=" text-red-600 text-[14px] ">{alertName}</p>}
+
             <input
               type="email"
               placeholder="ایمیل خود را وارد کنید"
               className="border w-[90%] xl:w-[75%] mt-[15px] h-[43px] text-left pl-2 rounded-[6px]"
+              onChange={(e) => {
+                setEmail(e.target.value);
+                if (email.length) {
+                  let isValiadteEmail = valiadteEmail(email);
+                  if (isValiadteEmail) {
+                    return setIsValiadteEmail("");
+                  }
+                }
+              }}
             />
-            <input
-              type="number"
-              placeholder="شماره موبایل خود را وارد کنید"
-              className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
-            />
+            {!email && (
+              <p className=" text-red-600 text-[14px] ">{alertEmail}</p>
+            )}
+            {isValiadteEmail && (
+              <p className=" text-red-600 text-[14px] ">{isValiadteEmail}</p>
+            )}
+
             <input
               type="password"
               placeholder="....password"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
+              onChange={(e) => setPassword(e.target.value)}
             />
+            {!password && (
+              <p className=" text-red-600 text-[14px] ">{alertPassword}</p>
+            )}
+
             <Link
               href="/"
               className="hover:text-[#1ABA1A] hover:transition-colors hover:duration-300 text-[13px] text-[#999999] mt-[15px]"
             >
               پس ورد خود را فراموش کردین؟
             </Link>
-            <button className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1  w-[138px] h-[50px] rounded-[10px] ">
+            <button
+              onClick={registerUser}
+              className=" hover:text-white pb-2 hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1  w-[138px] h-[50px] rounded-[10px] "
+            >
               ثبت نام
             </button>
             <Link

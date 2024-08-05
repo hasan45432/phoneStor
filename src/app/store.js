@@ -35,7 +35,12 @@ const postDataStore = (set, get) => ({
     console.log(props);
     await fetch(props.url, {
       method: "POST",
-      body: props.formData,
+      headers: props.body
+        ? {
+            "Content-Type": "application/json",
+          }
+        : {},
+      body: props.formData ? props.formData : JSON.stringify(props.body),
     })
       .then((res) => {
         console.log(res);
@@ -45,7 +50,13 @@ const postDataStore = (set, get) => ({
         }));
         return res.json();
       })
-      .then((data) => set({ postData: data.results }));
+      .then((data) => {
+        console.log(data);
+        set((state) => ({
+          ...state,
+          postDataState: data, // به روزرسانی getDataState
+        }));
+      });
   },
 });
 
