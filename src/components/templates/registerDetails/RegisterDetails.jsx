@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import swal from "sweetalert";
 
 export default function RegisterDetails() {
-  
   const {
     GetData,
     PostData,
@@ -25,8 +24,11 @@ export default function RegisterDetails() {
   const [alertName, setAlertName] = useState("");
   const [alertEmail, setAlertEmail] = useState("");
   const [alertPassword, setAlertPassword] = useState("");
+  const [alertPasswordLength, setAlertPasswordLength] = useState("");
 
   const [isValiadteEmail, setIsValiadteEmail] = useState("");
+
+  const router = useRouter();
 
   const registerUser = async (e) => {
     e.preventDefault();
@@ -54,6 +56,10 @@ export default function RegisterDetails() {
       return setAlertPassword("لطفا پسورد خود را وارد کنید");
     }
 
+    if (password.trim().length <= 8) {
+      return setAlertPasswordLength("طول پسورد باید بیش تر از 8 کاراکتر باشد");
+    }
+
     let url = "http://localhost:3000/api/auth/signup";
     let body = {
       name,
@@ -72,8 +78,6 @@ export default function RegisterDetails() {
         buttons: "تلاش دوباره",
       });
     }
-   
-
     console.log(PostResponse);
   }, [postDataState, PostResponse]);
 
@@ -134,10 +138,20 @@ export default function RegisterDetails() {
               type="password"
               placeholder="....password"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                const newPassword = e.target.value; // مقدار جدید را در یک متغیر ذخیره کنید
+                setPassword(newPassword);
+
+                if (newPassword.trim().length === 0) {
+                  setAlertPasswordLength(""); // از newPassword استفاده کنید
+                }
+              }}
             />
             {!password && (
               <p className=" text-red-600 text-[14px] ">{alertPassword}</p>
+            )}
+            {password.length < 8 && (
+              <p className="text-red-600 text-[14px]">{alertPasswordLength}</p>
             )}
 
             <Link
