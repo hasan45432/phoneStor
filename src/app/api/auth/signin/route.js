@@ -5,8 +5,8 @@ import {
   valiadtePassword,
   verifyPassword,
 } from "@/utils/auth";
-import UserModel from "@/models/User";
-import connectToDB from "@/configs/db";
+import UserModel from "../../../../../models/User";
+import connectToDB from "../../../../../configs/db";
 
 export async function POST(req) {
   try {
@@ -16,9 +16,8 @@ export async function POST(req) {
 
     // Validation
     const isValidEmail = valiadteEmail(email);
-    const isValidPassword = valiadtePassword(password);
 
-    if (!isValidEmail || !isValidPassword) {
+    if (!isValidEmail || !password) {
       return Response.json(
         { message: "email or password is invalid" },
         { status: 419 }

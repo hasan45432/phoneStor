@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCombinedStore } from "@/app/store";
 import { valiadteEmail } from "@/utils/auth";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import swal from "sweetalert";
 
 export default function RegisterDetails() {
@@ -24,6 +24,7 @@ export default function RegisterDetails() {
   const [alertName, setAlertName] = useState("");
   const [alertEmail, setAlertEmail] = useState("");
   const [alertPassword, setAlertPassword] = useState("");
+
   const [alertPasswordLength, setAlertPasswordLength] = useState("");
 
   const [isValiadteEmail, setIsValiadteEmail] = useState("");
@@ -56,7 +57,7 @@ export default function RegisterDetails() {
       return setAlertPassword("لطفا پسورد خود را وارد کنید");
     }
 
-    if (password.trim().length <= 8) {
+    if (password.trim().length < 8) {
       return setAlertPasswordLength("طول پسورد باید بیش تر از 8 کاراکتر باشد");
     }
 
@@ -67,7 +68,7 @@ export default function RegisterDetails() {
       password,
     };
     await PostData({ url, body });
-    console.log();
+    
   };
 
   useEffect(() => {
@@ -77,6 +78,10 @@ export default function RegisterDetails() {
         icon: "error",
         buttons: "تلاش دوباره",
       });
+    }
+
+    if (PostResponse.status === 201) {
+      router.push("/");
     }
     console.log(PostResponse);
   }, [postDataState, PostResponse]);
@@ -139,11 +144,11 @@ export default function RegisterDetails() {
               placeholder="....password"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
               onChange={(e) => {
-                const newPassword = e.target.value; // مقدار جدید را در یک متغیر ذخیره کنید
+                const newPassword = e.target.value; 
                 setPassword(newPassword);
 
                 if (newPassword.trim().length === 0) {
-                  setAlertPasswordLength(""); // از newPassword استفاده کنید
+                  setAlertPasswordLength(""); 
                 }
               }}
             />

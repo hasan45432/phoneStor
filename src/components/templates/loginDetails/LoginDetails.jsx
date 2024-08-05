@@ -1,7 +1,86 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { valiadteEmail } from "@/utils/auth";
+import { useCombinedStore } from "@/app/store";
+import swal from "sweetalert";
+
 export default function LoginDetails() {
+  const {
+    GetData,
+    PostData,
+    getDataState,
+    PostResponse,
+    GetResponse,
+    postDataState,
+  } = useCombinedStore();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [alertEmail, setAlertEmail] = useState("");
+  const [alertPassword, setAlertPassword] = useState("");
+
+  const [isValiadteEmail, setIsValiadteEmail] = useState("");
+
+  const [alertPasswordLength, setAlertPasswordLength] = useState("");
+
+  const router = useRouter();
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+
+    if (!email.trim().length) {
+      return setAlertEmail("ایمیل را وارد کنید");
+    }
+
+    if (email.length) {
+      let isValiadteEmail = valiadteEmail(email);
+      if (!isValiadteEmail) {
+        return setIsValiadteEmail("ایمیل نامعتبر است");
+      }
+    }
+
+    if (!password.trim().length) {
+      return setAlertPassword("لطفا پسورد خود را وارد کنید");
+    }
+
+    if (password.trim().length < 8) {
+      return setAlertPasswordLength("طول پسورد باید بیش تر از 8 کاراکتر باشد");
+    }
+
+    let url = "http://localhost:3000/api/auth/signin";
+    let body = {
+      email,
+      password,
+    };
+    await PostData({ url, body });
+  };
+
+  useEffect(() => {
+    if (PostResponse.status === 419) {
+      swal({
+        title: "رمز عبور یا ایمیل اشتباه می باشد",
+        icon: "error",
+        buttons: "تلاش دوباره",
+      });
+    }
+
+    if (PostResponse.status === 401 || PostResponse.status === 422) {
+      swal({
+        title: "اطلاعات وارد شده صحیح نمی باشد",
+        icon: "error",
+        buttons: "تلاش دوباره",
+      });
+    }
+
+    if (PostResponse.status === 200) {
+      router.push("/");
+    }
+    console.log(PostResponse);
+  }, [postDataState, PostResponse]);
   return (
     <div className=" w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mt-[15px] mb-[15px]">
       <div
@@ -30,19 +109,51 @@ export default function LoginDetails() {
               type="email"
               placeholder="Example@gmail.com"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px]"
+              onChange={(e) => {
+                const newEmail = e.target.value;
+                setEmail(newEmail);
+                let isValiadteEmail = valiadteEmail(newEmail);
+                if (newEmail.length === 0 || isValiadteEmail) {
+                  return setIsValiadteEmail("");
+                }
+              }}
             />
+            {!email && (
+              <p className=" text-red-600 text-[14px] ">{alertEmail}</p>
+            )}
+            {isValiadteEmail && (
+              <p className=" text-red-600 text-[14px] ">{isValiadteEmail}</p>
+            )}
+
             <input
               type="password"
               placeholder="....password"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
+              onChange={(e) => {
+                const newPassword = e.target.value;
+                setPassword(newPassword);
+                if (newPassword.trim().length === 0) {
+                  setAlertPasswordLength("");
+                }
+              }}
             />
+            {!password && (
+              <p className=" text-red-600 text-[14px] ">{alertPassword}</p>
+            )}
+            {password.length < 8 && (
+              <p className="text-red-600 text-[14px]">{alertPasswordLength}</p>
+            )}
+
             <Link
               href="/"
               className="hover:text-[#1ABA1A] hover:transition-colors hover:duration-300 text-[13px] text-[#999999] mt-[15px]"
             >
               پس ورد خود را فراموش کردین؟
             </Link>
-            <button className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[22px] pb-1  w-[138px] h-[50px] rounded-[10px] ">
+            <button
+              onClick={loginUser}
+              className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[22px] pb-1  w-[138px] h-[50px] rounded-[10px] "
+            >
               ورود
             </button>
             <Link
