@@ -6,8 +6,7 @@ import { useCombinedStore } from "@/app/store";
 import swal from "sweetalert";
 
 export default function ProductsPage() {
-  const { GetData, PostData, getDataState, PostResponse, GetResponse } =
-    useCombinedStore();
+  const { GetData, PostData, DeleteData } = useCombinedStore();
 
   const [products, setProducts] = useState([]);
   const [res, setRes] = useState({});
@@ -32,29 +31,38 @@ export default function ProductsPage() {
 
     await PostData({ url, formData });
     await fetchData();
-  };
 
-  const fetchData = async () => {
-    const url = "http://localhost:3000/api/products";
-    await GetData({ url });
-  };
+    const PostResponses = useCombinedStore.getState().PostResponse;
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    setProducts(getDataState);
-    setRes(PostResponse);
-    if (PostResponse.status === 201) {
+    if (PostResponses.status === 201) {
       swal({
         title: "محصول با موفقیت اضافه شد",
         icon: "success",
         buttons: "OK",
       });
-  
     }
-  }, [getDataState, PostData]);
+  };
+
+  const fetchData = async () => {
+    const url = "http://localhost:3000/api/products";
+    await GetData({ url });
+
+    const getDataStates = useCombinedStore.getState().getDataState;
+
+    setProducts(getDataStates);
+  };
+
+  const deleteProduct = async (e, productID) => {
+    e.preventDefault();
+    let url = "http://localhost:3000/api/products";
+    let body = { id: productID };
+    await DeleteData({ url, body });
+    await fetchData();
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="flex">
@@ -312,6 +320,9 @@ export default function ProductsPage() {
                                     stroke-width="1.5"
                                     stroke="currentColor"
                                     className="w-5 h-5"
+                                    onClick={(e) =>
+                                      deleteProduct(e, product._id)
+                                    }
                                   >
                                     <path
                                       stroke-linecap="round"
