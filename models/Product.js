@@ -18,6 +18,10 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
   img: {
     type: String, // img src
     required: true,

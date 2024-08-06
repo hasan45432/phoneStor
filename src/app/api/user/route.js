@@ -1,5 +1,5 @@
-import connectToDB from "@/configs/db";
-import UserModel from "@/models/User";
+import connectToDB from "../../../../configs/db";
+import UserModel from "../../../../models/User";
 import { authUser } from "@/utils/serverHelpers";
 
 export async function POST(req) {
@@ -43,4 +43,10 @@ export async function DELETE(req) {
   } catch (err) {
     return Response.json({ message: err }, { status: 500 });
   }
+}
+
+export async function GET() {
+  connectToDB();
+  const users = await UserModel.find({}, "-__v");
+  return Response.json(users);
 }

@@ -15,11 +15,16 @@ export default function Navbar() {
     let url = "http://localhost:3000/api/auth/me";
 
     await GetData({ url });
+    const getDataStates = useCombinedStore.getState().getDataState;
     const GetResponses = useCombinedStore.getState().GetResponse;
-    if (GetResponses.status === 200) {
-      setValid(true);
+
+    if (getDataStates !== null) {
+      if (GetResponses.status !== 401) {
+        setValid(true);
+      }
     }
-    console.log(GetResponses);
+
+    console.log(getDataStates);
   };
 
   const logout = async () => {

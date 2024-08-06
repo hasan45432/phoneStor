@@ -3,6 +3,7 @@ import SingleProductDetails from "@/components/templates/singleproductDetails/si
 import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import Navbar from "@/components/Modules/navbar/Navbar";
+import ProductComment from "@/components/templates/productComment/ProductComment";
 export default function SingleProduct() {
   return (
     <>
@@ -15,6 +16,9 @@ export default function SingleProduct() {
         </div>
         <div className="w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mb-[15px] mt-[15px]">
           <SingleProductDetails />
+        </div>
+        <div className="w-[100%] 2xl:w-[85%]  bg-white rounded-[10px] mb-[15px] ">
+          <ProductComment />
         </div>
         <Footer />
       </div>

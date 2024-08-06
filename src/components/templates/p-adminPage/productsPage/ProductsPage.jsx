@@ -29,17 +29,31 @@ export default function ProductsPage() {
 
     let url = "http://localhost:3000/api/products";
 
-    await PostData({ url, formData });
-    await fetchData();
+    if (
+      (name.length,
+      price.length,
+      shortDescription.length,
+      longDescription.length,
+      img)
+    ) {
+      if (typeof name !== "string") {
+        return swal({
+          title: "نمی تواند عدد باشد",
+          icon: "warning",
+        });
+      }
+      await PostData({ url, formData });
+      await fetchData();
 
-    const PostResponses = useCombinedStore.getState().PostResponse;
+      const PostResponses = useCombinedStore.getState().PostResponse;
 
-    if (PostResponses.status === 201) {
-      swal({
-        title: "محصول با موفقیت اضافه شد",
-        icon: "success",
-        buttons: "OK",
-      });
+      if (PostResponses.status === 201) {
+        swal({
+          title: "محصول با موفقیت اضافه شد",
+          icon: "success",
+          buttons: "OK",
+        });
+      }
     }
   };
 
@@ -56,8 +70,16 @@ export default function ProductsPage() {
     e.preventDefault();
     let url = "http://localhost:3000/api/products";
     let body = { id: productID };
-    await DeleteData({ url, body });
-    await fetchData();
+    swal({
+      title: "ایا از حذف این محصول مطمعا هستید",
+      icon: "warning",
+      buttons: ["نه", "اره"],
+    }).then(async (res) => {
+      if (res) {
+        await DeleteData({ url, body });
+        await fetchData();
+      }
+    });
   };
 
   useEffect(() => {
@@ -256,7 +278,13 @@ export default function ProductsPage() {
                           scope="col"
                           className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
-                          توضیح محصول
+                          توضیح کوتاه محصول
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                        >
+                          توضیح بلند محصول
                         </th>
                         <th
                           scope="col"
@@ -285,11 +313,8 @@ export default function ProductsPage() {
                                 <div className="flex items-center gap-x-2">
                                   <div>
                                     <h2 className="font-medium text-gray-800 dark:text-white ">
-                                      Arthur Melo
+                                      {product.name}
                                     </h2>
-                                    <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                      @authurmelo
-                                    </p>
                                   </div>
                                 </div>
                               </div>
@@ -304,12 +329,21 @@ export default function ProductsPage() {
                               </div>
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                              Design Director
+                              {product.price}
                             </td>
                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                              authurmelo@example.com
+                              {product.shortDescription}
                             </td>
-                            <td className="px-4 py-4 text-sm whitespace-nowrap"></td>
+                            <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                              {product.longDescription}
+                            </td>
+                            <td className="w-[130px] h-[100px]">
+                              <img
+                                className="w-[90px] h-[90px] rounded-[100%]"
+                                src={product.img}
+                                alt="Product Image" // برای دسترسی‌پذیری و SEO
+                              />
+                            </td>
                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                               <div className="flex items-center gap-x-6">
                                 <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">

@@ -22,6 +22,7 @@ export default function RegisterDetails() {
 
   const [isValiadteEmail, setIsValiadteEmail] = useState("");
 
+
   const router = useRouter();
 
   const registerUser = async (e) => {
@@ -35,9 +36,11 @@ export default function RegisterDetails() {
     if (!name.trim().length) {
       return setAlertName("لطفا نام خود را وارد کنید");
     }
+
     if (!email.trim().length) {
       return setAlertEmail("ایمیل را وارد کنید");
     }
+
 
     if (email.length) {
       let isValiadteEmail = validateEmail(email);
