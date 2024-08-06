@@ -6,8 +6,8 @@ const hashPassword = async (password) => {
   return hashedPassword;
 };
 
-const verifyPassword = async (password, hashedPassword) => {
-  const isValid = await compare(password, hashedPassword);
+const verifyPassword = async (hashedPassword, password) => {
+  const isValid = await compare(hashedPassword, password);
   return isValid;
 };
 
@@ -35,7 +35,7 @@ const generateRefreshToken = (data) => {
   return token;
 };
 
-const valiadteEmail = (email) => {
+const validateEmail = (email) => {
   const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return pattern.test(email);
 };
@@ -45,9 +45,8 @@ const valiadtePhone = (phone) => {
   return pattern.test(phone);
 };
 
-const valiadtePassword = (password) => {
-  const pattern =
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+const validatePassword = (password) => {
+  const pattern = /^(?=.*?[0-9]).{8,}$/;
   return pattern.test(password);
 };
 
@@ -57,7 +56,6 @@ export {
   generateAccessToken,
   verifyAccessToken,
   generateRefreshToken,
-  valiadteEmail,
-  valiadtePhone,
-  valiadtePassword,
+  validateEmail,
+  validatePassword,
 };

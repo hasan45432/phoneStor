@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { valiadteEmail } from "@/utils/auth";
+import { validateEmail } from "@/utils/auth";
 import { useCombinedStore } from "@/app/store";
 import swal from "sweetalert";
 
@@ -37,7 +37,7 @@ export default function LoginDetails() {
     }
 
     if (email.length) {
-      let isValiadteEmail = valiadteEmail(email);
+      let isValiadteEmail = validateEmail(email);
       if (!isValiadteEmail) {
         return setIsValiadteEmail("ایمیل نامعتبر است");
       }
@@ -113,7 +113,7 @@ export default function LoginDetails() {
               onChange={(e) => {
                 const newEmail = e.target.value;
                 setEmail(newEmail);
-                let isValiadteEmail = valiadteEmail(newEmail);
+                let isValiadteEmail = validateEmail(newEmail);
                 if (newEmail.length === 0 || isValiadteEmail) {
                   return setIsValiadteEmail("");
                 }

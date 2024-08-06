@@ -1,8 +1,9 @@
+// API Route Handler
 import {
   generateAccessToken,
   generateRefreshToken,
-  valiadteEmail,
-  valiadtePassword,
+  validateEmail,
+  validatePassword,
   verifyPassword,
 } from "@/utils/auth";
 import UserModel from "../../../../../models/User";
@@ -10,16 +11,17 @@ import connectToDB from "../../../../../configs/db";
 
 export async function POST(req) {
   try {
-    connectToDB();
+    await connectToDB(); // Ensure to await connection
     const body = await req.json();
     const { email, password } = body;
 
     // Validation
-    const isValidEmail = valiadteEmail(email);
+    const isValidEmail = validateEmail(email);
+    const isValidPassword = verifyPassword(password);
 
-    if (!isValidEmail || !password) {
+    if (!isValidEmail || !isValidPassword) {
       return Response.json(
-        { message: "email or password is invalid" },
+        { message: "Email or password is invalid" },
         { status: 419 }
       );
     }
@@ -30,9 +32,10 @@ export async function POST(req) {
       return Response.json({ message: "User not found" }, { status: 422 });
     }
 
-    const isCorrectPasswordWithHash = verifyPassword(password, user.password);
+    // Confirm password match
+    const isCorrectPassword = await verifyPassword(password,user.password);
 
-    if (!isCorrectPasswordWithHash) {
+    if (!isCorrectPassword) {
       return Response.json(
         { message: "Email or password is not correct" },
         { status: 401 }
@@ -42,20 +45,16 @@ export async function POST(req) {
     const accessToken = generateAccessToken({ email });
     const refreshToken = generateRefreshToken({ email });
 
-    await UserModel.findOneAndUpdate(
-      { email },
-      {
-        $set: {
-          refreshToken,
-        },
-      }
-    );
+    await UserModel.findOneAndUpdate({ email }, { $set: { refreshToken } });
 
     const headers = new Headers();
-    headers.append("Set-Cookie", `token=${accessToken};path=/;httpOnly=true;`);
     headers.append(
       "Set-Cookie",
-      `refresh-token=${refreshToken};path=/;httpOnly=true;`
+      `token=${accessToken}; path=/; httpOnly=true;`
+    );
+    headers.append(
+      "Set-Cookie",
+      `refresh-token=${refreshToken}; path=/; httpOnly=true;`
     );
 
     return Response.json(
@@ -66,11 +65,7 @@ export async function POST(req) {
       }
     );
   } catch (err) {
-    return Response.json(
-      { message: err },
-      {
-        status: 500,
-      }
-    );
+    console.error(err); // Log error for debugging
+    return Response.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }
