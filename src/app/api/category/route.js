@@ -1,55 +1,65 @@
-import connectToDB from "@/configs/db";
-import CommentModel from "@/models/Comment";
-import ProductModel from "@/models/Product";
+import connectToDB from "../../../../configs/db";
+import categoryModel from "../../../../models/Category";
 
 export async function POST(req) {
   try {
-    connectToDB();
+    await connectToDB();
     const reqBody = await req.json();
-    const { username, body, email, score, productID } = reqBody;
+    const { body } = reqBody; 
 
     // Validation
+    if (!body) {
+      return Response.json(
+        { message: "Body and productID are required" },
+        { status: 400 }
+      );
+    }
 
-    const comment = await CommentModel.create({
-      username,
-      body,
-      email,
-      score,
-      productID,
-    });
+    const category = await categoryModel.create({ body });
 
-    const updatedProduct = await ProductModel.findOneAndUpdate(
-      {
-        _id: productID,
-      },
-      {
-        $push: {
-          comments: comment._id,
-        },
-      }
-    );
+  
 
     return Response.json(
       {
         message: "Comment created successfully :))",
-        data: comment,
+        data: category,
       },
-      {
-        status: 201,
-      }
+      { status: 201 }
     );
   } catch (err) {
-    return Response.json({ message: err }, { status: 500 });
+    return Response.json(
+      { message: "Failed to create comment", error: err.message },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(req) {
+  try {
+    await connectToDB();
+    const body = await req.json();
+    const { id } = body;
+
+    // Validation
+    if (!id) {
+      return Response.json({ message: "ID is required" }, { status: 400 });
+    }
+
+    await categoryModel.findOneAndDelete({ _id: id });
+    return Response.json(
+      { message: "User removed successfully :))" },
+      { status: 200 }
+    );
+  } catch (err) {
+    return Response.json(
+      { message: "Failed to delete category", error: err.message },
+      { status: 500 }
+    );
   }
 }
 
 export async function GET() {
-  await CommentModel.findOneAndUpdate(
-    {},
-    {
-      isAccept: true,
-    }
-  );
-  const comments = await CommentModel.find({}, "-__v");
-  return Response.json(comments);
+  await connectToDB();
+  const comments = await categoryModel.find({}, "-__v"); // تمام کامنت‌ها را بدست بیاورید
+  return Response.json(comments, { status: 200 });
 }
