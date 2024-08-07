@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 require("./Product");
 
 const schema = new mongoose.Schema({
-  body: {
+  name: {
     type: String,
     required: true,
   },

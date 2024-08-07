@@ -9,6 +9,9 @@ export default function ProductsPage() {
   const { GetData, PostData, DeleteData } = useCombinedStore();
 
   const [products, setProducts] = useState([]);
+  const [categories, setCategoriesProducts] = useState([]);
+  const [categoryID, setCategoryID] = useState("");
+
   const [res, setRes] = useState({});
 
   const [name, setName] = useState("");
@@ -81,9 +84,18 @@ export default function ProductsPage() {
       }
     });
   };
+  const getCategory = async () => {
+    let url = "http://localhost:3000/api/category";
+    await GetData({ url });
+    let getDataStates = useCombinedStore.getState().getDataState;
+    setCategoriesProducts(getDataStates);
+
+    console.log(getDataStates);
+  };
 
   useEffect(() => {
     fetchData();
+    getCategory();
   }, []);
 
   return (
@@ -161,9 +173,9 @@ export default function ProductsPage() {
                 />
               </div>
 
-              <div>
+              <div className="flex flex-col  ">
                 <label
-                  className="text-gray-700 dark:text-gray-200"
+                  className="text-gray-700 dark:text-gray-200 pr-4"
                   for="passwordConfirmation"
                 >
                   تصویر محصول
@@ -174,6 +186,19 @@ export default function ProductsPage() {
                   onChange={(e) => setImg(e.target.files[0])}
                   className="block w-full px-3 border-none py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
+                <div className="md:flex pl-20 gap-2  mt-4 pr-3">
+                  <p> انتخاب دسته بندی:</p>
+                  <select
+                    className="w-[120px]"
+                    onChange={(e) => setCategoryID(e.target.value)}
+                  >
+                    {categories.map((category) => (
+                      <option key={category._id} value={category._id}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
 

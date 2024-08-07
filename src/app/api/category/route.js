@@ -5,17 +5,17 @@ export async function POST(req) {
   try {
     await connectToDB();
     const reqBody = await req.json();
-    const { body } = reqBody; 
+    const { name } = reqBody; 
 
     // Validation
-    if (!body) {
+    if (!name) {
       return Response.json(
         { message: "Body and productID are required" },
         { status: 400 }
       );
     }
 
-    const category = await categoryModel.create({ body });
+    const category = await categoryModel.create({ name });
 
   
 
@@ -37,8 +37,8 @@ export async function POST(req) {
 export async function DELETE(req) {
   try {
     await connectToDB();
-    const body = await req.json();
-    const { id } = body;
+    const reqBody = await req.json();
+    const { id } = reqBody;
 
     // Validation
     if (!id) {
