@@ -66,7 +66,7 @@ const deleteDataStore = (set) => ({
       console.log(req.body);
       const res = await fetch(req.url, {
         method: "DELETE",
-        body: JSON.stringify(req.body) ,
+        body: JSON.stringify(req.body),
       });
 
       const data = await res.json();
@@ -83,8 +83,22 @@ const deleteDataStore = (set) => ({
   },
 });
 
+const productData = (set) => ({
+  datas: [],
+
+  get: (data) => {
+    console.log(data);
+
+    set((state) => ({
+      ...state,
+      datas: data,
+    }));
+  },
+});
+
 export const useCombinedStore = create((...params) => ({
   ...getDataStore(...params),
   ...postDataStore(...params),
   ...deleteDataStore(...params),
+  ...productData(...params),
 }));
