@@ -7,9 +7,7 @@ import Informations from "@/components/templates/p-adminPage/index/informations/
 import SidbarResponsive from "@/components/templates/p-adminPage/sidbar/SidbarResponsive";
 
 export default function Page() {
-  useEffect(()=>{
-    
-  },[])
+  useEffect(() => {}, []);
   return (
     <>
       <div className="flex">
@@ -21,6 +19,7 @@ export default function Page() {
         </div>
 
         <div className={`flex w-[100%] mx-auto flex-col `}>
+          <Informations />
           <div className="w-[100%] sm:w-[80%] mx-auto  h-[450px] mt-[50px] ">
             <p className="text-[20px] font-bold">امار فروش</p>
             <Rechart />
@@ -29,7 +28,6 @@ export default function Page() {
             <p className="text-[20px] font-bold">نرخ رشد</p>
             <MyLineChart />
           </div>
-          <Informations />
         </div>
       </div>
     </>

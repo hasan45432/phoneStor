@@ -15,9 +15,9 @@ export default function ProductsPage() {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategoriesProducts] = useState([]);
-  const [categoryID, setCategoryID] = useState("");
+  const [category, setCategory] = useState("موبایل");
 
-  const [res, setRes] = useState({});
+  const [res, setRes] = useState("s");
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -33,10 +33,8 @@ export default function ProductsPage() {
     formData.append("price", price);
     formData.append("shortDescription", shortDescription);
     formData.append("longDescription", longDescription);
+    formData.append("category", category);
     formData.append("img", img);
-    if (img) {
-      formData.append("img", img);
-    }
 
     let url = "http://localhost:3000/api/products";
 
@@ -180,10 +178,10 @@ export default function ProductsPage() {
                   <p> انتخاب دسته بندی:</p>
                   <select
                     className="w-[120px]"
-                    onChange={(e) => setCategoryID(e.target.value)}
+                    onChange={(e) => setCategory(e.target.value)}
                   >
                     {categories.map((category) => (
-                      <option key={category._id} value={category._id}>
+                      <option key={category._id} value={category.name}>
                         {category.name}
                       </option>
                     ))}
@@ -228,6 +226,12 @@ export default function ProductsPage() {
                           <div className="flex items-center gap-x-3">
                             <span>نام محصول</span>
                           </div>
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                        >
+                          دسته بندی
                         </th>
 
                         <th
@@ -330,6 +334,22 @@ export default function ProductsPage() {
                                   <div>
                                     <h2 className="font-medium text-gray-800 dark:text-white ">
                                       {product.name}
+                                    </h2>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                              <div className="inline-flex items-center gap-x-3">
+                                <input
+                                  type="checkbox"
+                                  className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                                />
+
+                                <div className="flex items-center gap-x-2">
+                                  <div>
+                                    <h2 className="font-medium text-gray-800 dark:text-white ">
+                                      {product.category}
                                     </h2>
                                   </div>
                                 </div>

@@ -77,19 +77,19 @@ export default function CategoryPage() {
         <SidbarResponsive />
       </div>
       <div className="flex flex-col w-[100%]">
-        <section class="max-w-4xl p-6 mx-auto mt-6 bg-white rounded-md shadow-md dark:bg-gray-800">
+        <section className="max-w-4xl p-6 mx-auto mt-6 bg-white rounded-md shadow-md dark:bg-gray-800">
           <form>
-            <div class="grid   grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+            <div className="grid   grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
               <div>
                 <label
-                  class="text-gray-700 dark:text-gray-200"
-                  for="passwordConfirmation"
+                  className="text-gray-700 dark:text-gray-200"
+                  htmlFor="passwordConfirmation"
                 >
                   نام دسته بندی را وارد کنید
                 </label>
                 <input
                   type="text"
-                  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                   onChange={(e) => {
                     setName(e.target.value);
                   }}
@@ -99,10 +99,10 @@ export default function CategoryPage() {
               </div>
             </div>
 
-            <div class="flex justify-end mt-6">
+            <div className="flex justify-end mt-6">
               <button
                 onClick={addCategory}
-                class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
               >
                 اضافه کردن
               </button>
