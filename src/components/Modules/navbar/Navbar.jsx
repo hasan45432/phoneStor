@@ -5,26 +5,30 @@ import Link from "next/link";
 import { useCombinedStore } from "@/app/store";
 import swal from "sweetalert";
 import { useRouter } from "next/navigation";
+import usePost from "@/cutomHooks/usePost";
+import useFetch from "@/cutomHooks/useFetch";
+
 export default function Navbar() {
   const router = useRouter();
+  const { fetchPost } = usePost();
+  const { fetchData } = useFetch();
 
   const [valid, setValid] = useState(false);
-  const { GetData, PostData } = useCombinedStore();
 
   const getMy = async () => {
     let url = "http://localhost:3000/api/auth/me";
 
-    await GetData({ url });
-    const getDataStates = useCombinedStore.getState().getDataState;
-    const GetResponses = useCombinedStore.getState().GetResponse;
+    await fetchData(url);
+    const statesData = useCombinedStore.getState().statesData;
+    const statesResponse = useCombinedStore.getState().statesResponse;
 
-    if (getDataStates !== null) {
-      if (GetResponses.status !== 401) {
+    if (statesData !== null) {
+      if (statesResponse.status !== 401) {
         setValid(true);
       }
     }
 
-    console.log(getDataStates);
+    console.log(statesData);
   };
 
   const logout = async () => {
@@ -35,7 +39,7 @@ export default function Navbar() {
     }).then(async (res) => {
       if (res) {
         let url = "http://localhost:3000/api/auth/signout";
-        await PostData({ url });
+        await fetchPost({ url: url });
         setValid(false);
         router.push("/");
       }
