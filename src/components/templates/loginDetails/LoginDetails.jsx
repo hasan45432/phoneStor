@@ -6,16 +6,10 @@ import { useRouter } from "next/navigation";
 import { validateEmail } from "@/utils/auth";
 import { useCombinedStore } from "@/app/store";
 import swal from "sweetalert";
+import usePost from "@/cutomHooks/usePost";
 
 export default function LoginDetails() {
-  const {
-    GetData,
-    PostData,
-    getDataState,
-    PostResponse,
-    GetResponse,
-    postDataState,
-  } = useCombinedStore();
+  const { fetchPost } = usePost();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,30 +50,22 @@ export default function LoginDetails() {
       email,
       password,
     };
-    await PostData({ url, body });
+    await fetchPost({ url: url, body: body });
 
-    const PostResponses = useCombinedStore.getState().PostResponse;
+    const statesResponse = useCombinedStore.getState().statesResponse;
 
-    if (PostResponses.status === 419) {
+    if (statesResponse.status === 422) {
       swal({
-        title: "رمز عبور یا ایمیل اشتباه می باشد",
+        title: "نام یا ایمیل شما تکراری می باشد",
         icon: "error",
         buttons: "تلاش دوباره",
       });
     }
 
-    if (PostResponses.status === 401 || PostResponses.status === 422) {
-      swal({
-        title: "اطلاعات وارد شده صحیح نمی باشد",
-        icon: "error",
-        buttons: "تلاش دوباره",
-      });
-    }
-
-    if (PostResponses.status === 200) {
+    if (statesResponse.status === 200) {
       router.push("/");
     }
-    console.log(PostResponses);
+    console.log(statesResponse);
   };
 
   return (
