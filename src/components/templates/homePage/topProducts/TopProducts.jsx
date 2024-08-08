@@ -1,12 +1,37 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Categories from "../categories/Categories";
 import Product from "@/components/Modules/product/Product";
+import useFetch from "@/cutomHooks/useFetch";
+import { useCombinedStore } from "@/app/store";
+
 export default function TopProducts() {
+  const { fetchData } = useFetch();
+  const [products, setProducts] = useState([]);
+
+  const handleChange = async () => {
+    let url = "http://localhost:3000/api/products";
+    await fetchData(url);
+    let statesData = useCombinedStore.getState().statesData;
+    let filterData = statesData.filter((product) => {
+      return product.category === "موبایل";
+    });
+    console.log(filterData);
+    setProducts(filterData);
+  };
+
+  useEffect(() => {
+    handleChange();
+  }, []);
   return (
     <>
       <div className="w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mb-[20px]">
-        <div data-aos="fade-up" data-aos-duration="1500" className="flex flex-col  xl:flex-row-reverse items-center pt-[50px] mr-[30px] ml-[30px]">
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1500"
+          className="flex flex-col  xl:flex-row-reverse items-center pt-[50px] mr-[30px] ml-[30px]"
+        >
           <div className=" hidden sm:block w-[605px]  h-[200px] relative">
             <Image
               src="/img/imageHomePage/prod18.png.png"
@@ -29,12 +54,14 @@ export default function TopProducts() {
           </div>
         </div>
 
-        <div data-aos="fade-up" data-aos-duration="1200" className="mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5   items-center">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+        <div
+          data-aos="fade-up"
+          data-aos-duration="1200"
+          className="mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5   items-center"
+        >
+          {products.slice(0, 5).map((product) => {
+            return <Product key={product._key} {...product} />;
+          })}
         </div>
       </div>
     </>

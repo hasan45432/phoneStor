@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-export default function NewProduct() {
+
+export default function NewProduct(props) {
   return (
     <>
       <div>
         <div className="flex flex-row-reverse items-center">
           <Image
-            src="/img/imageHomePage/Link → prod60.png.png"
-            width={1200}
-            height={900}
+            src={props.img}
+            width={200}
+            height={300}
             className="w-[100px] sm:w-[120px] h-[90px] rounded-[10px]"
             alt="shod"
           ></Image>
           <div className="text-left">
-            <p className="text-[11px] sm:text-[14px] font-bold ">Microte Surface 2.0 Laptop</p>
-            <p className="text-[11px] sm:text-[15px] font-bold">$579.00</p>
+            <p className="text-[11px] sm:text-[14px] font-bold ">
+              {props.name}
+            </p>
+            <p className="text-[11px] text-red-500 sm:text-[15px] font-bold">
+              {props.price && props.price.toLocaleString()}
+            </p>
           </div>
         </div>
       </div>
