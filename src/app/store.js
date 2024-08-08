@@ -83,22 +83,32 @@ const deleteDataStore = (set) => ({
   },
 });
 
-const productData = (set) => ({
-  datas: [],
+const states = (set) => ({
+  statesResponse: {},
+  statesData: [],
 
-  get: (data) => {
+  GETstateData: (data) => {
     console.log(data);
 
     set((state) => ({
       ...state,
-      datas: data,
+      statesData: data,
+    }));
+  },
+  GETstateResponse: (data) => {
+    console.log(data);
+
+    set((state) => ({
+      ...state,
+      statesResponse: data,
     }));
   },
 });
+
 
 export const useCombinedStore = create((...params) => ({
   ...getDataStore(...params),
   ...postDataStore(...params),
   ...deleteDataStore(...params),
-  ...productData(...params),
+  ...states(...params),
 }));

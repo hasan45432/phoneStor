@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useCombinedStore } from "@/app/store";
 export default function useFetch() {
-  const { get } = useCombinedStore();
+  const { GETstateData, GETstateResponse } = useCombinedStore();
   const [data, setData] = useState([]);
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(true); // مقداردهی اولیه به loading
@@ -9,17 +9,17 @@ export default function useFetch() {
 
   const fetchData = async (url) => {
     await fetch(url)
-      .then((res) => {
+      .then(async (res) => {
         console.log(res);
-        setResponse(res);
+        await GETstateResponse(res);
         return res.json();
       })
       .then(async (data) => {
         console.log(data);
-        await get(data);
+        await GETstateData(data);
         setLoading(false);
       });
   };
 
-  return { response, loading, error, fetchData };
+  return { loading, error, fetchData };
 }

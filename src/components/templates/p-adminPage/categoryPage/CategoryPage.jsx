@@ -3,13 +3,19 @@ import React, { useState, useEffect } from "react";
 import Sidbar from "@/components/templates/p-adminPage/sidbar/Sidbar";
 import SidbarResponsive from "@/components/templates/p-adminPage/sidbar/SidbarResponsive";
 import { useCombinedStore } from "@/app/store";
+import usePost from "@/cutomHooks/usePost";
+import useDelete from "@/cutomHooks/useDelete";
 import swal from "sweetalert";
+import useFetch from "@/cutomHooks/useFetch";
 export default function CategoryPage() {
-  const { GetData, PostData, DeleteData } = useCombinedStore();
-
   const [name, setName] = useState("");
   const [alert, setAlert] = useState("");
   const [category, setCategory] = useState([]);
+
+  const { loadingPost, errorPost, fetchPost } = usePost();
+  const { fetchDelete } = useDelete();
+  const { fetchData } = useFetch();
+
 
   const addCategory = async (e) => {
     e.preventDefault();
@@ -20,44 +26,43 @@ export default function CategoryPage() {
       return setAlert("لطفا دسته بندی را وارد کنید");
     }
 
-    await PostData({ url, body });
-    let PostResponses = useCombinedStore.getState().PostResponse;
-    let postDataStates = useCombinedStore.getState().postDataState;
-
-    if (PostResponses.status === 201) {
+    await fetchPost({ url: url, body: body });
+    let response = useCombinedStore.getState().statesResponse;
+    if (response.status === 201) {
       swal({
-        title: "دسته بندی با موفقیت اضافه شد",
+        title: "دسته بندی با موفقیت افزوده شد",
         icon: "success",
       });
     }
+    console.log(response);
+
     getCategory();
-    console.log(PostResponses);
-    console.log(postDataStates);
   };
 
   const getCategory = async () => {
     let url = "http://localhost:3000/api/category";
-    await GetData({ url });
-    let getDataStates = useCombinedStore.getState().getDataState;
-    setCategory(getDataStates);
+    await fetchData(url);
+    let statesData = useCombinedStore.getState().statesData;
+    setCategory(statesData);
 
-    console.log(getDataStates);
+    console.log(statesData);
   };
 
   const deleteCategory = async (e, categoryID) => {
     e.preventDefault();
     let url = "http://localhost:3000/api/category";
     let body = { id: categoryID };
-    swal({
-      title: "ایا از حذف این دسته بندی مطمعا هستید",
+
+    await swal({
+      title: "ایا از حذف این دسته بندی  مطمعا هستید",
       icon: "warning",
       buttons: ["نه", "اره"],
     }).then(async (res) => {
       if (res) {
-        await DeleteData({ url, body });
-        await getCategory();
+        await fetchDelete({ url: url, body: body });
       }
     });
+    getCategory();
   };
 
   useEffect(() => {
