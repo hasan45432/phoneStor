@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useCombinedStore } from "@/app/store";
 import { validateEmail } from "@/utils/auth";
 import { useRouter } from "next/navigation";
+import usePost from "@/cutomHooks/usePost";
 import swal from "sweetalert";
 
 export default function RegisterDetails() {
-  const { PostData, PostResponse, postDataState } = useCombinedStore();
+ 
+  const { fetchPost } = usePost();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +23,6 @@ export default function RegisterDetails() {
   const [alertPasswordLength, setAlertPasswordLength] = useState("");
 
   const [isValiadteEmail, setIsValiadteEmail] = useState("");
-
 
   const router = useRouter();
 
@@ -40,7 +41,6 @@ export default function RegisterDetails() {
     if (!email.trim().length) {
       return setAlertEmail("ایمیل را وارد کنید");
     }
-
 
     if (email.length) {
       let isValiadteEmail = validateEmail(email);
@@ -63,11 +63,11 @@ export default function RegisterDetails() {
       email,
       password,
     };
-    await PostData({ url, body });
+    await fetchPost({ url: url, body: body });
 
-    const PostResponses = useCombinedStore.getState().PostResponse;
+    const statesResponse = useCombinedStore.getState().statesResponse;
 
-    if (PostResponses.status === 422) {
+    if (statesResponse.status === 422) {
       swal({
         title: "نام یا ایمیل شما تکراری می باشد",
         icon: "error",
@@ -75,10 +75,10 @@ export default function RegisterDetails() {
       });
     }
 
-    if (PostResponses.status === 201) {
+    if (statesResponse.status === 201) {
       router.push("/");
     }
-    console.log(PostResponses);
+    console.log(statesResponse);
   };
 
   return (

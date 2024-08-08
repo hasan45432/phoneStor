@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useCombinedStore } from "@/app/store";
 export default function usePost() {
   const { GETstateData, GETstateResponse } = useCombinedStore();
-
-  const [dataPost, setData] = useState([]);
-  const [responsePost, setResponse] = useState(null);
-  const [loadingPost, setLoading] = useState(true); // مقداردهی اولیه به loading
-  const [errorPost, setError] = useState(null); // برای مدیریت خطا
 
   const fetchPost = async (req) => {
     console.log(req);
@@ -27,9 +22,8 @@ export default function usePost() {
       .then(async (data) => {
         console.log(data);
         await GETstateData(data);
-        setLoading(false);
       });
   };
 
-  return { loadingPost, errorPost, fetchPost };
+  return { fetchPost };
 }
