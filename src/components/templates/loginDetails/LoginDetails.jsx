@@ -54,9 +54,9 @@ export default function LoginDetails() {
 
     const statesResponse = useCombinedStore.getState().statesResponse;
 
-    if (statesResponse.status === 422) {
+    if (statesResponse.status === 401) {
       swal({
-        title: "نام یا ایمیل شما تکراری می باشد",
+        title: "پسورد یا ایمیل شما اشتباه می باشد",
         icon: "error",
         buttons: "تلاش دوباره",
       });

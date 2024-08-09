@@ -50,11 +50,11 @@ export async function POST(req) {
     const headers = new Headers();
     headers.append(
       "Set-Cookie",
-      `token=${accessToken}; path=/; httpOnly=true;`
+      `token=${accessToken}; path=/; httpOnly=true;max-age=604800`
     );
     headers.append(
       "Set-Cookie",
-      `refresh-token=${refreshToken}; path=/; httpOnly=true;`
+      `refreshToken=${refreshToken}; path=/; httpOnly=true;max-age=604800`
     );
 
     return Response.json(

@@ -19,13 +19,15 @@ export default function Navbar() {
     let url = "http://localhost:3000/api/auth/me";
 
     await fetchData(url);
-    const statesData = useCombinedStore.getState().statesData;
-    const statesResponse = useCombinedStore.getState().statesResponse;
+    const statesData = await useCombinedStore.getState().statesData;
+    const statesResponse = await useCombinedStore.getState().statesResponse;
 
-    if (statesData !== null) {
-      if (statesResponse.status !== 401) {
-        setValid(true);
-      }
+    if (
+      statesData.data !== null &&
+      statesResponse.status !== 401 &&
+      statesData !== null
+    ) {
+      setValid(true);
     }
 
     console.log(statesData);
