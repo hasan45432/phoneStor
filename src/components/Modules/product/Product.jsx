@@ -1,21 +1,22 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 export default function Product(props) {
-
   return (
     <>
       <div className="w-[115px] h-[350px]  sm:w-[214px] sm:h-[360px] ">
-        <div className="flex flex-col items-center">
-          <Image
-            src={props.img}
-            width={1200}
-            height={900}
-            className="w-[130px] h-[150px] sm:w-[192px] sm:h-[199px] mr-10"
-            alt="shop"
-          ></Image>
-          <p className="text-[15px] font-bold text-left">{props.name}</p>
-        </div>
-
+        <Link href={`singleproduct/${props._id}`}>
+          <div className="flex flex-col items-center">
+            <Image
+              src={props.img}
+              width={1200}
+              height={900}
+              className="w-[130px] h-[150px] sm:w-[192px] sm:h-[199px] mr-10"
+              alt="shop"
+            ></Image>
+            <p className="text-[15px] font-bold text-left">{props.name}</p>
+          </div>
+        </Link>
         <p className="text-[#F1352B] text-[25px] mt-[10px] font-semibold text-left">
           {props.price && props.price.toLocaleString()}
         </p>

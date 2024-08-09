@@ -4,6 +4,7 @@ import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import Navbar from "@/components/Modules/navbar/Navbar";
 import ProductComment from "@/components/templates/productComment/ProductComment";
+
 export default function SingleProduct() {
   return (
     <>
