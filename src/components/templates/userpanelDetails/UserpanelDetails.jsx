@@ -3,24 +3,23 @@ import React, { useState, useEffect } from "react";
 import { useCombinedStore } from "@/app/store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import useFetch from "@/cutomHooks/useFetch";
 export default function UserpanelDetails() {
   const router = useRouter();
   const [userInformation, setUserInformation] = useState({});
-  const {
-    GetData,
-  } = useCombinedStore();
+  const { fetchData } = useFetch();
 
   const getMy = async () => {
     let url = "http://localhost:3000/api/auth/me";
 
-    await GetData({ url });
-    const GetResponses = useCombinedStore.getState().GetResponse;
-    if (GetResponses.status === 401) {
+    await fetchData(url);
+    const statesResponse = useCombinedStore.getState().statesResponse;
+    if (statesResponse.status === 401) {
       router.push("/");
     }
-    const getDataStates = useCombinedStore.getState().getDataState;
-    setUserInformation(getDataStates);
-    console.log(getDataStates);
+    const statesData = useCombinedStore.getState().statesData;
+    setUserInformation(statesData);
+    console.log(statesData);
   };
 
   useEffect(() => {
@@ -43,8 +42,8 @@ export default function UserpanelDetails() {
           ></Image>
         </div>
         <div className="p-[15px]">
-          <p className="text-[20px] font-bold">Mark Cole</p>
-          <p className="text-[15px] text-[#666666]">swoo@gmail.com</p>
+          <p className="text-[20px] font-bold">{userInformation.name}</p>
+          <p className="text-[15px] text-[#666666]"> {userInformation.email}</p>
         </div>
       </div>
       <div className="w-[100%]">
