@@ -1,8 +1,30 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import usePost from "@/cutomHooks/usePost";
+import { useCombinedStore } from "@/app/store";
+export default function CreateComment() {
+  const { fetchPost } = usePost();
 
-export default function ProductComment() {
+  const [description, setDescription] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+
+  const submitComment = async (e) => {
+    e.preventDefault();
+    let url = "http://localhost:3000/api/comments";
+    let body = {
+      description,
+      username,
+      email,
+    };
+    await fetchPost({ url: url, body: body });
+    let statesResponse = useCombinedStore.getState().statesResponse;
+    let statesData = useCombinedStore.getState().statesData;
+    console.log(statesResponse);
+    console.log(statesData);
+  };
   return (
-    <div className="flex flex-col lg:flex-row-reverse items-center justify-around w-[100%]">
+    <div className="flex flex-col lg:flex-row-reverse  ">
       <form
         data-aos="zoom-in"
         data-aos-duration="1000"
@@ -19,6 +41,7 @@ export default function ProductComment() {
             name="comment"
             cols="45"
             rows="8"
+            onChange={(e) => setDescription(e.target.value)}
             className="mt-10 block py-2.5 px-0 w-full  text-sm rounded-[10px] text-gray-900 bg-transparent  border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-400 focus:outline-none focus:ring-0 focus:border-green-400 peer "
           ></textarea>
         </div>
@@ -28,6 +51,7 @@ export default function ProductComment() {
             type="email"
             name="floating_email"
             id="floating_email"
+            onChange={(e) => setEmail(e.target.value)}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-400 focus:outline-none focus:ring-0 focus:border-green-400 peer"
             placeholder=" "
             required
@@ -42,7 +66,8 @@ export default function ProductComment() {
 
         <div className="relative z-0 w-full mb-5 group">
           <input
-            type="password"
+            type="text"
+            onChange={(e) => setUsername(e.target.value)}
             name="repeat_password"
             id="floating_repeat_password"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-400 focus:outline-none focus:ring-0 focus:border-green-400 peer"
@@ -59,40 +84,12 @@ export default function ProductComment() {
 
         <button
           type="submit"
+          onClick={submitComment}
           className="text-[15px] hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[120px] h-[40px] sm:text-[18px] mb-[15px]    mt-[15px]  rounded-[10px] "
         >
           ارسال
         </button>
       </form>
-      <div
-        data-aos="zoom-in"
-        data-aos-duration="1000"
-        className="flex flex-col gap-4 h-[200px] mt-4 mb-[120px] lg:mb-12"
-      >
-        <p className="text-[18px] font-bold">
-          9 دیدگاه برای این محصول ثبت شده است
-        </p>
-        <div>
-          <p className="text-[16] font-bold">حسن فداکار</p>
-          <p className=" text-[14px]">من از این قهوه خیلی راضی بودم</p>
-          <hr className=" text-[3px]" />
-        </div>
-        <div>
-          <p className="text-[16] font-bold">حسن فداکار</p>
-          <p className=" text-[14px]">من از این قهوه خیلی راضی بودم</p>
-          <hr className=" text-[3px]" />
-        </div>
-        <div>
-          <p className="text-[16] font-bold">حسن فداکار</p>
-          <p className=" text-[14px]">من از این قهوه خیلی راضی بودم</p>
-          <hr className=" text-[3px]" />
-        </div>
-        <div>
-          <p className="text-[16] font-bold">حسن فداکار</p>
-          <p className=" text-[14px]">من از این قهوه خیلی راضی بودم</p>
-          <hr className=" text-[3px]" />
-        </div>
-      </div>
     </div>
   );
 }

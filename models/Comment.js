@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  body: {
+  description: {
     type: String,
     required: true,
   },
@@ -29,6 +29,6 @@ const schema = new mongoose.Schema({
   },
 });
 
-const model = mongoose.models.Comment || mongoose.model("Comment", schema);
+const CommentModel = mongoose.models.Comment || mongoose.model("Comment", schema);
 
-export default model;
+export default CommentModel;

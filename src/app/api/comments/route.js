@@ -1,20 +1,19 @@
-import connectToDB from "@/configs/db";
-import CommentModel from "@/models/Comment";
-import ProductModel from "@/models/Product";
+import connectToDB from "../../../../configs/db";
+import CommentModel from "../../../../models/Comment";
+import ProductModel from "../../../../models/Product";
 
 export async function POST(req) {
   try {
     connectToDB();
     const reqBody = await req.json();
-    const { username, body, email, score, productID } = reqBody;
+    const { username, description, email, productID } = reqBody;
 
     // Validation
 
     const comment = await CommentModel.create({
       username,
-      body,
+      description,
       email,
-      score,
       productID,
     });
 
