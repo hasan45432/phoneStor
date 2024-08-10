@@ -14,6 +14,7 @@ export default function CreateComment() {
   const [comments, setComments] = useState([]);
 
   const [showComments, setShowComments] = useState(false);
+  const [commentLength, setCommentLength] = useState([]);
 
   const [description, setDescription] = useState("");
   const [username, setUsername] = useState("");
@@ -29,6 +30,14 @@ export default function CreateComment() {
       productID: router.split("/").pop(),
     };
     await fetchPost({ url: url, body: body });
+    let statesResponse = useCombinedStore.getState().statesResponse;
+    if (statesResponse.status === 201) {
+      swal({
+        title: "کامنت شما بعد از تایید مدیر ثبت می شود",
+        icon: "success",
+      });
+    }
+    console.log(statesResponse);
     getMy();
   };
 
@@ -45,6 +54,11 @@ export default function CreateComment() {
     const filteredArray = await statesData.filter((state) =>
       stateProductComments.some((comment) => comment._id === state._id)
     );
+
+    let acceptAccept = filteredArray.filter((comment) => {
+      return comment.isAccept === true;
+    });
+    setCommentLength(acceptAccept);
 
     setComments(filteredArray);
   };
@@ -72,7 +86,7 @@ export default function CreateComment() {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row-reverse justify-around w-[100%] items-center ">
+    <div className="flex flex-col lg:flex-row-reverse justify-around w-[100%]  ">
       <form
         data-aos="zoom-in"
         data-aos-duration="1000"
@@ -141,11 +155,11 @@ export default function CreateComment() {
       <div
         data-aos="zoom-in"
         data-aos-duration="1000"
-        className=" flex flex-col items-start mb-12
+        className=" flex flex-col items-start mb-12 mt-12
       "
       >
         <p className="text-[18px] font-bold  ">
-          {comments.length} دیدگاه برای این محصول ثبت شده است
+          {commentLength.length} دیدگاه برای این محصول ثبت شده است
         </p>
         {showComments === false &&
           comments.slice(0, 5).map((comment) => {

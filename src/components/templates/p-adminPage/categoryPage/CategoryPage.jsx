@@ -153,11 +153,7 @@ export default function CategoryPage() {
                           <tr>
                             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                               <div className="inline-flex items-center gap-x-3">
-                                <input
-                                  type="checkbox"
-                                  className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
-                                />
-
+                          
                                 <div className="flex items-center gap-x-2">
                                   <div>
                                     <h2 className="font-medium text-gray-800 dark:text-white ">

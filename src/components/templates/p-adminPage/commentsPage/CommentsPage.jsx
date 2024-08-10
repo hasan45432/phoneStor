@@ -116,6 +116,13 @@ export default function CommentsPage() {
                           scope="col"
                           className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
                         >
+                          بدنه کامنت
+                        </th>
+
+                        <th
+                          scope="col"
+                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                        >
                           تایید / رد
                         </th>
 
@@ -130,10 +137,7 @@ export default function CommentsPage() {
                           <tr key={comment._id}>
                             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                               <div className="inline-flex items-center gap-x-3">
-                                <input
-                                  type="checkbox"
-                                  className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
-                                />
+                           
 
                                 <div className="flex items-center gap-x-2">
                                   <div>
@@ -147,6 +151,20 @@ export default function CommentsPage() {
 
                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                               {comment.email}
+                            </td>
+
+                            <td className="px-4 py-4 overflow-x-auto max-w-[300px]  text-sm font-medium text-gray-700 whitespace-nowrap">
+                              <div className="inline-flex items-center gap-x-3">
+                             
+
+                                <div className="flex items-center gap-x-2">
+                                  <div>
+                                    <h2 className="font-medium text-gray-800 dark:text-white ">
+                                      {comment.description}
+                                    </h2>
+                                  </div>
+                                </div>
+                              </div>
                             </td>
                             <td className="px-4 py-4 text-sm whitespace-nowrap ">
                               {comment.isAccept ? (
