@@ -44,7 +44,7 @@ export async function POST(req) {
 
 export async function GET() {
   await CommentModel.findOneAndUpdate(
-    {},
+    { status: 200},
     {
       isAccept: true,
     }

@@ -5,9 +5,10 @@ import { useCombinedStore } from "@/app/store";
 import { usePathname } from "next/navigation";
 import Comments from "@/components/Modules/comments/Comments";
 import useFetch from "@/cutomHooks/useFetch";
-
+import { useRouter } from "next/navigation";
 export default function CreateComment() {
   const router = usePathname();
+  const redirect = useRouter();
   const { fetchPost } = usePost();
   const { fetchData } = useFetch();
   const [comments, setComments] = useState([]);
@@ -28,6 +29,7 @@ export default function CreateComment() {
       productID: router.split("/").pop(),
     };
     await fetchPost({ url: url, body: body });
+    getMy();
   };
 
   const getComments = async () => {
@@ -46,6 +48,25 @@ export default function CreateComment() {
 
     setComments(filteredArray);
   };
+
+  const getMy = async () => {
+    let url = "http://localhost:3000/api/auth/me";
+
+    await fetchData(url);
+    const statesData = await useCombinedStore.getState().statesData;
+    const statesResponse = await useCombinedStore.getState().statesResponse;
+
+    if (
+      statesData.data === null ||
+      statesResponse.status === 401 ||
+      statesData === null
+    ) {
+      redirect.push("/login");
+    }
+
+    console.log(statesData);
+  };
+
   useEffect(() => {
     getComments();
   }, []);
