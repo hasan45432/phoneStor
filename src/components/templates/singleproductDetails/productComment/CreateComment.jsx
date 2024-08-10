@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Comments from "@/components/Modules/comments/Comments";
 import useFetch from "@/cutomHooks/useFetch";
 import { useRouter } from "next/navigation";
+import { validateEmail } from "@/utils/auth";
 export default function CreateComment() {
   const router = usePathname();
   const redirect = useRouter();
@@ -15,6 +16,11 @@ export default function CreateComment() {
 
   const [showComments, setShowComments] = useState(false);
   const [commentLength, setCommentLength] = useState([]);
+
+  const [isValiadteEmail, setIsValiadteEmail] = useState("");
+  const [alertEmail, setAlertEmail] = useState("");
+  const [alertDescription, setAlertDescription] = useState("");
+  const [alertUsername, setAlertUsername] = useState("");
 
   const [description, setDescription] = useState("");
   const [username, setUsername] = useState("");
@@ -29,16 +35,53 @@ export default function CreateComment() {
       email,
       productID: router.split("/").pop(),
     };
+
+    if (!username.length) {
+      return setAlertUsername("لطفا نام خود را وارد کنید");
+    }
+    if (!description.length) {
+      return setAlertDescription("لطفا توضیحات را وارد کنید");
+    }
+    if (!email.length) {
+      return setAlertEmail("لطفا ایمیل را وارد کنید");
+    }
+
+    if (email.length) {
+      let isValiadteEmail = validateEmail(email);
+      if (!isValiadteEmail) {
+        return setIsValiadteEmail("ایمیل نامعتبر است");
+      }
+    }
+
     await fetchPost({ url: url, body: body });
     let statesResponse = useCombinedStore.getState().statesResponse;
-    if (statesResponse.status === 201) {
-      swal({
-        title: "کامنت شما بعد از تایید مدیر ثبت می شود",
-        icon: "success",
-      });
+
+    let urlGetMy = "http://localhost:3000/api/auth/me";
+
+    await fetchData(urlGetMy);
+    const statesDataurlGetMy = await useCombinedStore.getState().statesData;
+    const statesResponseurlGetMy = await useCombinedStore.getState()
+      .statesResponse;
+
+    if (
+      statesDataurlGetMy.data === null ||
+      statesResponseurlGetMy.status === 401 ||
+      statesDataurlGetMy === null
+    ) {
+      redirect.push("/login");
+    } else {
+      if (statesResponse.status === 201) {
+        swal({
+          title: "کامنت شما بعد از تایید مدیر ثبت می شود",
+          icon: "success",
+        });
+      }
+      console.log(statesResponse);
     }
-    console.log(statesResponse);
-    getMy();
+
+    setEmail("");
+    setDescription("");
+    setUsername("");
   };
 
   const getComments = async () => {
@@ -63,23 +106,7 @@ export default function CreateComment() {
     setComments(filteredArray);
   };
 
-  const getMy = async () => {
-    let url = "http://localhost:3000/api/auth/me";
-
-    await fetchData(url);
-    const statesData = await useCombinedStore.getState().statesData;
-    const statesResponse = await useCombinedStore.getState().statesResponse;
-
-    if (
-      statesData.data === null ||
-      statesResponse.status === 401 ||
-      statesData === null
-    ) {
-      redirect.push("/login");
-    }
-
-    console.log(statesData);
-  };
+  const getMy = async () => {};
 
   useEffect(() => {
     getComments();
@@ -102,22 +129,38 @@ export default function CreateComment() {
           <textarea
             name="comment"
             cols="45"
+            value={description}
             rows="8"
             onChange={(e) => setDescription(e.target.value)}
             className="mt-10 block py-2.5 px-0 w-full  text-sm rounded-[10px] text-gray-900 bg-transparent  border border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-400 focus:outline-none focus:ring-0 focus:border-green-400 peer "
           ></textarea>
+          {!description && (
+            <p className=" text-red-600 text-[14px] ">{alertDescription}</p>
+          )}
         </div>
 
         <div className="relative z-0 w-full mb-5 group mt-6">
           <input
             type="email"
             name="floating_email"
+            value={email}
             id="floating_email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              const newEmail = e.target.value;
+              setEmail(newEmail);
+              let isValiadteEmail = validateEmail(newEmail);
+              if (newEmail.length === 0 || isValiadteEmail) {
+                return setIsValiadteEmail("");
+              }
+            }}
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-400 focus:outline-none focus:ring-0 focus:border-green-400 peer"
             placeholder=" "
             required
           />
+          {!email && <p className=" text-red-600 text-[14px] ">{alertEmail}</p>}
+          {isValiadteEmail && (
+            <p className=" text-red-600 text-[14px] ">{isValiadteEmail}</p>
+          )}
           <label
             htmlFor="floating_email"
             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:border-green-400 peer-focus:dark:focus:border-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -130,12 +173,16 @@ export default function CreateComment() {
           <input
             type="text"
             onChange={(e) => setUsername(e.target.value)}
+            value={username}
             name="repeat_password"
             id="floating_repeat_password"
             className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-400 focus:outline-none focus:ring-0 focus:border-green-400 peer"
             placeholder=" "
             required
           />
+          {!username && (
+            <p className=" text-red-600 text-[14px] ">{alertUsername}</p>
+          )}
           <label
             htmlFor="floating_repeat_password"
             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:border-green-400 peer-focus:dark:border-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"

@@ -5,11 +5,12 @@ import SidbarResponsive from "@/components/templates/p-adminPage/sidbar/SidbarRe
 import { useCombinedStore } from "@/app/store";
 import swal from "sweetalert";
 import useFetch from "@/cutomHooks/useFetch";
+import useDelete from "@/cutomHooks/useDelete";
 export default function UsersPage() {
-  const { GetData, PostData, DeleteData } = useCombinedStore();
   const [users, setUsers] = useState([]);
 
   const { fetchData } = useFetch();
+  const { fetchDelete } = useDelete();
 
   const getUsersData = async () => {
     let url = "http://localhost:3000/api/user";
@@ -24,14 +25,14 @@ export default function UsersPage() {
     e.preventDefault();
     let url = "http://localhost:3000/api/user";
     let body = { id: userID };
-    swal({
+    await swal({
       title: "ایا از حذف این کاربر مطمعا هستید",
       icon: "warning",
       buttons: ["نه", "اره"],
     }).then(async (res) => {
       if (res) {
-        await DeleteData({ url, body });
-        await getUsersData();
+        await fetchDelete({ url: url, body: body });
+        getUsersData();
       }
     });
 
@@ -155,10 +156,7 @@ export default function UsersPage() {
                           <tr>
                             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                               <div className="inline-flex items-center gap-x-3">
-                             
-
                                 <div className="flex items-center gap-x-2">
-                             
                                   <div>
                                     <h2 className="font-medium text-gray-800 dark:text-white ">
                                       {user.name}
@@ -202,7 +200,6 @@ export default function UsersPage() {
                                     />
                                   </svg>
                                 </button>
-
                               </div>
                             </td>
                           </tr>

@@ -6,11 +6,12 @@ import { useCombinedStore } from "@/app/store";
 import { validateEmail } from "@/utils/auth";
 import { useRouter } from "next/navigation";
 import usePost from "@/cutomHooks/usePost";
+import useFetch from "@/cutomHooks/useFetch";
 import swal from "sweetalert";
 
 export default function RegisterDetails() {
- 
   const { fetchPost } = usePost();
+  const { fetchData } = useFetch();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -80,6 +81,28 @@ export default function RegisterDetails() {
     }
     console.log(statesResponse);
   };
+
+  const getMy = async () => {
+    let url = "http://localhost:3000/api/auth/me";
+
+    await fetchData(url);
+    const statesData = await useCombinedStore.getState().statesData;
+    const statesResponse = await useCombinedStore.getState().statesResponse;
+
+    if (
+      statesData.data !== null &&
+      statesResponse.status !== 401 &&
+      statesData !== null
+    ) {
+      router.push("/");
+    }
+
+    console.log(statesData);
+  };
+
+  useEffect(() => {
+    getMy();
+  }, []);
 
   return (
     <div className=" w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mt-[15px] mb-[15px]">

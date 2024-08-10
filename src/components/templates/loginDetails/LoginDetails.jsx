@@ -7,9 +7,11 @@ import { validateEmail } from "@/utils/auth";
 import { useCombinedStore } from "@/app/store";
 import swal from "sweetalert";
 import usePost from "@/cutomHooks/usePost";
+import useFetch from "@/cutomHooks/useFetch";
 
 export default function LoginDetails() {
   const { fetchPost } = usePost();
+  const { fetchData } = useFetch();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,11 +64,41 @@ export default function LoginDetails() {
       });
     }
 
+    if (statesResponse.status === 422) {
+      swal({
+        title: "هیچ کاربری پیدا نشد",
+        icon: "error",
+        buttons: "تلاش دوباره",
+      });
+    }
+
     if (statesResponse.status === 200) {
       router.push("/");
     }
     console.log(statesResponse);
   };
+
+  const getMy = async () => {
+    let url = "http://localhost:3000/api/auth/me";
+
+    await fetchData(url);
+    const statesData = await useCombinedStore.getState().statesData;
+    const statesResponse = await useCombinedStore.getState().statesResponse;
+
+    if (
+      statesData.data === null ||
+      statesResponse.status !== 401 ||
+      statesData !== null
+    ) {
+      router.push("/");
+    }
+
+    console.log(statesData);
+  };
+
+  useEffect(() => {
+    getMy();
+  }, []);
 
   return (
     <div className=" w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mt-[15px] mb-[15px]">

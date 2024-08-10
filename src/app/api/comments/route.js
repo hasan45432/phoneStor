@@ -42,9 +42,26 @@ export async function POST(req) {
   }
 }
 
+export async function DELETE(req) {
+  try {
+    connectToDB();
+    const body = await req.json();
+    const { id } = body;
+    // Validation (You)
+
+    await CommentModel.findOneAndDelete({ _id: id });
+    return Response.json(
+      { message: "User removed successfully :))" },
+      { status: 200 }
+    );
+  } catch (err) {
+    return Response.json({ message: err }, { status: 500 });
+  }
+}
+
 export async function GET() {
   await CommentModel.findOneAndUpdate(
-    { status: 200},
+    { status: 200 },
     {
       isAccept: true,
     }

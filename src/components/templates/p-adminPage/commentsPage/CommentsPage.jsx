@@ -5,10 +5,11 @@ import SidbarResponsive from "@/components/templates/p-adminPage/sidbar/SidbarRe
 import useFetch from "@/cutomHooks/useFetch";
 import usePost from "@/cutomHooks/usePost";
 import { useCombinedStore } from "@/app/store";
-
+import useDelete from "@/cutomHooks/useDelete";
 export default function CommentsPage() {
   const { fetchData } = useFetch();
   const { fetchPost } = usePost();
+  const { fetchDelete } = useDelete();
 
   const [comments, setComments] = useState([]);
 
@@ -63,6 +64,14 @@ export default function CommentsPage() {
       .then((data) => {
         console.log(data);
       });
+    getComments();
+  };
+
+  const deleteComment = async (e, commentID) => {
+    e.preventDefault();
+    let url = "http://localhost:3000/api/comments";
+    let body = { id: commentID };
+    await fetchDelete({ url: url, body: body });
     getComments();
   };
 
@@ -137,8 +146,6 @@ export default function CommentsPage() {
                           <tr key={comment._id}>
                             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                               <div className="inline-flex items-center gap-x-3">
-                           
-
                                 <div className="flex items-center gap-x-2">
                                   <div>
                                     <h2 className="font-medium text-gray-800 dark:text-white ">
@@ -155,8 +162,6 @@ export default function CommentsPage() {
 
                             <td className="px-4 py-4 overflow-x-auto max-w-[300px]  text-sm font-medium text-gray-700 whitespace-nowrap">
                               <div className="inline-flex items-center gap-x-3">
-                             
-
                                 <div className="flex items-center gap-x-2">
                                   <div>
                                     <h2 className="font-medium text-gray-800 dark:text-white ">
@@ -188,7 +193,10 @@ export default function CommentsPage() {
 
                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                               <div className="flex items-center gap-x-6">
-                                <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                                <button
+                                  onClick={(e) => deleteComment(e, comment._id)}
+                                  className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
+                                >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"

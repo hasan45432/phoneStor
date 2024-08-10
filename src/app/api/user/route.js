@@ -39,7 +39,10 @@ export async function DELETE(req) {
     // Validation (You)
 
     await UserModel.findOneAndDelete({ _id: id });
-    return Response.json({ message: "User removed successfully :))" });
+    return Response.json(
+      { message: "User removed successfully :))" },
+      { status: 200 }
+    );
   } catch (err) {
     return Response.json({ message: err }, { status: 500 });
   }
