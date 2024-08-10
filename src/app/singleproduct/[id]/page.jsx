@@ -3,9 +3,7 @@ import SingleProductDetails from "@/components/templates/singleproductDetails/si
 import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import Navbar from "@/components/Modules/navbar/Navbar";
-import CreateComment from "@/components/templates/singleProductPage/productComment/CreateComment";
-import UserComments from "@/components/templates/singleProductPage/userComments/UserComments";
-
+import CreateComment from "@/components/templates/singleproductDetails/productComment/CreateComment";
 export default function SingleProduct() {
   return (
     <>
@@ -19,10 +17,10 @@ export default function SingleProduct() {
         <div className="w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mb-[15px] mt-[15px]">
           <SingleProductDetails />
         </div>
-        <div className="w-[100%] 2xl:w-[85%] flex flex-col-reverse lg:flex-row items-center justify-around  bg-white rounded-[10px] mb-[15px] ">
-          <UserComments />
+        <div className="w-[100%]  2xl:w-[85%] bg-white rounded-[10px] mb-[15px] ">
           <CreateComment />
         </div>
+
         <Footer />
       </div>
     </>

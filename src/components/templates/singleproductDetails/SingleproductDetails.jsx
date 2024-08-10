@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 import useFetch from "@/cutomHooks/useFetch";
 import { useCombinedStore } from "@/app/store";
 import { useRouter } from "next/navigation";
+import CreateComment from "./productComment/CreateComment";
 export default function SingleProductDetails() {
+  const { getProductComments } = useCombinedStore();
   const { fetchData } = useFetch();
   const router = usePathname();
   const navigate = useRouter();
@@ -17,6 +19,9 @@ export default function SingleProductDetails() {
     let findProduct = statesData.find((product) => {
       return product._id === router.split("/").pop();
     });
+
+    getProductComments(findProduct.comments);
+
     if (!findProduct) {
       navigate.push("/");
     }
@@ -24,7 +29,6 @@ export default function SingleProductDetails() {
     console.log(findProduct);
   };
   useEffect(() => {
-    console.log(router.split("/").pop());
     getSingleProduct();
   }, [router]);
 
@@ -32,14 +36,14 @@ export default function SingleProductDetails() {
     <div
       data-aos="zoom-in"
       data-aos-duration="1500"
-      className="  bg-[#FFFFFF] rounded-[10PX] flex flex-col md:justify-around  items-center sm:flex-row-reverse"
+      className="  bg-[#FFFFFF] rounded-[10PX] flex flex-col md:justify-around mb-[15px]  items-center sm:flex-row-reverse"
     >
       <div className="flex flex-row-reverse ">
         <div className="">
           <Image
             src={product.img}
-            width={800}
-            height={600}
+            width={400}
+            height={300}
             className="w-[250px] mb-10 mt-8  sm:w-[500px] bg-cover bg-center pl-7  xl:mt-[85px]  xl:h-[500px] rounded-[10px]"
             alt="shop"
           ></Image>

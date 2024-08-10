@@ -1,7 +1,5 @@
 import { create } from "zustand";
 
-
-
 const states = (set) => ({
   statesResponse: {},
   statesData: [],
@@ -24,7 +22,18 @@ const states = (set) => ({
   },
 });
 
+const productsID = (set) => ({
+  stateProductComments: [],
+  getProductComments: (comments) => {
+    console.log(comments);
+    set((state) => ({
+      ...state,
+      stateProductComments: comments,
+    }));
+  },
+});
 
 export const useCombinedStore = create((...params) => ({
   ...states(...params),
+  ...productsID(...params),
 }));

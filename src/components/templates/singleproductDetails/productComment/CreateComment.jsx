@@ -2,8 +2,15 @@
 import React, { useState, useEffect } from "react";
 import usePost from "@/cutomHooks/usePost";
 import { useCombinedStore } from "@/app/store";
+import { usePathname } from "next/navigation";
+import Comments from "@/components/Modules/comments/Comments";
+import useFetch from "@/cutomHooks/useFetch";
+
 export default function CreateComment() {
+  const router = usePathname();
   const { fetchPost } = usePost();
+  const { fetchData } = useFetch();
+  const [comments, setComments] = useState([]);
 
   const [description, setDescription] = useState("");
   const [username, setUsername] = useState("");
@@ -16,15 +23,35 @@ export default function CreateComment() {
       description,
       username,
       email,
+      productID: router.split("/").pop(),
     };
     await fetchPost({ url: url, body: body });
+     getComments();
+  };
+
+  
+  const getComments = async () => {
+    let url = "http://localhost:3000/api/comments";
+    await fetchData(url);
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
-    console.log(statesResponse);
-    console.log(statesData);
+
+    let stateProductComments = await useCombinedStore.getState()
+      .stateProductComments;
+    console.log(stateProductComments);
+
+    const filteredArray = await statesData.filter((state) =>
+      stateProductComments.some((comment) => comment._id === state._id)
+    );
+
+     setComments(filteredArray);
   };
+  useEffect(() => {
+    getComments();
+  }, []);
+
   return (
-    <div className="flex flex-col lg:flex-row-reverse  ">
+    <div className="flex flex-col lg:flex-row-reverse justify-around w-[100%] items-center ">
       <form
         data-aos="zoom-in"
         data-aos-duration="1000"
@@ -90,6 +117,19 @@ export default function CreateComment() {
           ارسال
         </button>
       </form>
+      <div
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+        className=" flex flex-col items-start
+      "
+      >
+        <p className="text-[18px] font-bold">
+          9 دیدگاه برای این محصول ثبت شده است
+        </p>
+        {comments.map((comment) => {
+          return <Comments key={comment._id} {...comment} />;
+        })}
+      </div>
     </div>
   );
 }
