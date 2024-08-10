@@ -12,6 +12,8 @@ export default function CreateComment() {
   const { fetchData } = useFetch();
   const [comments, setComments] = useState([]);
 
+  const [showComments, setShowComments] = useState(false);
+
   const [description, setDescription] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -26,10 +28,8 @@ export default function CreateComment() {
       productID: router.split("/").pop(),
     };
     await fetchPost({ url: url, body: body });
-     getComments();
   };
 
-  
   const getComments = async () => {
     let url = "http://localhost:3000/api/comments";
     await fetchData(url);
@@ -44,7 +44,7 @@ export default function CreateComment() {
       stateProductComments.some((comment) => comment._id === state._id)
     );
 
-     setComments(filteredArray);
+    setComments(filteredArray);
   };
   useEffect(() => {
     getComments();
@@ -120,15 +120,34 @@ export default function CreateComment() {
       <div
         data-aos="zoom-in"
         data-aos-duration="1000"
-        className=" flex flex-col items-start
+        className=" flex flex-col items-start mb-12
       "
       >
-        <p className="text-[18px] font-bold">
-          9 دیدگاه برای این محصول ثبت شده است
+        <p className="text-[18px] font-bold  ">
+          {comments.length} دیدگاه برای این محصول ثبت شده است
         </p>
-        {comments.map((comment) => {
-          return <Comments key={comment._id} {...comment} />;
-        })}
+        {showComments === false &&
+          comments.slice(0, 5).map((comment) => {
+            return (
+              comment.isAccept === true && (
+                <Comments key={comment._id} {...comment} />
+              )
+            );
+          })}
+        {showComments === true &&
+          comments.map((comment) => {
+            return (
+              comment.isAccept === true && (
+                <Comments key={comment._id} {...comment} />
+              )
+            );
+          })}
+        <button
+          onClick={() => setShowComments(true)}
+          className="text-[15px]  hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[120px] h-[40px] sm:text-[18px] mb-[15px]    mt-[30px]  rounded-[10px]"
+        >
+          همه نظر ها
+        </button>
       </div>
     </div>
   );
