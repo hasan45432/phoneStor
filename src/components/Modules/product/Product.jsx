@@ -1,7 +1,63 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import swal from "sweetalert";
 export default function Product(props) {
+  const [count, setCount] = useState(1);
+
+  const addToCard = () => {
+    let card = JSON.parse(localStorage.getItem("card")) || [];
+
+    console.log(card);
+
+    if (card.length) {
+      let isInCard = card.some((item) => item.id === props._id);
+
+      if (isInCard) {
+        card.forEach((item) => {
+          if (item.id === props._id) {
+            item.count = item.count + count;
+          }
+        });
+
+        localStorage.setItem("card", JSON.stringify(card));
+        swal({
+          title: "محصول به سبد خرید اضافه شد",
+          icon: "success",
+        });
+      } else {
+        let cardItem = {
+          id: props._id,
+          name: props.name,
+          price: props.price,
+          img: props.img,
+          count,
+        };
+        card.push(cardItem);
+        localStorage.setItem("card", JSON.stringify(card));
+        swal({
+          title: "محصول به سبد خرید اضافه شد",
+          icon: "success",
+        });
+      }
+    } else {
+      let cardItem = {
+        id: props._id,
+        name: props.name,
+        price: props.price,
+        img: props.img,
+        count,
+      };
+      card.push(cardItem);
+      localStorage.setItem("card", JSON.stringify(card));
+      swal({
+        title: "محصول به سبد خرید اضافه شد",
+        icon: "success",
+      });
+    }
+  };
+
   return (
     <>
       <div className="w-[115px] h-[350px]  sm:w-[214px] sm:h-[360px] ">
@@ -21,7 +77,10 @@ export default function Product(props) {
           {props.price && props.price.toLocaleString()}
         </p>
         <div className="text-left mt-[10px]">
-          <button className=" hover:bg-[#1ABA1A] hover:text-white transition-all duration-500  w-[97px] h-[21px] bg-green-50 text-[#1ABA1A] rounded-[6px] text-[13px] pb-1 ">
+          <button
+            onClick={addToCard}
+            className=" hover:bg-[#1ABA1A] hover:text-white transition-all duration-500  w-[97px] h-[21px] bg-green-50 text-[#1ABA1A] rounded-[6px] text-[13px] pb-1 "
+          >
             خرید سریع
           </button>
         </div>

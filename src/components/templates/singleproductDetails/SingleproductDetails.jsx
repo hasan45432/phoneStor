@@ -20,14 +20,71 @@ export default function SingleProductDetails() {
       return product._id === router.split("/").pop();
     });
 
+    console.log(findProduct);
+
     getProductComments(findProduct.comments);
 
     if (!findProduct) {
-      navigate.push("/");
+      return navigate.push("/");
     }
     setProduct(findProduct);
     console.log(findProduct);
   };
+
+  const [count, setCount] = useState(1);
+
+  const addToCard = () => {
+    let card = JSON.parse(localStorage.getItem("card")) || [];
+
+    console.log(card);
+
+    if (card.length) {
+      let isInCard = card.some((item) => item.id === router.split("/").pop());
+
+      if (isInCard) {
+        card.forEach((item) => {
+          if (item.id === router.split("/").pop()) {
+            item.count = item.count + count;
+          }
+        });
+
+        localStorage.setItem("card", JSON.stringify(card));
+        swal({
+          title: "محصول به سبد خرید اضافه شد",
+          icon: "success",
+        });
+      } else {
+        let cardItem = {
+          id: router.split("/").pop(),
+          name: product.name,
+          price: product.price,
+          img: product.img,
+          count,
+        };
+        card.push(cardItem);
+        localStorage.setItem("card", JSON.stringify(card));
+        swal({
+          title: "محصول به سبد خرید اضافه شد",
+          icon: "success",
+        });
+      }
+    } else {
+      let cardItem = {
+        id: router.split("/").pop(),
+        name: product.name,
+        price: product.price,
+        img: product.img,
+        count,
+      };
+      card.push(cardItem);
+      localStorage.setItem("card", JSON.stringify(card));
+      swal({
+        title: "محصول به سبد خرید اضافه شد",
+        icon: "success",
+      });
+    }
+  };
+
   useEffect(() => {
     getSingleProduct();
   }, [router]);
@@ -51,7 +108,7 @@ export default function SingleProductDetails() {
       </div>
       <div>
         <div className="sm:w-[346px] flex flex-col mt-6 h-[330px] p-4  sm:pr-6 md:pr-2 ">
-          <h2 className="text-[20px] font-bold text-left">{product.name}</h2>
+          <h2 className="text-[19px] font-bold text-left">{product.name}</h2>
           <p className="text-[#F1352B]  text-[25px] mt-[12px] font-semibold text-left">
             {product.price && product.price.toLocaleString()}
           </p>
@@ -71,8 +128,26 @@ export default function SingleProductDetails() {
               </p>
             </div>
           </div>
+          <div className="flex gap-2 justify-end mt-[15px] items-center">
+            <p
+              onClick={() => setCount(count + 1)}
+              className="text-[18px] cursor-pointer text-center w-[20px]  border"
+            >
+              +
+            </p>
+            <p className="text-[18px] text-center w-[20px] border">{count}</p>
+            <p
+              onClick={count > 0 ? () => setCount(count - 1) : null}
+              className="text-[18px] cursor-pointer text-center w-[20px] border"
+            >
+              -
+            </p>
+          </div>
         </div>
-        <button className="text-[15px] hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[200px] h-[35px] sm:text-[18px] mb-[15px] sm:h-[70px] mr-[85px] mx-auto mt-[15px] sm:w-[240px] rounded-[10px] ">
+        <button
+          onClick={addToCard}
+          className="text-[15px] hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[200px] h-[35px] sm:text-[18px] mb-[15px] sm:h-[70px] mr-[85px] mx-auto mt-[15px] sm:w-[240px] rounded-[10px] "
+        >
           اضافه کردن به سبد خرید
         </button>
       </div>

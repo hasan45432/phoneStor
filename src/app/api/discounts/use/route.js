@@ -1,5 +1,5 @@
-import connectToDB from "@/configs/db";
-import DiscountModel from "@/models/Discount";
+import connectToDB from "../../../../../configs/db";
+import DiscountModel from "../../../../../models/Discount";
 
 export async function PUT(req) {
   try {

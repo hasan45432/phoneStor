@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-export default function Article() {
+export default function Article(props) {
   return (
     <>
       <div className=" w-[150px] sm:w-[300px] mx-auto h-[400px] mt-4">
         <div>
           <Image
-            src="/img/imageHomePage/prod17.jpg.png"
+            src={props.src}
             width={600}
             height={400}
             className="w-[150px] mx-auto h-[170px] sm:w-[302px] sm:h-[230px]  rounded-[10px]"
@@ -21,7 +21,6 @@ export default function Article() {
             <p className="text-[13px] mx-auto w-[140px] sm:w-[300px] mt-[10px]">
               Limited time offer. Hurry up
             </p>
-         
           </div>
         </div>
       </div>
