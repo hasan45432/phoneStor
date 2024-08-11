@@ -86,8 +86,8 @@ export default function LoginDetails() {
     const statesResponse = await useCombinedStore.getState().statesResponse;
 
     if (
-      statesData.data === null ||
-      statesResponse.status !== 401 ||
+      statesData.data !== null &&
+      statesResponse.status !== 401 &&
       statesData !== null
     ) {
       router.push("/");

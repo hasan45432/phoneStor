@@ -28,13 +28,6 @@ export default function CreateComment() {
 
   const submitComment = async (e) => {
     e.preventDefault();
-    let url = "http://localhost:3000/api/comments";
-    let body = {
-      description,
-      username,
-      email,
-      productID: router.split("/").pop(),
-    };
 
     if (!username.length) {
       return setAlertUsername("لطفا نام خود را وارد کنید");
@@ -53,9 +46,6 @@ export default function CreateComment() {
       }
     }
 
-    await fetchPost({ url: url, body: body });
-    let statesResponse = useCombinedStore.getState().statesResponse;
-
     let urlGetMy = "http://localhost:3000/api/auth/me";
 
     await fetchData(urlGetMy);
@@ -70,6 +60,15 @@ export default function CreateComment() {
     ) {
       redirect.push("/login");
     } else {
+      let url = "http://localhost:3000/api/comments";
+      let body = {
+        description,
+        username,
+        email,
+        productID: router.split("/").pop(),
+      };
+      await fetchPost({ url: url, body: body });
+      let statesResponse = useCombinedStore.getState().statesResponse;
       if (statesResponse.status === 201) {
         swal({
           title: "کامنت شما بعد از تایید مدیر ثبت می شود",
