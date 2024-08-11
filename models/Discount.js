@@ -15,6 +15,10 @@ const schema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    product: {
+      type: String,
+      required: true,
+    },
     uses: {
       // 1
       type: Number,
@@ -31,6 +35,6 @@ const schema = new mongoose.Schema(
   }
 );
 
-const model = mongoose.models.Discount || mongoose.model("Discount", schema);
+const DiscountModel = mongoose.models.Discount || mongoose.model("Discount", schema);
 
-export default model;
+export default DiscountModel;

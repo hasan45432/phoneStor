@@ -286,7 +286,7 @@ export default function ProductsPage() {
                     </thead>
 
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                      {console.log(products)}
+                      
                       {products.map((product) => {
                         return (
                           <tr>
