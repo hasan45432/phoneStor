@@ -117,7 +117,7 @@ export default function CategoryPage() {
             </h2>
 
             <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-              100 users
+              {category.length} category
             </span>
           </div>
 
