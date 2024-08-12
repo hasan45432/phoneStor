@@ -115,7 +115,7 @@ export default function CardDetails() {
       setTotalPrice(0);
     }
 
-    console.log(orderID);
+   
   };
 
   useEffect(() => {

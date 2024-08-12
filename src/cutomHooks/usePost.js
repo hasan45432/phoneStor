@@ -4,7 +4,7 @@ export default function usePost() {
   const { GETstateData, GETstateResponse } = useCombinedStore();
 
   const fetchPost = async (req) => {
-    console.log(req);
+    
     await fetch(req.url, {
       method: "POST",
       headers: req.body
@@ -15,12 +15,12 @@ export default function usePost() {
       body: req.formData ? req.formData : JSON.stringify(req.body),
     })
       .then(async (res) => {
-        console.log(res);
+       
         await GETstateResponse(res);
         return res.json();
       })
       .then(async (data) => {
-        console.log(data);
+        
         await GETstateData(data);
       });
   };

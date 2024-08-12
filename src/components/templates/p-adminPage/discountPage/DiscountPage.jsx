@@ -35,7 +35,7 @@ export default function DiscountPage() {
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
     setDiscount(statesData);
-    console.log(statesData);
+    
   };
 
   const addDiscount = async (e) => {
@@ -52,8 +52,7 @@ export default function DiscountPage() {
       });
     }
     getDiscount();
-    console.log(statesResponse);
-    console.log(statesData);
+    
   };
 
   const deleteDiscount = async (e, discountID) => {
@@ -64,7 +63,7 @@ export default function DiscountPage() {
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
     getDiscount();
-    console.log(statesResponse);
+   
   };
 
   useEffect(() => {

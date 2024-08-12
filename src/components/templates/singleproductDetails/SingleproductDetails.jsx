@@ -20,7 +20,7 @@ export default function SingleProductDetails() {
       return product._id === router.split("/").pop();
     });
 
-    console.log(findProduct);
+    
 
     getProductComments(findProduct.comments);
 
@@ -28,15 +28,13 @@ export default function SingleProductDetails() {
       return navigate.push("/");
     }
     setProduct(findProduct);
-    console.log(findProduct);
+    
   };
 
   const [count, setCount] = useState(1);
 
   const addToCard = () => {
     let card = JSON.parse(localStorage.getItem("card")) || [];
-
-    console.log(card);
 
     if (card.length) {
       let isInCard = card.some((item) => item.id === router.split("/").pop());

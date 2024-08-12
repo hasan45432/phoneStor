@@ -9,12 +9,12 @@ export default function useDelete() {
       body: JSON.stringify(req.body),
     })
       .then((res) => {
-        console.log(res);
+       
         GETstateResponse(res);
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+       
         GETstateData(data);
       });
   };

@@ -17,7 +17,7 @@ export default function TopProducts() {
     let filterData = statesData.filter((product) => {
       return product.category === "موبایل";
     });
-    console.log(filterData);
+
     setProducts(filterData);
   };
 
@@ -60,7 +60,7 @@ export default function TopProducts() {
           className="mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5   items-center"
         >
           {products.slice(0, 5).map((product) => {
-            return <Product key={product._key} {...product} />;
+            return <Product key={product._id} {...product} />;
           })}
         </div>
       </div>

@@ -75,7 +75,7 @@ export default function CreateComment() {
           icon: "success",
         });
       }
-      console.log(statesResponse);
+    
     }
 
     setEmail("");
@@ -91,7 +91,7 @@ export default function CreateComment() {
 
     let stateProductComments = await useCombinedStore.getState()
       .stateProductComments;
-    console.log(stateProductComments);
+    
 
     const filteredArray = await statesData.filter((state) =>
       stateProductComments.some((comment) => comment._id === state._id)

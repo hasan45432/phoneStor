@@ -18,7 +18,6 @@ export default function UsersPage() {
 
     let statesData = useCombinedStore.getState().statesData;
     setUsers(statesData);
-    console.log(statesData);
   };
 
   const deleteUser = async (e, userID) => {
@@ -35,8 +34,6 @@ export default function UsersPage() {
         getUsersData();
       }
     });
-
-    console.log(userID);
   };
 
   useEffect(() => {
@@ -153,7 +150,7 @@ export default function UsersPage() {
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                       {users.map((user) => {
                         return (
-                          <tr>
+                          <tr key={user._id}>
                             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                               <div className="inline-flex items-center gap-x-3">
                                 <div className="flex items-center gap-x-2">

@@ -75,7 +75,7 @@ export default function LoginDetails() {
     if (statesResponse.status === 200) {
       router.push("/");
     }
-    console.log(statesResponse);
+   
   };
 
   const getMy = async () => {
@@ -93,7 +93,7 @@ export default function LoginDetails() {
       router.push("/");
     }
 
-    console.log(statesData);
+    
   };
 
   useEffect(() => {

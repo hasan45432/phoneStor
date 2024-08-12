@@ -19,7 +19,7 @@ export default function UserpanelDetails() {
     }
     const statesData = useCombinedStore.getState().statesData;
     setUserInformation(statesData);
-    console.log(statesData);
+ 
   };
 
   useEffect(() => {

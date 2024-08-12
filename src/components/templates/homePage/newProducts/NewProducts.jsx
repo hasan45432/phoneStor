@@ -15,7 +15,7 @@ export default function NewProducts() {
     let filterData = statesData.filter((product) => {
       return product.category === "تبلت";
     });
-    console.log(filterData);
+    
     setProducts(filterData);
   };
 

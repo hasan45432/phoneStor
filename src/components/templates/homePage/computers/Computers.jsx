@@ -17,7 +17,7 @@ export default function Computers() {
     let filterData = statesData.filter((product) => {
       return product.category === "لپتاپ";
     });
-    console.log(filterData);
+    
     setProducts(filterData);
   };
 

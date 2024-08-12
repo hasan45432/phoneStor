@@ -22,12 +22,11 @@ export default function CommentsPage() {
     if (statesData) {
       setComments(statesData);
     }
-    console.log(statesResponse);
-    console.log(statesData);
+   
   };
 
   const notAcceptComment = async (e, commentID) => {
-    console.log(commentID);
+   
     e.preventDefault();
     let id = { id: commentID };
     await fetch("http://localhost:3000/api/comments/reject", {
@@ -38,16 +37,16 @@ export default function CommentsPage() {
       body: JSON.stringify(id),
     })
       .then((res) => {
-        console.log(res);
+        
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        
       });
     getComments();
   };
   const AcceptComment = async (e, commentID) => {
-    console.log(commentID);
+   
     e.preventDefault();
     let id = { id: commentID };
     await fetch("http://localhost:3000/api/comments/accept", {
@@ -58,11 +57,11 @@ export default function CommentsPage() {
       body: JSON.stringify(id),
     })
       .then((res) => {
-        console.log(res);
+      
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        
       });
     getComments();
   };

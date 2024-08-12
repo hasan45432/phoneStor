@@ -79,7 +79,7 @@ export default function RegisterDetails() {
     if (statesResponse.status === 201) {
       router.push("/");
     }
-    console.log(statesResponse);
+   
   };
 
   const getMy = async () => {
@@ -97,7 +97,6 @@ export default function RegisterDetails() {
       router.push("/");
     }
 
-    console.log(statesData);
   };
 
   useEffect(() => {

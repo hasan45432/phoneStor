@@ -16,7 +16,7 @@ export default function Informations() {
 
     let statesData = useCombinedStore.getState().statesData;
     setUsers(statesData);
-    console.log(statesData);
+   
   };
 
   const getCategory = async () => {
@@ -25,7 +25,6 @@ export default function Informations() {
     let statesData = useCombinedStore.getState().statesData;
     setCategory(statesData);
 
-    console.log(statesData);
   };
 
   const getComments = async () => {
@@ -37,14 +36,13 @@ export default function Informations() {
     if (statesData) {
       setComments(statesData);
     }
-    console.log(statesResponse);
-    console.log(statesData);
+   
   };
 
   const fetchDataProducts = async () => {
     await fetchData("http://localhost:3000/api/products");
     const statesData = useCombinedStore.getState().statesData;
-    console.log(statesData);
+   
     setProducts(statesData);
   };
 

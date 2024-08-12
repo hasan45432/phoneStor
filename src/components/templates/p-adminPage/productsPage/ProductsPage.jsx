@@ -46,7 +46,7 @@ export default function ProductsPage() {
         icon: "success",
       });
     }
-    console.log(response);
+
     fetchDataServer();
   };
 
@@ -70,14 +70,12 @@ export default function ProductsPage() {
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     setCategoriesProducts(statesData);
-
-    console.log(statesData);
   };
 
   const fetchDataServer = async () => {
     await fetchData("http://localhost:3000/api/products");
     const statesData = useCombinedStore.getState().statesData;
-    console.log(statesData);
+
     setProducts(statesData);
   };
 
@@ -234,8 +232,6 @@ export default function ProductsPage() {
                           دسته بندی
                         </th>
 
-                     
-
                         <th
                           scope="col"
                           className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
@@ -286,14 +282,11 @@ export default function ProductsPage() {
                     </thead>
 
                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                      
                       {products.map((product) => {
                         return (
-                          <tr>
+                          <tr key={product._id}>
                             <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                               <div className="inline-flex items-center gap-x-3">
-                          
-
                                 <div className="flex items-center gap-x-2">
                                   <div>
                                     <h2 className="font-medium text-gray-800 dark:text-white ">
@@ -319,7 +312,7 @@ export default function ProductsPage() {
                                 </div>
                               </div>
                             </td>
-                         
+
                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                               {product.price}
                             </td>
@@ -357,8 +350,6 @@ export default function ProductsPage() {
                                     />
                                   </svg>
                                 </button>
-
-                           
                               </div>
                             </td>
                           </tr>

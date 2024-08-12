@@ -14,7 +14,7 @@ export default function Product(props) {
     let result = card.reduce((prev, item) => prev + item.count, 1);
     getUserOrders(result);
 
-    console.log(result);
+    
 
     if (card.length) {
       let isInCard = card.some((item) => item.id === props._id);
