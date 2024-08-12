@@ -7,13 +7,20 @@ import swal from "sweetalert";
 import { useRouter } from "next/navigation";
 import usePost from "@/cutomHooks/usePost";
 import useFetch from "@/cutomHooks/useFetch";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const router = useRouter();
+  const patch = usePathname();
   const { fetchPost } = usePost();
   const { fetchData } = useFetch();
+  const { getUserOrders } = useCombinedStore();
 
   const [valid, setValid] = useState(false);
+
+  const [orders, setOrders] = useState([]);
+  const [countCard, setCountCard] = useState("");
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const getMy = async () => {
     let url = "http://localhost:3000/api/auth/me";
@@ -31,6 +38,23 @@ export default function Navbar() {
     }
 
     console.log(statesData);
+  };
+  const baskets = useCombinedStore.getState().basket;
+
+  const getOrders = () => {
+    const card = JSON.parse(localStorage.getItem("card")) || [];
+    setOrders(card);
+  };
+
+  const getTotalPrice = () => {
+    let price = 0;
+    if (orders.length) {
+      price = orders.reduce(
+        (total, order) => total + order.price * order.count,
+        0
+      );
+      setTotalPrice(price);
+    }
   };
 
   const logout = async () => {
@@ -52,6 +76,15 @@ export default function Navbar() {
     getMy();
   }, []);
 
+  useEffect(() => {
+    getOrders();
+  }, [baskets]);
+
+  useEffect(() => {
+    getTotalPrice();
+    setCountCard(baskets);
+  }, [orders, baskets, patch]);
+
   return (
     <nav
       className={`container lg:pl-[10px] xl:pl-0 mx-auto pr-1 sm:pr-0 flex items-center justify-center   flex-col  `}
@@ -65,6 +98,7 @@ export default function Navbar() {
               <p className="pt-[6px] pr-3 text-[13px]">Hotline 24/7</p>
             </div>
             <p className="pt-1">09927821570</p>
+            {}
           </div>
           <div>
             <div className="flex items-center">
@@ -142,23 +176,34 @@ export default function Navbar() {
 
             <div className="ml-[50px]">
               <p className="">سبد خرید</p>
-              <div className="flex flex-row-reverse items-center gap-2">
-                <div className="w-[40px] h-[40px] rounded-[100%] bg-[#EBEEF6]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="size-6 mt-2 mr-2"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
 
-                <p className="text-lg font-bold">$1,689.00</p>
+              <div className="flex flex-row-reverse items-center gap-2">
+                <Link href="/card" className=" relative">
+                  <div className="w-[40px] flex items-center justify-center h-[40px] rounded-[100%] bg-[#EBEEF6]">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="size-6    cursor-pointer "
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <p className=" text-red-500 absolute text-[18px]  -top-2 right-1">
+                      {countCard}
+                    </p>
+                  </div>
+                </Link>
+
+                <p
+                  className="text-lg font-bold w-[80px] overflow-hidden whitespace-nowrap text-ellipsis"
+                  style={{ direction: "ltr" }}
+                >
+                  {totalPrice && totalPrice.toLocaleString()}
+                </p>
               </div>
             </div>
           </div>

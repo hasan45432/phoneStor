@@ -57,20 +57,21 @@ export default function CardDetails() {
         body: JSON.stringify({ code: discounts[index] }),
       });
 
+      const data = await res.json();
+
       if (res.status === 404) {
         const newAlertsCode = [...alertCode];
         newAlertsCode[index] = "کد وارد شده معتبر نیست";
         return setAlertCode(newAlertsCode);
       }
-      if (res.status === 422) {
+      if (res.status === 422 || data.uses >= data.maxUse) {
         const newexpairdCode = [...expairdCode];
         newexpairdCode[index] = "کد وارد شده منقضی شده است";
+        setSuccessDiscount("");
         return setExpairdCode(newexpairdCode);
       }
 
       if (res.status === 200) {
-        const data = await res.json();
-
         let newPrice = totalPrice - (totalPrice * data.percent) / 100;
         setTotalPrice(newPrice);
 
@@ -84,14 +85,6 @@ export default function CardDetails() {
     }
   };
 
-  async function getDiscount() {
-    let url = "http://localhost:3000/api/discounts";
-    await fetchData(url);
-
-    let statesData = useCombinedStore.getState().statesData;
-
-    console.log(statesData);
-  }
 
   useEffect(() => {
     getOrders();

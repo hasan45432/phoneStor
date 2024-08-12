@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body
-        className={` overflow-x-hidden   bg-[#F5F5F5] ${vazirFont.className}`}
+        className={` overflow-x-hidden bg-[#F5F5F5] ${vazirFont.className}`}
       >
         <AOSInit />
 

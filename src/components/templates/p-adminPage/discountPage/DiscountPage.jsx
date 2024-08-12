@@ -225,9 +225,15 @@ export default function DiscountPage() {
                               <div className="inline-flex items-center gap-x-3">
                                 <div className="flex items-center gap-x-2">
                                   <div>
-                                    <h2 className="font-medium text-gray-800 dark:text-white ">
-                                      {discount.code}
-                                    </h2>
+                                    {discount.uses >= discount.maxUse ? (
+                                      <h2 className="font-medium text-red-500 dark:text-white ">
+                                        {discount.code}
+                                      </h2>
+                                    ) : (
+                                      <h2 className="font-medium text-green-600 dark:text-white ">
+                                        {discount.code}
+                                      </h2>
+                                    )}
                                   </div>
                                 </div>
                               </div>

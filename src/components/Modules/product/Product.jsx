@@ -1,15 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import swal from "sweetalert";
+import { useCombinedStore } from "@/app/store";
 export default function Product(props) {
   const [count, setCount] = useState(1);
+  const { getUserOrders } = useCombinedStore();
 
   const addToCard = () => {
     let card = JSON.parse(localStorage.getItem("card")) || [];
 
-    console.log(card);
+    let result = card.reduce((prev, item) => prev + item.count, 1);
+    getUserOrders(result);
+
+    console.log(result);
 
     if (card.length) {
       let isInCard = card.some((item) => item.id === props._id);
@@ -57,6 +62,13 @@ export default function Product(props) {
       });
     }
   };
+
+  useEffect(() => {
+    let card = JSON.parse(localStorage.getItem("card")) || [];
+
+    let result = card.reduce((prev, item) => prev + item.count, 0);
+    getUserOrders(result);
+  }, []);
 
   return (
     <>

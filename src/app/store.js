@@ -33,7 +33,19 @@ const productsID = (set) => ({
   },
 });
 
-export const useCombinedStore = create((...params) => ({
-  ...states(...params),
-  ...productsID(...params),
+const userOrders = (set) => ({
+  basket: "",
+  getUserOrders: (data) => {
+    console.log(data);
+    set((state) => ({
+      ...state,
+      basket: data,
+    }));
+  },
+});
+
+export const useCombinedStore = create((set) => ({
+  ...states(set),
+  ...productsID(set),
+  ...userOrders(set),
 }));
