@@ -2,14 +2,19 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import swal from "sweetalert"; // اضافه کردن لایبرری swal
-
+import useFetch from "@/cutomHooks/useFetch";
+import { useCombinedStore } from "@/app/store";
 export default function CardDetails() {
+  const { fetchData } = useFetch();
+
   const [orders, setOrders] = useState([]);
   const [discounts, setDiscounts] = useState([]);
   const [alerts, setAlerts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const [alertCode, setAlertCode] = useState([]);
   const [expairdCode, setExpairdCode] = useState([]);
+  const [successDiscount, setSuccessDiscount] = useState([]);
 
   const getOrders = () => {
     const card = JSON.parse(localStorage.getItem("card")) || [];
@@ -17,10 +22,14 @@ export default function CardDetails() {
   };
 
   const getTotalPrice = () => {
-    return orders.reduce(
-      (total, order) => total + order.price * order.count,
-      0
-    );
+    let price = 0;
+    if (orders.length) {
+      price = orders.reduce(
+        (total, order) => total + order.price * order.count,
+        0
+      );
+      setTotalPrice(price);
+    }
   };
 
   const completePurchase = (e) => {
@@ -59,20 +68,42 @@ export default function CardDetails() {
         return setExpairdCode(newexpairdCode);
       }
 
-      const data = await res.json();
-      console.log(data);
+      if (res.status === 200) {
+        const data = await res.json();
+
+        let newPrice = totalPrice - (totalPrice * data.percent) / 100;
+        setTotalPrice(newPrice);
+
+        const successCode = [...successDiscount];
+        successCode[index] = "کد تخفیف با موفقیت اعمال شد";
+        setSuccessDiscount(successCode);
+        return;
+      }
     } catch (error) {
       console.error("Error applying discount:", error);
     }
   };
+
+  async function getDiscount() {
+    let url = "http://localhost:3000/api/discounts";
+    await fetchData(url);
+
+    let statesData = useCombinedStore.getState().statesData;
+
+    console.log(statesData);
+  }
 
   useEffect(() => {
     getOrders();
   }, []);
 
   useEffect(() => {
+    getTotalPrice();
+  }, [orders]);
+
+  useEffect(() => {
     setDiscounts(Array(orders.length).fill(""));
-    setAlerts(Array(orders.length).fill("")); 
+    setAlerts(Array(orders.length).fill(""));
   }, [orders]);
 
   const handleDiscountChange = (e, index) => {
@@ -121,10 +152,13 @@ export default function CardDetails() {
                         if (expairdCode.length) {
                           setExpairdCode("");
                         }
+                        if (successDiscount.length) {
+                          setSuccessDiscount("");
+                        }
                       }}
                       type="text"
                       placeholder="کد تخفیف"
-                      value={discounts[index]} 
+                      value={discounts[index]}
                     />
                     <button
                       onClick={() => addDiscount(index)}
@@ -133,14 +167,17 @@ export default function CardDetails() {
                       اعمال
                     </button>
                   </div>
-                  <p className="text-[13px] text-red-500">
+                  <p className="text-[14px] text-red-500">
                     {!discounts[index] && alerts[index]}
                   </p>
-                  <p className="text-[13px] text-red-500">
+                  <p className="text-[14px] text-red-500">
                     {discounts.length && alertCode[index]}
                   </p>
-                  <p className="text-[13px] text-red-500">
+                  <p className="text-[14px] text-red-500">
                     {discounts.length && expairdCode[index]}
+                  </p>
+                  <p className="text-[14px] text-green-500">
+                    {discounts.length && successDiscount[index]}
                   </p>
                 </div>
               </div>
@@ -163,7 +200,7 @@ export default function CardDetails() {
             جمع خرید:{" "}
             <span className="text-[20px] text-red-500">
               {" "}
-              {getTotalPrice().toLocaleString()}
+              {totalPrice && totalPrice.toLocaleString()}
             </span>
           </p>
           <button
