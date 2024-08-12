@@ -55,6 +55,9 @@ export default function Navbar() {
       );
       setTotalPrice(price);
     }
+    if (countCard === 0) {
+      setTotalPrice(0);
+    }
   };
 
   const logout = async () => {

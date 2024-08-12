@@ -72,7 +72,7 @@ export default function Product(props) {
 
   return (
     <>
-      <div className="w-[115px] h-[350px]  sm:w-[214px] sm:h-[360px] ">
+      <div className="w-[115px] h-[350px]    sm:w-[214px] sm:h-[360px] ">
         <Link href={`singleproduct/${props._id}`}>
           <div className="flex flex-col items-center">
             <Image
@@ -85,7 +85,8 @@ export default function Product(props) {
             <p className="text-[15px] font-bold text-left">{props.name}</p>
           </div>
         </Link>
-        <p className="text-[#F1352B] text-[25px] mt-[10px] font-semibold text-left">
+
+        <p className="text-[#F1352B] text-[17px] sm:text-[25px] mt-[10px] font-semibold text-left">
           {props.price && props.price.toLocaleString()}
         </p>
         <div className="text-left mt-[10px]">

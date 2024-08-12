@@ -7,6 +7,8 @@ import { useCombinedStore } from "@/app/store";
 export default function CardDetails() {
   const { fetchData } = useFetch();
 
+  const { getUserOrders } = useCombinedStore();
+
   const [orders, setOrders] = useState([]);
   const [discounts, setDiscounts] = useState([]);
   const [alerts, setAlerts] = useState([]);
@@ -85,6 +87,36 @@ export default function CardDetails() {
     }
   };
 
+  const removeAllOrder = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("card");
+    setOrders([]);
+    setTotalPrice(0);
+    let card = JSON.parse(localStorage.getItem("card")) || [];
+
+    let result = card.reduce((prev, item) => prev + item.count, 0);
+    getUserOrders(result);
+  };
+
+  const removeOwnOrder = async (e, orderID) => {
+    e.preventDefault();
+    const card = JSON.parse(localStorage.getItem("card")) || [];
+
+    let filterCard = card.filter((item) => {
+      return item.id !== orderID;
+    });
+
+    localStorage.setItem("card", JSON.stringify(filterCard));
+    setOrders(filterCard);
+
+    let result = filterCard.reduce((prev, item) => prev + item.count, 0);
+    getUserOrders(result);
+    if (filterCard.length === 0) {
+      setTotalPrice(0);
+    }
+
+    console.log(orderID);
+  };
 
   useEffect(() => {
     getOrders();
@@ -116,16 +148,16 @@ export default function CardDetails() {
             className="flex items-center justify-center mt-[15px]"
           >
             <div className="w-[80%] lg:w-[65%] rounded-[15px] justify-around flex flex-col gap-10 md:flex-row-reverse items-center text-left bg-[#FAFAFA]">
-              <div>
+              <div className="lg:h-[100%]">
                 <Image
                   src={order.img}
                   width={900}
                   height={600}
-                  className="w-[210px] lg:w-[260px] h-[170px] md:h-[230px] lg:h-[250px] pl-[15px]"
+                  className="w-[200px] lg:w-[260px] h-[190px] md:h-[230px] lg:h-full  pl-[15px]"
                   alt="shop"
                 />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col pr-5">
                 <div className="w-[260px] sm:pt-12 pl-8 pb-4">
                   <p className="text-[15px] font-bold">{order.name}</p>
                   <p className="text-[20px] text-[#F1352B]">
@@ -155,7 +187,7 @@ export default function CardDetails() {
                     />
                     <button
                       onClick={() => addDiscount(index)}
-                      className="hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[90px] h-[30px]"
+                      className=" text-[12px] sm:text-[14px] hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[90px] h-[30px]"
                     >
                       اعمال
                     </button>
@@ -172,6 +204,22 @@ export default function CardDetails() {
                   <p className="text-[14px] text-green-500">
                     {discounts.length && successDiscount[index]}
                   </p>
+                </div>
+                <div className="mt-[10px] text-right">
+                  <p className="text-[15px]">
+                    تعداد محصول :
+                    <span className="text-red-500 text-[15px]">
+                      {order.count}
+                    </span>
+                  </p>
+                </div>
+                <div className="flex items-start justify-start mt-2 mb-2">
+                  <button
+                    onClick={(e) => removeOwnOrder(e, order.id)}
+                    className="hover:text-white  hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[100px] h-[40px] rounded-[10px]"
+                  >
+                    حذف
+                  </button>
                 </div>
               </div>
             </div>
@@ -196,12 +244,22 @@ export default function CardDetails() {
               {totalPrice && totalPrice.toLocaleString()}
             </span>
           </p>
-          <button
-            onClick={completePurchase}
-            className="hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[150px] h-[50px] rounded-[10px]"
-          >
-            تکمیل خرید
-          </button>
+          {orders.length ? (
+            <div className="flex flex-col items-center">
+              <button
+                onClick={completePurchase}
+                className="hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[150px] h-[50px] rounded-[10px]"
+              >
+                تکمیل خرید
+              </button>
+              <button
+                onClick={removeAllOrder}
+                className="hover:text-white mt-[14px]  hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] w-[100px] h-[40px] rounded-[10px]"
+              >
+                حذف همه
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </>
