@@ -67,6 +67,7 @@ export default function Product(props) {
     let card = JSON.parse(localStorage.getItem("card")) || [];
 
     let result = card.reduce((prev, item) => prev + item.count, 0);
+   
     getUserOrders(result);
   }, []);
 

@@ -34,7 +34,7 @@ const productsID = (set) => ({
 });
 
 const userOrders = (set) => ({
-  basket: "0",
+  basket: "",
   getUserOrders: (data) => {
     console.log(data);
     set((state) => ({

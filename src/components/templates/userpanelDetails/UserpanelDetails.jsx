@@ -8,6 +8,7 @@ export default function UserpanelDetails() {
   const router = useRouter();
   const [userInformation, setUserInformation] = useState({});
   const { fetchData } = useFetch();
+ 
 
   const getMy = async () => {
     let url = "http://localhost:3000/api/auth/me";
@@ -19,11 +20,19 @@ export default function UserpanelDetails() {
     }
     const statesData = useCombinedStore.getState().statesData;
     setUserInformation(statesData);
- 
   };
 
   useEffect(() => {
     getMy();
+  }, []);
+
+  const { getUserOrders } = useCombinedStore();
+  useEffect(() => {
+    let card = JSON.parse(localStorage.getItem("card")) || [];
+
+    let result = card.reduce((prev, item) => prev + item.count, 0);
+ 
+    getUserOrders(result);
   }, []);
   return (
     <div

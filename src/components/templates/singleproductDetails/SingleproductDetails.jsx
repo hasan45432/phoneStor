@@ -7,7 +7,7 @@ import { useCombinedStore } from "@/app/store";
 import { useRouter } from "next/navigation";
 import CreateComment from "./productComment/CreateComment";
 export default function SingleProductDetails() {
-  const { getProductComments } = useCombinedStore();
+  const { getProductComments, getUserOrders } = useCombinedStore();
   const { fetchData } = useFetch();
   const router = usePathname();
   const navigate = useRouter();
@@ -20,21 +20,21 @@ export default function SingleProductDetails() {
       return product._id === router.split("/").pop();
     });
 
-    
-
     getProductComments(findProduct.comments);
 
     if (!findProduct) {
       return navigate.push("/");
     }
     setProduct(findProduct);
-    
   };
 
   const [count, setCount] = useState(1);
 
   const addToCard = () => {
     let card = JSON.parse(localStorage.getItem("card")) || [];
+
+    let result = card.reduce((prev, item) => prev + item.count, 1);
+    getUserOrders(result);
 
     if (card.length) {
       let isInCard = card.some((item) => item.id === router.split("/").pop());
@@ -87,6 +87,13 @@ export default function SingleProductDetails() {
     getSingleProduct();
   }, [router]);
 
+  useEffect(() => {
+    let card = JSON.parse(localStorage.getItem("card")) || [];
+
+    let result = card.reduce((prev, item) => prev + item.count, 0);
+
+    getUserOrders(result);
+  }, []);
   return (
     <div
       data-aos="zoom-in"

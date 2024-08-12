@@ -36,9 +36,6 @@ export default function Navbar() {
     ) {
       setValid(true);
     }
-   
-
- 
   };
   const baskets = useCombinedStore.getState().basket;
 

@@ -100,6 +100,14 @@ export default function LoginDetails() {
     getMy();
   }, []);
 
+  const { getUserOrders } = useCombinedStore();
+  useEffect(() => {
+    let card = JSON.parse(localStorage.getItem("card")) || [];
+
+    let result = card.reduce((prev, item) => prev + item.count, 0);
+    
+    getUserOrders(result);
+  }, []);
   return (
     <div className=" w-[100%] 2xl:w-[85%] bg-white rounded-[10px] mt-[15px] mb-[15px]">
       <div
