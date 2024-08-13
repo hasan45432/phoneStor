@@ -11,24 +11,25 @@ export default function Header() {
             data-aos-duration="1000"
             className=" bg-[#FFFFFF] w-[99%]  h-[100px] xl:w-[309px] xl:h-[447px] rounded-[10px]"
           >
-            <ul className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 child:text-[15px] child:font-semibold pt-10 child:mx-auto xl:pt-[55px] flex xl:flex-col xl:gap-6">
+            <ul className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 text-[13px] sm:child:text-[15px] child:font-semibold pt-10 child:mx-auto xl:pt-[55px] flex xl:flex-col xl:gap-8">
               <li>
-                <Link href="/">لپ تاپ</Link>
+                <Link href="/laptops">لپ تاپ</Link>
               </li>
               <li>
-                <Link href="/">کامپیوتر</Link>
+                <Link href="/watches">ساعت</Link>
+              </li>
+
+              <li>
+                <Link href="/mobiles">موبایل</Link>
               </li>
               <li>
-                <Link href="/">موبایل</Link>
+                <Link href="/tablets">تبلت</Link>
               </li>
               <li>
-                <Link href="/">تبلت</Link>
+                <Link href="/cases">کیس</Link>
               </li>
               <li>
-                <Link href="/">بازی</Link>
-              </li>
-              <li>
-                <Link href="/">موزیک</Link>
+                <Link href="/keyboards">کیبورد</Link>
               </li>
             </ul>
           </div>

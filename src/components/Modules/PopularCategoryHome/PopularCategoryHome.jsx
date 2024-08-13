@@ -34,7 +34,7 @@ export default function PopularCategoryHome(props) {
             alt="shop"
           ></Image>
         </div>
-        <div className="grid grid-cols-2 items-center mr-[30px] gap-12 mt-[30px]">
+        <div className="grid grid-cols-2 items-center mr-[30px] gap-10 mt-[30px]">
           {popular.slice(0, 4).map((product) => {
             return <PopularCategory key={product._id} {...product} />;
           })}

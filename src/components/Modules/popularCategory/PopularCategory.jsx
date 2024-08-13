@@ -11,7 +11,7 @@ export default function PopularCategory(props) {
             src={props.img}
             width={1200}
             height={900}
-            className="w-[120px] h-[120px] rounded-[60px]"
+            className="w-[100px] h-[110px] rounded-[60px]"
             alt="shodp"
           ></Image>
           <div className="flex flex-col items-center">
