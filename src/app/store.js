@@ -44,8 +44,20 @@ const userOrders = (set) => ({
   },
 });
 
+const searchProduct = (set) => ({
+  searchInput: "",
+  getSearchValue: (data) => {
+    console.log(data);
+    set((state) => ({
+      ...state,
+      searchInput: data,
+    }));
+  },
+});
+
 export const useCombinedStore = create((set) => ({
   ...states(set),
   ...productsID(set),
   ...userOrders(set),
+  ...searchProduct(set),
 }));

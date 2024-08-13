@@ -14,7 +14,7 @@ export default function Navbar() {
   const patch = usePathname();
   const { fetchPost } = usePost();
   const { fetchData } = useFetch();
-  const { getUserOrders } = useCombinedStore();
+  const { getSearchValue } = useCombinedStore();
 
   const [valid, setValid] = useState(false);
 
@@ -84,6 +84,7 @@ export default function Navbar() {
   useEffect(() => {
     getTotalPrice();
     setCountCard(baskets);
+    console.log(patch);
   }, [orders, baskets, patch]);
 
   return (
@@ -211,24 +212,31 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="h-[75px] rounded-[10px] bg-[#1ABA1A] flex w-[100%] ">
+      <div
+        className={`h-[75px] rounded-[10px] ${
+          patch === "/search" && " hidden"
+        } bg-[#1ABA1A] flex w-[100%]`}
+      >
         <div className=" relative">
           <input
+            onChange={(e) => getSearchValue(e.target.value)}
             className="   lg:w-[360px] xl:w-[500px] h-[45px] pr-3 rounded-[30px] bg-[#FFFFFF] mt-[15px] mr-[30px]"
             placeholder="جستجوی محصول....."
           ></input>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="size-6 absolute bottom-[24px] left-[10px]"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <Link href="/search">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="size-6  absolute bottom-[24px] left-[10px]"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
         </div>
         <div className="mt-[25px] flex xl:child:text-[16px] lg:child:text-[14px] lg:gap-5 xl:gap-10 mr-[60px]">
           <p>ارسال رایگان برای سفارش‌های بالای 199 هزار تومان</p>
