@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import Sidbar from "@/components/templates/p-adminPage/sidbar/Sidbar";
 import SidbarResponsive from "@/components/templates/p-adminPage/sidbar/SidbarResponsive";
+
 export default function AdminPanelLayout({ children }) {
   const { fetchData } = useFetch();
   const router = useRouter();

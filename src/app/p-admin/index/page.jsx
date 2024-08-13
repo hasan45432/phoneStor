@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <>
       <AdminPanelLayout>
-        <div className="flex">
+        <div className="flex mx-auto w-[100%]">
           <div className={`flex w-[100%] mx-auto flex-col `}>
             <Informations />
             <div className="w-[100%] sm:w-[80%] mx-auto  h-[450px] mt-[50px] ">
