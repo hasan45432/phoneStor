@@ -112,7 +112,7 @@ export default function CreateComment() {
   }, []);
 
   return (
-    <div className="flex flex-col lg:flex-row-reverse justify-around w-[100%]  ">
+    <div className="flex flex-col items-center lg:flex-row-reverse lg:justify-around w-[100%]  ">
       <form
         data-aos="zoom-in"
         data-aos-duration="1000"

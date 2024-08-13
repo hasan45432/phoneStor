@@ -1,24 +1,103 @@
 "use client";
-
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
+import { useRouter } from "next/navigation";
+import usePost from "@/cutomHooks/usePost";
+import useFetch from "@/cutomHooks/useFetch";
+import { usePathname } from "next/navigation";
+import { useCombinedStore } from "@/app/store";
 export default function MobilNavbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [countCard, setCountCard] = useState("");
+  const [orders, setOrders] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
+  const router = useRouter();
+  const patch = usePathname();
+  const baskets = useCombinedStore.getState().basket;
+
+  const { fetchPost } = usePost();
+  const { fetchData } = useFetch();
+  const { getUserOrders } = useCombinedStore();
+
+  const getMy = async () => {
+    let url = "http://localhost:3000/api/auth/me";
+
+    await fetchData(url);
+    const statesData = await useCombinedStore.getState().statesData;
+    const statesResponse = await useCombinedStore.getState().statesResponse;
+
+    if (
+      statesData.data !== null &&
+      statesResponse.status !== 401 &&
+      statesData !== null
+    ) {
+      setValid(true);
+    }
+  };
+
+  const getTotalPrice = () => {
+    let price = 0;
+    if (orders.length) {
+      price = orders.reduce(
+        (total, order) => total + order.price * order.count,
+        0
+      );
+      setTotalPrice(price);
+    }
+    if (countCard === 0) {
+      setTotalPrice(0);
+    }
+  };
+
+  const getOrders = () => {
+    const card = JSON.parse(localStorage.getItem("card")) || [];
+    setOrders(card);
+  };
+  useEffect(() => {
+    getMy();
+  }, []);
+
+  useEffect(() => {
+    getOrders();
+  }, [baskets]);
+
+  useEffect(() => {
+    getTotalPrice();
+    setCountCard(baskets);
+  }, [orders, baskets, patch]);
   return (
     <>
       <div className="flex flex-row-reverse w-[100%] transition-all   justify-between  py-8 ">
         <div className=" xl:ml-[200px]  lg:ml-[60px]">
           <p>خوش امدید</p>
           <ul className="flex flex-row-reverse  items-center gap-2">
-            <div className="w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] rounded-[100%] bg-[#EBEEF6]">
+            <Link href="/card" className=" relative">
+              <div className="w-[30px] sm:w-[40px] sm:h-[40px] flex items-center justify-center h-[30px] rounded-[100%] bg-[#EBEEF6]">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="size-4 sm:size-6   cursor-pointer "
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                <p className=" text-red-500 absolute text-[18px]  -top-2 right-1">
+                  {countCard}
+                </p>
+              </div>
+            </Link>
+            <div className="w-[30px] flex  h-[30px] sm:w-[40px] sm:h-[40px] rounded-[100%] bg-[#EBEEF6]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-5 sm:size-6 mt-1 mr-1 sm:mt-2 sm:mr-2"
+                className="size-4 sm:size-6 mt-[7px] mr-[6px] sm:mt-2 sm:mr-2"
               >
                 <path
                   fillRule="evenodd"
@@ -78,16 +157,24 @@ export default function MobilNavbar() {
               </div>
               <ul className="flex  child:text-white child:text-xl  flex-col items-center justify-between min-h-[250px]">
                 <li>
-                  <Link href="/">صفحه اصلی</Link>
+                  <Link href="/" onClick={() => setIsNavOpen(false)}>
+                    صفحه اصلی
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/">تمامی صفحات</Link>
+                  <Link href="/" onClick={() => setIsNavOpen(false)}>
+                    گوشی
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/">محصولات</Link>
+                  <Link href="/products" onClick={() => setIsNavOpen(false)}>
+                    محصولات
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/">درباره ی سایت</Link>
+                  <Link href="/about" onClick={() => setIsNavOpen(false)}>
+                    درباره ی سایت
+                  </Link>
                 </li>
               </ul>
             </div>

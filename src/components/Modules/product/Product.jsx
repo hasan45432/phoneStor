@@ -11,11 +11,6 @@ export default function Product(props) {
   const addToCard = () => {
     let card = JSON.parse(localStorage.getItem("card")) || [];
 
-    let result = card.reduce((prev, item) => prev + item.count, 1);
-    getUserOrders(result);
-
-    
-
     if (card.length) {
       let isInCard = card.some((item) => item.id === props._id);
 
@@ -61,13 +56,16 @@ export default function Product(props) {
         icon: "success",
       });
     }
+    let result = card.reduce((prev, item) => prev + item.count, 0);
+    console.log(result);
+    getUserOrders(result);
   };
 
   useEffect(() => {
     let card = JSON.parse(localStorage.getItem("card")) || [];
 
     let result = card.reduce((prev, item) => prev + item.count, 0);
-   
+
     getUserOrders(result);
   }, []);
 
