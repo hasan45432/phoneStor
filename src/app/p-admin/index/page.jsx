@@ -13,11 +13,11 @@ export default function Page() {
         <div className="flex mx-auto w-[100%]">
           <div className={`flex w-[100%] mx-auto flex-col `}>
             <Informations />
-            <div className="w-[100%] sm:w-[80%] mx-auto  h-[450px] mt-[50px] ">
+            <div className="w-[100%] sm:w-[80%]   h-[450px] mt-[140px] md:mt-[50px] ">
               <p className="text-[20px] font-bold">امار فروش</p>
               <Rechart />
             </div>
-            <div className="w-[100%] sm:w-[80%] mx-auto  h-[450px] mt-[50px] ">
+            <div className="w-[100%] sm:w-[80%]   h-[450px]  mt-[50px] ">
               <p className="text-[20px] font-bold">نرخ رشد</p>
               <MyLineChart />
             </div>

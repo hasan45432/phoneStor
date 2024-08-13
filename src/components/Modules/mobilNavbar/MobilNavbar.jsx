@@ -11,6 +11,8 @@ export default function MobilNavbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [countCard, setCountCard] = useState("");
   const [orders, setOrders] = useState([]);
+  const [valid, setValid] = useState(false);
+
   const [totalPrice, setTotalPrice] = useState(0);
 
   const router = useRouter();
@@ -51,6 +53,21 @@ export default function MobilNavbar() {
     }
   };
 
+  const logout = async () => {
+    swal({
+      title: "ایا می خواهید خارج شوید",
+      icon: "warning",
+      buttons: ["نه", "اره"],
+    }).then(async (res) => {
+      if (res) {
+        let url = "http://localhost:3000/api/auth/signout";
+        await fetchPost({ url: url });
+        setValid(false);
+        router.push("/");
+      }
+    });
+  };
+
   const getOrders = () => {
     const card = JSON.parse(localStorage.getItem("card")) || [];
     setOrders(card);
@@ -71,9 +88,12 @@ export default function MobilNavbar() {
     <>
       <div className="flex flex-row-reverse w-[100%] transition-all   justify-between  py-8 ">
         <div className=" xl:ml-[200px]  lg:ml-[60px]">
-          <p>خوش امدید</p>
-          <ul className="flex flex-row-reverse  items-center gap-2">
-            <Link href="/card" className=" relative">
+          <ul
+            className={`flex ${
+              !valid ? " gap-3" : ""
+            } flex-row-reverse  items-center`}
+          >
+            <Link href="/card" className=" relative mt-[24px]">
               <div className="w-[30px] sm:w-[40px] sm:h-[40px] flex items-center justify-center h-[30px] rounded-[100%] bg-[#EBEEF6]">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -92,27 +112,48 @@ export default function MobilNavbar() {
                 </p>
               </div>
             </Link>
-            <div className="w-[30px] flex  h-[30px] sm:w-[40px] sm:h-[40px] rounded-[100%] bg-[#EBEEF6]">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="size-4 sm:size-6 mt-[7px] mr-[6px] sm:mt-2 sm:mr-2"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.5 3.75A1.5 1.5 0 0 0 6 5.25v13.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5-1.5V15a.75.75 0 0 1 1.5 0v3.75a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V5.25a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3V9A.75.75 0 0 1 15 9V5.25a1.5 1.5 0 0 0-1.5-1.5h-6Zm5.03 4.72a.75.75 0 0 1 0 1.06l-1.72 1.72h10.94a.75.75 0 0 1 0 1.5H10.81l1.72 1.72a.75.75 0 1 1-1.06 1.06l-3-3a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <li className="text-sm xl:text-lg lg:text-[15px] font-bold">
-              <Link href="/login">ورود</Link>
-            </li>
-            <p className="text-[25px]">/</p>
-            <li className="text-sm xl:text-lg lg:text-[15px]  font-bold">
-              <Link href="/register">ثبت نام </Link>
-            </li>
+            {valid ? (
+              <>
+                <div className="">
+                  <p>خوش امدید</p>
+                  <div className="flex items-center gap-3 w-[120px] xl:w-[144px] 2xl:w-[160px] ">
+                    <p className="child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 xl:text-lg lg:text-[15px] font-bold">
+                      <Link href="/userpanel">پنل کاربری </Link>
+                    </p>
+                    <div className=" child-hover:text-[#1ABA1A] cursor-pointer transition-colors duration-300 w-[30px] h-[30px] sm:w-[40px] sm:h-[40px] rounded-[100%] bg-[#EBEEF6]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className=" size-[21px] sm:size-6 mt-1 mr-1 sm:mt-[7px] sm:mr-[7px]"
+                        onClick={logout}
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M7.5 3.75A1.5 1.5 0 0 0 6 5.25v13.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5-1.5V15a.75.75 0 0 1 1.5 0v3.75a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V5.25a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3V9A.75.75 0 0 1 15 9V5.25a1.5 1.5 0 0 0-1.5-1.5h-6Zm5.03 4.72a.75.75 0 0 1 0 1.06l-1.72 1.72h10.94a.75.75 0 0 1 0 1.5H10.81l1.72 1.72a.75.75 0 1 1-1.06 1.06l-3-3a.75.75 0 0 1 0-1.06l3-3a.75.75 0 0 1 1.06 0Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className=" flex flex-col items-center mt-2">
+                  <p>خوش امدید</p>
+                  <div className="flex">
+                    <li className="text-sm xl:text-lg lg:text-[15px] mt-1 font-bold">
+                      <Link href="/login">ورود</Link>
+                    </li>
+                    <p className="text-[25px]">/</p>
+                    <li className="text-sm xl:text-lg lg:text-[15px] mt-1  font-bold">
+                      <Link href="/register">ثبت نام </Link>
+                    </li>
+                  </div>
+                </div>
+              </>
+            )}
           </ul>
         </div>
         <Image
