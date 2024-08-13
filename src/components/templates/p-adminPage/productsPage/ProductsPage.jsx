@@ -85,14 +85,8 @@ export default function ProductsPage() {
   }, []);
 
   return (
-    <div className="flex">
-      <div className=" hidden xl:block">
-        <Sidbar />
-      </div>
-      <div className=" block xl:hidden">
-        <SidbarResponsive />
-      </div>
-      <div className="flex flex-col w-[100%]">
+    <div className="flex w-[100%] mx-auto ">
+      <div className="flex flex-col mx-auto w-[90%]  ">
         <section className="w-[75%] lg:w-[50%] max-w-4xl p-6 mx-auto mt-6 bg-white rounded-md shadow-md dark:bg-gray-800">
           <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
             محصولی اضافه کنید
@@ -199,7 +193,7 @@ export default function ProductsPage() {
           </form>
         </section>
 
-        <section className="w-[90%] px-4  mx-auto mt-6 mb-16">
+        <section className=" px-4   mt-6 mb-16">
           <div className="flex items-center gap-x-3">
             <h2 className="text-lg font-medium text-gray-800 dark:text-white">
               Team members
@@ -215,7 +209,7 @@ export default function ProductsPage() {
               <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div className="overflow-hidden h-[450px] overflow-y-auto  border border-gray-200 dark:border-gray-700 md:rounded-lg">
                   <table className="min-w-full  divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead className="bg-gray-50 dark:bg-gray-800">
+                    <thead className="bg-gray-50  dark:bg-gray-800">
                       <tr>
                         <th
                           scope="col"

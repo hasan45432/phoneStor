@@ -41,15 +41,10 @@ export default function UsersPage() {
   }, []);
 
   return (
-    <div className="flex">
-      <div className=" hidden xl:block">
-        <Sidbar />
-      </div>
-      <div className=" block xl:hidden">
-        <SidbarResponsive />
-      </div>
-      <div className="flex flex-col w-[100%]">
-        <section className="w-[90%] px-4  mx-auto mt-6 mb-16">
+    <div className="flex w-[100%]">
+     
+      <div className="flex w-[80%] mx-auto  flex-col ">
+        <section className="px-4  mt-6 mb-16">
           <div className="flex items-center gap-x-3">
             <h2 className="text-lg font-medium text-gray-800 dark:text-white">
               Team members

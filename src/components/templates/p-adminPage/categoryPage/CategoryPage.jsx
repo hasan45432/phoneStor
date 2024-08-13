@@ -65,13 +65,8 @@ export default function CategoryPage() {
     getCategory();
   }, []);
   return (
-    <div className="flex">
-      <div className=" hidden xl:block">
-        <Sidbar />
-      </div>
-      <div className=" block xl:hidden">
-        <SidbarResponsive />
-      </div>
+    <div className="flex w-[100%]">
+    
       <div className="flex flex-col w-[100%]">
         <section className="max-w-4xl p-6 mx-auto mt-6 bg-white rounded-md shadow-md dark:bg-gray-800">
           <form>
