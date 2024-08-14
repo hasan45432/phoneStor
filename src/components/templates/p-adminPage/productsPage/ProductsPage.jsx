@@ -23,10 +23,56 @@ export default function ProductsPage() {
   const [price, setPrice] = useState("");
   const [shortDescription, setShortDescription] = useState("");
   const [longDescription, setLongDescription] = useState("");
-  const [img, setImg] = useState({});
+  const [img, setImg] = useState(null);
+
+  const [alert, setAlert] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [priceError, setPriceError] = useState("");
+  const [shortDescriptionError, setShortDescriptionError] = useState("");
+  const [longDescriptionError, setLongDescriptionError] = useState("");
 
   const addNewProduct = async (e) => {
     e.preventDefault();
+
+    if (!name.trim().length) {
+      return setAlert("لطفا مقداری را وارد کنید");
+    }
+    if (name.trim().length) {
+      if (!/^[a-zA-Z\s]+$/.test(name.trim())) {
+        return setNameError("نمی تواند عدد یا شئی باشد");
+      }
+    }
+
+    if (!price.trim().length) {
+      return setAlert("لطفا مقداری را وارد کنید");
+    }
+    if (price.trim().length) {
+      if (/^[a-zA-Z\s]+$/.test(price)) {
+        return setPriceError("لطفا عدد وارد کنید");
+      }
+    }
+
+    if (!shortDescription.trim().length) {
+      return setAlert("لطفا مقداری را وارد کنید");
+    }
+    if (shortDescription.trim().length) {
+      if (!/^[a-zA-Z\s]+$/.test(shortDescription.trim())) {
+        return setShortDescriptionError("نمی تواند عدد یا شئی باشد");
+      }
+    }
+
+    if (!longDescription.trim().length) {
+      return setAlert("لطفا مقداری را وارد کنید");
+    }
+    if (longDescription.trim().length) {
+      if (!/^[a-zA-Z\s]+$/.test(longDescription.trim())) {
+        return setLongDescriptionError("نمی تواند عدد یا شئی باشد");
+      }
+    }
+
+    if (!img) {
+      return setAlert("لطفا مقداری را وارد کنید");
+    }
 
     const formData = await new FormData();
     formData.append("name", name);
@@ -48,6 +94,12 @@ export default function ProductsPage() {
     }
 
     fetchDataServer();
+
+    setName("");
+    setPrice("");
+    setShortDescription("");
+    setLongDescription("");
+    setImg(null);
   };
 
   const deleteProduct = async (e, productID) => {
@@ -104,9 +156,21 @@ export default function ProductsPage() {
                 <input
                   id="username"
                   type="text"
+                  value={name}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                  onInput={(e) => setName(e.target.value)}
+                  onInput={(e) => {
+                    setName(e.target.value);
+                    if (nameError.length) {
+                      setNameError("");
+                    }
+                  }}
                 />
+                {!name.length && (
+                  <p className=" text-red-500 text-[13px]">{alert}</p>
+                )}
+                {nameError && (
+                  <p className=" text-red-500 text-[13px]">{nameError}</p>
+                )}
               </div>
 
               <div>
@@ -119,9 +183,21 @@ export default function ProductsPage() {
                 <input
                   id="emailAddress"
                   type="text"
-                  onInput={(e) => setPrice(e.target.value)}
+                  value={price}
+                  onInput={(e) => {
+                    setPrice(e.target.value);
+                    if (priceError.length) {
+                      setPriceError("");
+                    }
+                  }}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
+                {!price.length && (
+                  <p className=" text-red-500 text-[13px]">{alert}</p>
+                )}
+                {priceError && (
+                  <p className=" text-red-500 text-[13px]">{priceError}</p>
+                )}
               </div>
 
               <div>
@@ -133,9 +209,23 @@ export default function ProductsPage() {
                 </label>
                 <input
                   type="text"
-                  onInput={(e) => setShortDescription(e.target.value)}
+                  value={shortDescription}
+                  onInput={(e) => {
+                    setShortDescription(e.target.value);
+                    if (shortDescriptionError.length) {
+                      setShortDescriptionError("");
+                    }
+                  }}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
+                {!shortDescription.length && (
+                  <p className=" text-red-500 text-[13px]">{alert}</p>
+                )}
+                {shortDescriptionError && (
+                  <p className=" text-red-500 text-[13px]">
+                    {shortDescriptionError}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -148,9 +238,23 @@ export default function ProductsPage() {
                 <input
                   id="text"
                   type="text"
-                  onInput={(e) => setLongDescription(e.target.value)}
+                  value={longDescription}
+                  onInput={(e) => {
+                    setLongDescription(e.target.value);
+                    if (longDescriptionError.length) {
+                      setLongDescriptionError("");
+                    }
+                  }}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
+                {!longDescription.length && (
+                  <p className=" text-red-500 text-[13px]">{alert}</p>
+                )}
+                {longDescriptionError && (
+                  <p className=" text-red-500 text-[13px]">
+                    {longDescriptionError}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col  ">
@@ -166,6 +270,7 @@ export default function ProductsPage() {
                   onChange={(e) => setImg(e.target.files[0])}
                   className="block w-full px-3 border-none py-1 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
+                {!img && <p className=" text-red-500 text-[13px]">{alert}</p>}
                 <div className="md:flex pl-20 gap-2  mt-4 pr-3">
                   <p> انتخاب دسته بندی:</p>
                   <select

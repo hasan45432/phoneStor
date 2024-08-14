@@ -13,13 +13,20 @@ export default function DiscountPage() {
   const { fetchDelete } = useDelete();
 
   const [products, setProducts] = useState([]);
-  const [categoryProduct, setCategory] = useState("");
+  const [categoryProduct, setCategory] = useState(
+    "گوشی موبایل سامسونگ مدل galaxy s24"
+  );
 
   const [discounts, setDiscount] = useState([]);
 
   const [code, setCode] = useState("");
   const [percent, setPercent] = useState("");
   const [maxUse, setMaxUse] = useState("");
+
+  const [alert, setAlert] = useState("");
+  const [codeError, setCodeError] = useState("");
+  const [percentError, setPercentError] = useState("");
+  const [maxUseError, setMaxUseError] = useState("");
 
   const getProducts = async () => {
     let url = "http://localhost:3000/api/products";
@@ -35,11 +42,33 @@ export default function DiscountPage() {
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
     setDiscount(statesData);
-    
   };
 
   const addDiscount = async (e) => {
     e.preventDefault();
+
+    if (!code.trim().length) {
+      return setAlert("لطفا مقداری  وارد کنید");
+    }
+
+    if (!percent.trim().length) {
+      return setAlert("لطفا مقداری  وارد کنید");
+    }
+    if (percent.trim().length) {
+      if (/^[a-zA-Z\s]+$/.test(percent.trim())) {
+        return setPercentError("لطفا عدد وارد کنید");
+      }
+    }
+
+    if (!maxUse.trim().length) {
+      return setAlert("لطفا مقداری  وارد کنید");
+    }
+    if (maxUse.trim().length) {
+      if (/^[a-zA-Z\s]+$/.test(maxUse.trim())) {
+        return setMaxUseError("لطفا عدد وارد کنید");
+      }
+    }
+
     let url = "http://localhost:3000/api/discounts";
     let body = { code, percent, maxUse, product: categoryProduct };
     await fetchPost({ url: url, body: body });
@@ -52,7 +81,6 @@ export default function DiscountPage() {
       });
     }
     getDiscount();
-    
   };
 
   const deleteDiscount = async (e, discountID) => {
@@ -63,7 +91,6 @@ export default function DiscountPage() {
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
     getDiscount();
-   
   };
 
   useEffect(() => {
@@ -73,7 +100,6 @@ export default function DiscountPage() {
 
   return (
     <div className="flex w-[100%]">
-     
       <div className="flex flex-col w-[100%]">
         <section className="max-w-4xl p-6 mx-auto mt-6 bg-white rounded-md shadow-md dark:bg-gray-800">
           <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
@@ -95,6 +121,7 @@ export default function DiscountPage() {
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
+                {!code && <p className=" text-[13px] text-red-500">{alert}</p>}
               </div>
 
               <div>
@@ -107,9 +134,20 @@ export default function DiscountPage() {
                 <input
                   id="emailAddress"
                   type="email"
-                  onChange={(e) => setPercent(e.target.value)}
+                  onChange={(e) => {
+                    setPercent(e.target.value);
+                    if (percentError.length) {
+                      setPercentError("");
+                    }
+                  }}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
+                {!percent && (
+                  <p className=" text-[13px] text-red-500">{alert}</p>
+                )}
+                {percentError && (
+                  <p className=" text-[13px] text-red-500">{percentError}</p>
+                )}
               </div>
 
               <div>
@@ -118,10 +156,21 @@ export default function DiscountPage() {
                 </label>
                 <input
                   id="password"
-                  onChange={(e) => setMaxUse(e.target.value)}
+                  onChange={(e) => {
+                    setMaxUse(e.target.value);
+                    if (maxUseError.length) {
+                      setMaxUseError("");
+                    }
+                  }}
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
                 />
+                {!maxUse && (
+                  <p className=" text-[13px] text-red-500">{alert}</p>
+                )}
+                {maxUseError && (
+                  <p className=" text-[13px] text-red-500">{maxUseError}</p>
+                )}
               </div>
               <div className="md:flex pl-6 gap-2  mt-12 pr-4">
                 <p> انتخاب دسته بندی:</p>
