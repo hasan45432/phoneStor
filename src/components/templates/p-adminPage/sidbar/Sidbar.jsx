@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 export default function Sidbar() {
   return (
-    <div className="w-[22%] h-[1300px] shadow-2xl  bg-[#1ABA1A]">
+    <div className="w-[20%] h-[1300px] shadow-2xl bg-black">
       <ul className="p-[50px] child:text-[15px] lg:child:text-[18px] flex flex-col  font-bold gap-12 child:text-white">
         <li className="flex items-center">
           <svg

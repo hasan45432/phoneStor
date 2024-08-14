@@ -30,7 +30,7 @@ export default function SidbarResponsive() {
         />
       </svg>
       <nav
-        className={` top-0 bg-[#1ABA1A] ${action} -right-[1000px] text-black transition-all duration-500  text-md w-[70%] sm:w-[50%] md:w-[40%]  bottom-0 flex  absolute  gap-2  font-vazirBlack  `}
+        className={` top-0 bg-black ${action} -right-[1000px] text-black transition-all duration-500  text-md w-[70%] sm:w-[32%] md:w-[25%]  bottom-0 flex  absolute  gap-2  font-vazirBlack  `}
       >
         <ul className="flex w-[80%] flex-col child:text-white child:transition-all child:duration-300   child:w-[100%] child:rounded-[16px] child:p-[20px]">
           <li className="flex items-center ">
@@ -130,7 +130,7 @@ export default function SidbarResponsive() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="size-8 absolute top-4 left-2 cursor-pointer"
+          className="size-8 absolute text-white top-4 left-2 cursor-pointer"
           onClick={closeMenu}
         >
           <path
