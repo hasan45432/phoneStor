@@ -7,7 +7,8 @@ import { useCombinedStore } from "@/app/store";
 import { useRouter } from "next/navigation";
 import CreateComment from "./productComment/CreateComment";
 export default function SingleProductDetails() {
-  const { getProductComments, getUserOrders } = useCombinedStore();
+  const { getProductComments, getUserOrders, getCommentName } =
+    useCombinedStore();
   const { fetchData } = useFetch();
   const router = usePathname();
   const navigate = useRouter();
@@ -26,6 +27,7 @@ export default function SingleProductDetails() {
       return navigate.push("/");
     }
     setProduct(findProduct);
+    getCommentName(findProduct.name);
   };
 
   const [count, setCount] = useState(1);
@@ -48,7 +50,7 @@ export default function SingleProductDetails() {
         swal({
           title: "محصول به سبد خرید اضافه شد",
           icon: "success",
-           buttons:"ok"
+          buttons: "ok",
         });
       } else {
         let cardItem = {
@@ -63,7 +65,7 @@ export default function SingleProductDetails() {
         swal({
           title: "محصول به سبد خرید اضافه شد",
           icon: "success",
-           buttons:"ok"
+          buttons: "ok",
         });
       }
     } else {
@@ -79,7 +81,7 @@ export default function SingleProductDetails() {
       swal({
         title: "محصول به سبد خرید اضافه شد",
         icon: "success",
-        buttons:"ok"
+        buttons: "ok",
       });
     }
 

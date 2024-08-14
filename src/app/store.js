@@ -55,9 +55,21 @@ const searchProduct = (set) => ({
   },
 });
 
+const commentName = (set) => ({
+  stateCommentName: "",
+  getCommentName: (data) => {
+    console.log(data);
+    set((state) => ({
+      ...state,
+      stateCommentName: data,
+    }));
+  },
+});
+
 export const useCombinedStore = create((set) => ({
   ...states(set),
   ...productsID(set),
   ...userOrders(set),
   ...searchProduct(set),
+  ...commentName(set),
 }));

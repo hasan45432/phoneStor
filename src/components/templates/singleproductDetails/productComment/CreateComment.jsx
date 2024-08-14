@@ -60,12 +60,15 @@ export default function CreateComment() {
     ) {
       redirect.push("/login");
     } else {
+      let stateCommentName = useCombinedStore.getState().stateCommentName;
+      console.log(stateCommentName);
       let url = "http://localhost:3000/api/comments";
       let body = {
         description,
         username,
         email,
         productID: router.split("/").pop(),
+        productName: stateCommentName,
       };
       await fetchPost({ url: url, body: body });
       let statesResponse = useCombinedStore.getState().statesResponse;
@@ -75,7 +78,6 @@ export default function CreateComment() {
           icon: "success",
         });
       }
-    
     }
 
     setEmail("");
@@ -91,7 +93,6 @@ export default function CreateComment() {
 
     let stateProductComments = await useCombinedStore.getState()
       .stateProductComments;
-    
 
     const filteredArray = await statesData.filter((state) =>
       stateProductComments.some((comment) => comment._id === state._id)
@@ -109,6 +110,7 @@ export default function CreateComment() {
 
   useEffect(() => {
     getComments();
+    console.log(router.split("/").pop());
   }, []);
 
   return (

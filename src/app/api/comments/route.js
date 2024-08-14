@@ -6,7 +6,7 @@ export async function POST(req) {
   try {
     connectToDB();
     const reqBody = await req.json();
-    const { username, description, email, productID } = reqBody;
+    const { username, description, email, productName, productID } = reqBody;
 
     // Validation
 
@@ -14,6 +14,7 @@ export async function POST(req) {
       username,
       description,
       email,
+      productName,
       productID,
     });
 

@@ -18,6 +18,10 @@ const schema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  productName: {
+    type: String,
+    required: true,
+  },
   date: {
     type: Date,
     default: () => Date.now(),
@@ -29,6 +33,7 @@ const schema = new mongoose.Schema({
   },
 });
 
-const CommentModel = mongoose.models.Comment || mongoose.model("Comment", schema);
+const CommentModel =
+  mongoose.models.Comment || mongoose.model("Comment", schema);
 
 export default CommentModel;

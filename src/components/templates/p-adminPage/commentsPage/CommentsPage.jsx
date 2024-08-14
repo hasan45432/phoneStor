@@ -12,6 +12,7 @@ export default function CommentsPage() {
   const { fetchDelete } = useDelete();
 
   const [comments, setComments] = useState([]);
+  const [commentName, setCommentName] = useState([]);
 
   const getComments = async () => {
     let url = "http://localhost:3000/api/comments";
@@ -22,11 +23,23 @@ export default function CommentsPage() {
     if (statesData) {
       setComments(statesData);
     }
-   
+  };
+
+  const getProduct = async () => {
+    let url = "http://localhost:3000/api/products";
+    await fetchData(url);
+    let statesData = useCombinedStore.getState().statesData;
+    let filterProduct = await statesData.filter((product) => {
+      return product.comments.length;
+    });
+    let fff = filterProduct.map((pr) => {
+      return pr.comments;
+    });
+    setCommentName(filterProduct);
+    console.log(fff.flat());
   };
 
   const notAcceptComment = async (e, commentID) => {
-   
     e.preventDefault();
     let id = { id: commentID };
     await fetch("http://localhost:3000/api/comments/reject", {
@@ -37,16 +50,12 @@ export default function CommentsPage() {
       body: JSON.stringify(id),
     })
       .then((res) => {
-        
         return res.json();
       })
-      .then((data) => {
-        
-      });
-    getComments();
+      .then((data) => {});
+      getComments();
   };
   const AcceptComment = async (e, commentID) => {
-   
     e.preventDefault();
     let id = { id: commentID };
     await fetch("http://localhost:3000/api/comments/accept", {
@@ -57,12 +66,9 @@ export default function CommentsPage() {
       body: JSON.stringify(id),
     })
       .then((res) => {
-      
         return res.json();
       })
-      .then((data) => {
-        
-      });
+      .then((data) => {});
     getComments();
   };
 
@@ -77,9 +83,9 @@ export default function CommentsPage() {
   useEffect(() => {
     getComments();
   }, []);
+
   return (
     <div className="flex w-[100%]">
-    
       <div className="flex flex-col w-[100%]">
         <section className="w-[90%] px-4  mx-auto mt-6 mb-16">
           <div className="flex items-center gap-x-3">
@@ -129,6 +135,13 @@ export default function CommentsPage() {
                           تایید / رد
                         </th>
 
+                        <th
+                          scope="col"
+                          className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                        >
+                          برای محصول
+                        </th>
+
                         <th scope="col" className="relative py-3.5 px-4">
                           <span className="sr-only">Edit</span>
                         </th>
@@ -149,11 +162,9 @@ export default function CommentsPage() {
                                 </div>
                               </div>
                             </td>
-
                             <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                               {comment.email}
                             </td>
-
                             <td className="px-4 py-4 overflow-x-auto max-w-[300px]  text-sm font-medium text-gray-700 whitespace-nowrap">
                               <div className="inline-flex items-center gap-x-3">
                                 <div className="flex items-center gap-x-2">
@@ -165,6 +176,7 @@ export default function CommentsPage() {
                                 </div>
                               </div>
                             </td>
+
                             <td className="px-4 py-4 text-sm whitespace-nowrap ">
                               {comment.isAccept ? (
                                 <button
@@ -183,6 +195,18 @@ export default function CommentsPage() {
                                   تایید
                                 </button>
                               )}
+                            </td>
+
+                            <td className="px-4 py-4 overflow-x-auto max-w-[300px]  text-sm font-medium text-gray-700 whitespace-nowrap">
+                              <div className="inline-flex items-center gap-x-3">
+                                <div className="flex items-center gap-x-2">
+                                  <div>
+                                    <h2 className="font-medium text-gray-800 dark:text-white ">
+                                      {comment.productName}
+                                    </h2>
+                                  </div>
+                                </div>
+                              </div>
                             </td>
 
                             <td className="px-4 py-4 text-sm whitespace-nowrap">
