@@ -20,6 +20,7 @@ export default function RegisterDetails() {
   const [alertName, setAlertName] = useState("");
   const [alertEmail, setAlertEmail] = useState("");
   const [alertPassword, setAlertPassword] = useState("");
+  const [typeasd, setTypeasd] = useState("");
 
   const [alertPasswordLength, setAlertPasswordLength] = useState("");
 
@@ -37,6 +38,12 @@ export default function RegisterDetails() {
 
     if (!name.trim().length) {
       return setAlertName("لطفا نام خود را وارد کنید");
+    }
+
+    if (name.trim().length) {
+      if (!/^[a-zA-Z\s]+$/.test(name.trim())) {
+        return setTypeasd("لطفا مقدار درستی وارد کنید");
+      }
     }
 
     if (!email.trim().length) {
@@ -79,7 +86,6 @@ export default function RegisterDetails() {
     if (statesResponse.status === 201) {
       router.push("/");
     }
-   
   };
 
   const getMy = async () => {
@@ -96,7 +102,6 @@ export default function RegisterDetails() {
     ) {
       router.push("/");
     }
-
   };
 
   useEffect(() => {
@@ -108,7 +113,7 @@ export default function RegisterDetails() {
     let card = JSON.parse(localStorage.getItem("card")) || [];
 
     let result = card.reduce((prev, item) => prev + item.count, 0);
-    
+
     getUserOrders(result);
   }, []);
 
@@ -140,9 +145,15 @@ export default function RegisterDetails() {
               type="text"
               placeholder="نام خود را وارد کنید"
               className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px]"
-              onInput={(e) => setName(e.target.value)}
+              onInput={(e) => {
+                setName(e.target.value);
+                if (typeasd) {
+                  setTypeasd("");
+                }
+              }}
             />
             {!name && <p className=" text-red-600 text-[14px] ">{alertName}</p>}
+            {typeasd && <p className=" text-red-600 text-[14px] ">{typeasd}</p>}
 
             <input
               type="email"
@@ -185,12 +196,6 @@ export default function RegisterDetails() {
               <p className="text-red-600 text-[14px]">{alertPasswordLength}</p>
             )}
 
-            <Link
-              href="/"
-              className="hover:text-[#1ABA1A] hover:transition-colors hover:duration-300 text-[13px] text-[#999999] mt-[15px]"
-            >
-              پس ورد خود را فراموش کردین؟
-            </Link>
             <button
               onClick={registerUser}
               className=" hover:text-white pb-2 hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1  w-[138px] h-[50px] rounded-[10px] "

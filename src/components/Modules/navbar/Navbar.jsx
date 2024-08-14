@@ -126,7 +126,7 @@ export default function Navbar() {
                 <Link href="/">صفحه اصلی</Link>
               </li>
               <li>
-                <Link href="/mobiles">موبایل</Link>
+                <Link href="/keyboards">کیبورد</Link>
               </li>
               <li>
                 <Link href="/products">محصولات</Link>

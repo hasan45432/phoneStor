@@ -171,12 +171,7 @@ export default function LoginDetails() {
               <p className="text-red-600 text-[14px]">{alertPasswordLength}</p>
             )}
 
-            <Link
-              href="/"
-              className="hover:text-[#1ABA1A] hover:transition-colors hover:duration-300 text-[13px] text-[#999999] mt-[15px]"
-            >
-              پس ورد خود را فراموش کردین؟
-            </Link>
+         
             <button
               onClick={loginUser}
               className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[22px] pb-1  w-[138px] h-[50px] rounded-[10px] "

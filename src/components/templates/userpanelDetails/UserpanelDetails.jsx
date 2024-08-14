@@ -4,11 +4,11 @@ import { useCombinedStore } from "@/app/store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useFetch from "@/cutomHooks/useFetch";
+import Link from "next/link";
 export default function UserpanelDetails() {
   const router = useRouter();
   const [userInformation, setUserInformation] = useState({});
   const { fetchData } = useFetch();
- 
 
   const getMy = async () => {
     let url = "http://localhost:3000/api/auth/me";
@@ -31,7 +31,7 @@ export default function UserpanelDetails() {
     let card = JSON.parse(localStorage.getItem("card")) || [];
 
     let result = card.reduce((prev, item) => prev + item.count, 0);
- 
+
     getUserOrders(result);
   }, []);
   return (
@@ -54,7 +54,9 @@ export default function UserpanelDetails() {
           <p className="text-[20px] font-bold">{userInformation.name}</p>
           <p className="text-[15px] text-[#666666]"> {userInformation.email}</p>
         </div>
+    
       </div>
+
       <div className="w-[100%]">
         <div className="w-[100%]  flex flex-col gap-10  items-center  ">
           <p className="text-[14px] w-[100%] sm:w-[50%] sm:text-[18px] font-bold border  h-[45px] rounded-[10px] p-2">

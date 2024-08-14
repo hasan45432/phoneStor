@@ -48,6 +48,7 @@ export default function SingleProductDetails() {
         swal({
           title: "محصول به سبد خرید اضافه شد",
           icon: "success",
+           buttons:"ok"
         });
       } else {
         let cardItem = {
@@ -62,6 +63,7 @@ export default function SingleProductDetails() {
         swal({
           title: "محصول به سبد خرید اضافه شد",
           icon: "success",
+           buttons:"ok"
         });
       }
     } else {
@@ -77,6 +79,7 @@ export default function SingleProductDetails() {
       swal({
         title: "محصول به سبد خرید اضافه شد",
         icon: "success",
+        buttons:"ok"
       });
     }
 
