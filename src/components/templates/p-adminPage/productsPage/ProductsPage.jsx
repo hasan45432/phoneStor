@@ -37,11 +37,7 @@ export default function ProductsPage() {
     if (!name.trim().length) {
       return setAlert("لطفا مقداری را وارد کنید");
     }
-    if (name.trim().length) {
-      if (!/^[a-zA-Zا-ی\s]+$/.test(name.trim())) {
-        return setNameError("نمی تواند عدد یا شئی باشد");
-      }
-    }
+
 
     if (!price.trim().length) {
       return setAlert("لطفا مقداری را وارد کنید");
@@ -55,20 +51,12 @@ export default function ProductsPage() {
     if (!shortDescription.trim().length) {
       return setAlert("لطفا مقداری را وارد کنید");
     }
-    if (shortDescription.trim().length) {
-      if (!/^[a-zA-Zا-ی\s]+$/.test(shortDescription.trim())) {
-        return setShortDescriptionError("نمی تواند عدد یا شئی باشد");
-      }
-    }
+   
 
     if (!longDescription.trim().length) {
       return setAlert("لطفا مقداری را وارد کنید");
     }
-    if (longDescription.trim().length) {
-      if (!/^[a-zA-Zا-ی\s]+$/.test(longDescription.trim())) {
-        return setLongDescriptionError("نمی تواند عدد یا شئی باشد");
-      }
-    }
+ 
 
     if (!img) {
       return setAlert("لطفا مقداری را وارد کنید");

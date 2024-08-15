@@ -6,7 +6,7 @@ export default function Category() {
       <div className="w-[145px] sm:w-[200px] flex   sm:mr-0 items-center">
         <div>
           <Image
-            src="/img/imageHomePage/Link → prod20.png.png"
+            src="/img/imageHomePage/prod20.png.png"
             width={1200}
             height={900}
             className=" w-[50px] h-[50px] object-cover "

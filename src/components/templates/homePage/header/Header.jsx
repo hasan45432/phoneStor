@@ -202,7 +202,7 @@ export default function Header() {
               alt="shop"
             ></Image>
             <Image
-              src="/img/imageHomePage/MainMobil → Section → Link → ban2.png.png"
+              src="/img/imageHomePage/ban3.png.png"
               width={900}
               height={600}
               className="w-[32%] md:w-[32.5%] bg-cover bg-center lg:w-[33%] xl:w-[296px]  h-[100px] sm:h-[177px] rounded-[10px] xl:mt-[7px]"
