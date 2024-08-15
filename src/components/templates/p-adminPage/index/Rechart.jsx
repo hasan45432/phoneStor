@@ -33,7 +33,7 @@ const SalesChart = () => {
             dataKey="sale"
             stroke="#000"
             fillOpacity={1}
-            fill="rgb(52 211 153)"
+            fill=" black"
           />
         </AreaChart>
       </ResponsiveContainer>

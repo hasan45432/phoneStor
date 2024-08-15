@@ -149,7 +149,7 @@ export default function SingleProductDetails() {
             </p>
             <p className="text-[18px] text-center w-[20px] border">{count}</p>
             <p
-              onClick={count > 0 ? () => setCount(count - 1) : null}
+              onClick={count > 1 ? () => setCount(count - 1) : null}
               className="text-[18px] cursor-pointer text-center w-[20px] border"
             >
               -

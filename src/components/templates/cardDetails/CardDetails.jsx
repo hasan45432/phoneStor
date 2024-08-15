@@ -239,8 +239,7 @@ export default function CardDetails() {
       )}
 
       <div
-        data-aos="zoom-in"
-        data-aos-duration="600"
+       
         className="w-[70%] lg:w-[40%] mx-auto h-[200px] mt-[15px] mb-[15px] rounded-[15px] bg-white border-green-400 border flex justify-center items-center"
       >
         <div className="flex flex-col items-center">

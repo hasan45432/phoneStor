@@ -28,7 +28,7 @@ export default function MyLineChart() {
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
-          <Line type="monotone" dataKey="sale" stroke="rgb(52 211 153)" />
+          <Line type="monotone" dataKey="sale" stroke="black" />
           <Line type="monotone" dataKey="data" stroke="#1ABA1A" />
         </LineChart>
       </ResponsiveContainer>

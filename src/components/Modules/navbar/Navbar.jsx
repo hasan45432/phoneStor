@@ -132,7 +132,7 @@ export default function Navbar() {
                 <Link href="/products">محصولات</Link>
               </li>
               <li>
-                <Link href="/abut">درباره ی سایت</Link>
+                <Link href="/about">درباره ی سایت</Link>
               </li>
             </ul>
           </div>
