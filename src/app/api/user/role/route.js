@@ -1,5 +1,5 @@
-import connectToDB from "@/configs/db";
-import UserModel from "@/models/User";
+import connectToDB from "../../../../../configs/db";
+import UserModel from "../../../../../models/User";
 
 export async function PUT(req) {
   try {

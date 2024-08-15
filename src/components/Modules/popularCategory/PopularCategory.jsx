@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 export default function PopularCategory(props) {
-  console.log(props);
+ 
   return (
     <>
       <Link href={`/singleproduct/${props._id}`}>

@@ -37,20 +37,19 @@ export default function AboutPage() {
               <span className="text-[18px] font-bold"> ui وبسایت: </span>
               پیاده سازی ui از روی طرح فیگما به صورت پیکسل پرفکت
             </p>
-         
           </div>
           <p>
-              <span className="text-[18px] font-bold">
-                {" "}
-                تعداد کل صفحات سایت :{" "}
-              </span>
-              شامل 20 صفحه
-            </p>
+            <span className="text-[18px] font-bold">
+              {" "}
+              تعداد کل صفحات سایت :{" "}
+            </span>
+            شامل 20 صفحه
+          </p>
         </div>
 
         <div className=" p-[30px]">
           <p className=" text-[25px] font-bold">امکانات وبسایت:</p>
-          <p>
+          <div>
             <span className="text-[18px] font-bold"> احراز هویت کاربران: </span>
             <p>
               شامل فرم ثبت نام , ورود با ایمیل و رمز عبور ثبت نام شده , جلوگیری
@@ -60,8 +59,8 @@ export default function AboutPage() {
               اطلاعات و کوکی از سایت و مرور گر , ذخیره شدن و مشاهده ی اطلاعات
               کاربران در پنل کاربری
             </p>
-          </p>
-          <p className="mt-[10px]">
+          </div>
+          <div className="mt-[10px]">
             <span className="text-[18px] font-bold">
               {" "}
               پنل ادمین : ادرس :p-admin
@@ -76,7 +75,7 @@ export default function AboutPage() {
               دسته بندی ها * صفحه ی کاربران : امکان مدیریت کاربران بر اساس نیاز
               مانند حذف کاربران ثبت نام شده در سایت
             </p>
-          </p>
+          </div>
         </div>
         <div className="p-[30px]">
           <p className=" text-[20px] font-bold">امکانات بخش اصلی وبسایت : </p>
@@ -89,8 +88,11 @@ export default function AboutPage() {
             برای هر محصول و مشاهد ه ی کامنت ثبت شده برای تمامی کاربران سایت در
             صورت تایید مدیر
           </p>
-          <p className=" text-[20px] font-bold">ریسپانسیو  سازی: </p>
-        <p>ریسپانسیو بودن کل صفحات سایت تا سایز 320 px همچنین ریسپانسیو بودن صفحات  پنل ادمین تا سایز 320 px </p>
+          <p className=" text-[20px] font-bold">ریسپانسیو سازی: </p>
+          <p>
+            ریسپانسیو بودن کل صفحات سایت تا سایز 320 px همچنین ریسپانسیو بودن
+            صفحات پنل ادمین تا سایز 320 px{" "}
+          </p>
         </div>
       </div>
       <Footer />

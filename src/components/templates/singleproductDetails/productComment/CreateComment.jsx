@@ -106,11 +106,11 @@ export default function CreateComment() {
     setComments(filteredArray);
   };
 
-  const getMy = async () => {};
+ 
 
   useEffect(() => {
     getComments();
-    console.log(router.split("/").pop());
+    
   }, []);
 
   return (

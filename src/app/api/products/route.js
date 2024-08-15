@@ -67,7 +67,7 @@ export async function PUT(req) {
       { status: 201 }
     );
   } catch (err) {
-    console.log(err);
+    
     return Response.json({ message: err.message }, { status: 500 });
   }
 }

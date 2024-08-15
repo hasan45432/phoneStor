@@ -36,7 +36,7 @@ export default function CommentsPage() {
       return pr.comments;
     });
     setCommentName(filterProduct);
-    console.log(fff.flat());
+
   };
 
   const notAcceptComment = async (e, commentID) => {

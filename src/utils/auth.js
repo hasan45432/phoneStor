@@ -25,7 +25,7 @@ const verifyAccessToken = (token) => {
     const tokenPayload = verify(token, process.env.AccessTokenSecretKey);
     return tokenPayload;
   } catch (err) {
-    console.log("Verify Access Token Error ->", err);
+    
     return false;
   }
 };

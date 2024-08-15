@@ -57,7 +57,7 @@ export default function Product(props) {
       });
     }
     let result = card.reduce((prev, item) => prev + item.count, 0);
-    console.log(result);
+  
     getUserOrders(result);
   };
 

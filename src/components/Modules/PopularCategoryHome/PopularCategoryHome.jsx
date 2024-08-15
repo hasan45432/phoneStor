@@ -17,7 +17,7 @@ export default function PopularCategoryHome(props) {
       return product.category === "کیس";
     });
     setPopular(filterProducts);
-    console.log(filterProducts);
+  
   };
   useEffect(() => {
     GetPopular();

@@ -17,8 +17,7 @@ export default function AdminPanelLayout({ children }) {
     await fetchData(url);
     const statesData = await useCombinedStore.getState().statesData;
     const statesResponse = await useCombinedStore.getState().statesResponse;
-    console.log(statesData);
-    console.log(path);
+ 
     if (
       statesData.data === null ||
       statesResponse.status === 401 ||

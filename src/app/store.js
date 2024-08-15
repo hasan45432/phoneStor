@@ -5,16 +5,12 @@ const states = (set) => ({
   statesData: [],
 
   GETstateData: (data) => {
-    console.log(data);
-
     set((state) => ({
       ...state,
       statesData: data,
     }));
   },
   GETstateResponse: (data) => {
-    console.log(data);
-
     set((state) => ({
       ...state,
       statesResponse: data,
@@ -25,7 +21,6 @@ const states = (set) => ({
 const productsID = (set) => ({
   stateProductComments: [],
   getProductComments: (comments) => {
-    console.log(comments);
     set((state) => ({
       ...state,
       stateProductComments: comments,
@@ -36,7 +31,6 @@ const productsID = (set) => ({
 const userOrders = (set) => ({
   basket: "",
   getUserOrders: (data) => {
-    console.log(data);
     set((state) => ({
       ...state,
       basket: data,
@@ -47,7 +41,6 @@ const userOrders = (set) => ({
 const searchProduct = (set) => ({
   searchInput: "",
   getSearchValue: (data) => {
-    console.log(data);
     set((state) => ({
       ...state,
       searchInput: data,
@@ -58,7 +51,6 @@ const searchProduct = (set) => ({
 const commentName = (set) => ({
   stateCommentName: "",
   getCommentName: (data) => {
-    console.log(data);
     set((state) => ({
       ...state,
       stateCommentName: data,

@@ -34,7 +34,7 @@ export default function SingleProductDetails() {
 
   const addToCard = () => {
     let card = JSON.parse(localStorage.getItem("card")) || [];
-    console.log(card);
+   
 
     if (card.length) {
       let isInCard = card.some((item) => item.id === router.split("/").pop());
@@ -86,7 +86,7 @@ export default function SingleProductDetails() {
     }
 
     let result = card.reduce((prev, item) => prev + item.count, 0);
-    console.log(result);
+   
     getUserOrders(result);
   };
 

@@ -27,9 +27,6 @@ export default function SearchPage() {
     } else {
       setResults([]);
     }
-
-    console.log(filterSearch);
-    console.log(searchInput);
   };
 
   useEffect(() => {
@@ -58,7 +55,9 @@ export default function SearchPage() {
           })
         ) : (
           <div className="col-span-2 md:col-span-3 lg:col-span-4 flex items-center justify-center w-full h-full">
-            <p className="text-red-500 text-[20px]  sm:text-[30px] ">هیچ نتیجه ای پیدا نشد</p>
+            <p className="text-red-500 text-[20px]  sm:text-[30px] ">
+              هیچ نتیجه ای پیدا نشد
+            </p>
           </div>
         )}
       </div>

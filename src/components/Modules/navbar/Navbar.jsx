@@ -84,7 +84,7 @@ export default function Navbar() {
   useEffect(() => {
     getTotalPrice();
     setCountCard(baskets);
-    console.log(patch);
+   
   }, [orders, baskets, patch]);
 
   return (
