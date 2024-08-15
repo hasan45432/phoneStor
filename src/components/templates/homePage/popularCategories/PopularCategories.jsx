@@ -29,7 +29,7 @@ export default function PopularCategories() {
             alt="shodp"
           ></Image>
           <Image
-            src="/img/imageHomePage/Main → Section.png"
+            src="/img/imageHomePage/Section.png"
             width={1200}
             height={900}
             className="w-[630px] 2xl:w-[642px] h-[180px] rounded-[10px]"

@@ -134,7 +134,7 @@ export default function Header() {
             <div className="w-[100%] h-[580px] sm:h-[480px] bg-[#FFFFFF] rounded-[10PX] flex flex-col md:justify-around lg:justify-center xl:justify-around items-center sm:flex-row-reverse">
               <div className="flex flex-row-reverse">
                 <Image
-                  src="/img/imageHomePage/divswiper-wrapper-fb61d9569454cc6d.png"
+                  src="/img/imageHomePage/wrapper.png"
                   width={900}
                   height={600}
                   className="w-[35px] bg-cover bg-center hidden xl:block mt-[35px] ml-[30px] h-[380px] rounded-[10px] "
@@ -188,14 +188,14 @@ export default function Header() {
           </div>
           <div className="w-[100%] pl-2 sm:pl-0   mt-[15px] xl:mt-0 xl:w-[30%] flex items-center gap-[10px] xl:block">
             <Image
-              src="/img/imageHomePage/Main → Section → Link → ban1.png.png"
+              src="/img/imageHomePage/ban1.png.png"
               width={900}
               height={600}
               className="w-[32%] md:w-[32.5%] bg-cover bg-center xl:w-[296px] lg:w-[33%] h-[100px]  sm:h-[177px] rounded-[10px] xl:mt-[14px]"
               alt="shop"
             ></Image>
             <Image
-              src="/img/imageHomePage/Main → Section → Link → ban2.png.png"
+              src="/img/imageHomePage/ban2.png.png"
               width={900}
               height={600}
               className="w-[33%] md:w-[32.5%] bg-cover bg-center lg:w-[33%] xl:w-[296px]  h-[100px] sm:h-[177px] rounded-[10px] xl:mt-[7px]"
