@@ -41,7 +41,7 @@ export default function RegisterDetails() {
     }
 
     if (name.trim().length) {
-      if (!/^[a-zA-Z\s]+$/.test(name.trim())) {
+      if (!/^[a-zA-Zا-ی\s]+$/.test(name.trim())) {
         return setTypeasd("لطفا مقدار درستی وارد کنید");
       }
     }
