@@ -203,8 +203,8 @@ export default function MobilNavbar() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" onClick={() => setIsNavOpen(false)}>
-                    گوشی
+                  <Link href="/keyboards" onClick={() => setIsNavOpen(false)}>
+                    کیبورد
                   </Link>
                 </li>
                 <li>

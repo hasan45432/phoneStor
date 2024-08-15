@@ -55,7 +55,7 @@ export default function DiscountPage() {
       return setAlert("لطفا مقداری  وارد کنید");
     }
     if (percent.trim().length) {
-      if (/^[a-zA-Z\s]+$/.test(percent.trim())) {
+      if (/^(?=.*[a-zA-Z])[a-zA-Z0-9$#@%^&*()!+=-]*$/.test(percent)) {
         return setPercentError("لطفا عدد وارد کنید");
       }
     }
@@ -64,7 +64,7 @@ export default function DiscountPage() {
       return setAlert("لطفا مقداری  وارد کنید");
     }
     if (maxUse.trim().length) {
-      if (/^[a-zA-Z\s]+$/.test(maxUse.trim())) {
+      if (/^(?=.*[a-zA-Z])[a-zA-Z0-9$#@%^&*()!+=-]*$/.test(maxUse)) {
         return setMaxUseError("لطفا عدد وارد کنید");
       }
     }
@@ -79,8 +79,16 @@ export default function DiscountPage() {
         title: "تخفیف اضافه شد",
         icon: "success",
       });
+    } else {
+      swal({
+        title: "مشکلی پیش امد مقدار ها را چک کنید",
+        icon: "error",
+      });
     }
     getDiscount();
+    setCode("");
+    setPercent("");
+    setMaxUse("");
   };
 
   const deleteDiscount = async (e, discountID) => {
@@ -117,6 +125,7 @@ export default function DiscountPage() {
                 </label>
                 <input
                   id="username"
+                  value={code}
                   onChange={(e) => setCode(e.target.value)}
                   type="text"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -134,6 +143,7 @@ export default function DiscountPage() {
                 <input
                   id="emailAddress"
                   type="email"
+                  value={percent}
                   onChange={(e) => {
                     setPercent(e.target.value);
                     if (percentError.length) {
@@ -156,6 +166,7 @@ export default function DiscountPage() {
                 </label>
                 <input
                   id="password"
+                  value={maxUse}
                   onChange={(e) => {
                     setMaxUse(e.target.value);
                     if (maxUseError.length) {

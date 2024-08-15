@@ -28,7 +28,7 @@ export default function CategoryPage() {
       return setAlert("لطفا دسته بندی را وارد کنید");
     }
     if (name.trim().length) {
-      if (!/^[a-zA-Z\s]+$/.test(name.trim())) {
+      if (!/^[a-zA-Zا-ی\s]+$/.test(name.trim())) {
         return setNameError("نمی تواند عدد یا شئی باشد");
       }
     }
@@ -39,6 +39,11 @@ export default function CategoryPage() {
       swal({
         title: "دسته بندی با موفقیت افزوده شد",
         icon: "success",
+      });
+    } else {
+      swal({
+        title: "مشکلی پیش امد لطفا مقدار ها را چک کنید",
+        icon: "error",
       });
     }
 

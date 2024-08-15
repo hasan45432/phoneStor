@@ -38,7 +38,7 @@ export default function ProductsPage() {
       return setAlert("لطفا مقداری را وارد کنید");
     }
     if (name.trim().length) {
-      if (!/^[a-zA-Z\s]+$/.test(name.trim())) {
+      if (!/^[a-zA-Zا-ی\s]+$/.test(name.trim())) {
         return setNameError("نمی تواند عدد یا شئی باشد");
       }
     }
@@ -47,7 +47,7 @@ export default function ProductsPage() {
       return setAlert("لطفا مقداری را وارد کنید");
     }
     if (price.trim().length) {
-      if (/^[a-zA-Z\s]+$/.test(price)) {
+      if (/^(?=.*[a-zA-Z])[a-zA-Z0-9$#@%^&*()!+=-]*$/.test(price)) {
         return setPriceError("لطفا عدد وارد کنید");
       }
     }
@@ -56,7 +56,7 @@ export default function ProductsPage() {
       return setAlert("لطفا مقداری را وارد کنید");
     }
     if (shortDescription.trim().length) {
-      if (!/^[a-zA-Z\s]+$/.test(shortDescription.trim())) {
+      if (!/^[a-zA-Zا-ی\s]+$/.test(shortDescription.trim())) {
         return setShortDescriptionError("نمی تواند عدد یا شئی باشد");
       }
     }
@@ -65,7 +65,7 @@ export default function ProductsPage() {
       return setAlert("لطفا مقداری را وارد کنید");
     }
     if (longDescription.trim().length) {
-      if (!/^[a-zA-Z\s]+$/.test(longDescription.trim())) {
+      if (!/^[a-zA-Zا-ی\s]+$/.test(longDescription.trim())) {
         return setLongDescriptionError("نمی تواند عدد یا شئی باشد");
       }
     }
@@ -90,6 +90,11 @@ export default function ProductsPage() {
       swal({
         title: "محصول با موفقیت افزوده شد",
         icon: "success",
+      });
+    } else {
+      swal({
+        title: "مشکلی پیش امد مقدارها را چک کنید",
+        icon: "error",
       });
     }
 
