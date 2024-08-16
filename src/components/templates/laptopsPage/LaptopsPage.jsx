@@ -10,7 +10,7 @@ export default function LaptopsPage() {
   const { fetchData } = useFetch();
   const [laptops, setLaptops] = useState([]);
   const getCases = async () => {
-    let url = "http://localhost:3000/api/products";
+    let url = "https://technofadakar.liara.run/api/products";
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     let filerProducts = statesData.filter((cases) => {

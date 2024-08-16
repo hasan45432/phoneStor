@@ -1,5 +1,5 @@
 import React from "react";
-import LoginDetails from "@/components/templates/loginDetails/loginDetails";
+import LoginDetails from "@/components/templates/loginDetails/LoginDetails";
 import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import Navbar from "@/components/Modules/navbar/Navbar";

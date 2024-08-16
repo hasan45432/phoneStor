@@ -1,5 +1,5 @@
 import React from "react";
-import CardDetails from "@/components/templates/cardDetails/cardDetails";
+import CardDetails from "@/components/templates/cardDetails/CardDetails";
 import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import Navbar from "@/components/Modules/navbar/Navbar";

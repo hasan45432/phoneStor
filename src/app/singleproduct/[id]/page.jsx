@@ -1,5 +1,5 @@
 import React from "react";
-import SingleProductDetails from "@/components/templates/singleproductDetails/singleproductDetails";
+import SingleProductDetails from "@/components/templates/singleproductDetails/SingleproductDetails";
 import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import Navbar from "@/components/Modules/navbar/Navbar";

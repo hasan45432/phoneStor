@@ -1,5 +1,5 @@
 import React from "react";
-import UserpanelDetails from "@/components/templates/userpanelDetails/userpanelDetails";
+import UserpanelDetails from "@/components/templates/userpanelDetails/UserpanelDetails";
 import Navbar from "@/components/Modules/navbar/Navbar";
 import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";

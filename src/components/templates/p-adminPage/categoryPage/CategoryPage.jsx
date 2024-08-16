@@ -21,7 +21,7 @@ export default function CategoryPage() {
   const addCategory = async (e) => {
     e.preventDefault();
 
-    let url = "http://localhost:3000/api/category";
+    let url = "https://technofadakar.liara.run/api/category";
     let body = { name };
 
     if (!name.trim().length) {
@@ -53,7 +53,7 @@ export default function CategoryPage() {
   };
 
   const getCategory = async () => {
-    let url = "http://localhost:3000/api/category";
+    let url = "https://technofadakar.liara.run/api/category";
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     setCategory(statesData);
@@ -61,7 +61,7 @@ export default function CategoryPage() {
 
   const deleteCategory = async (e, categoryID) => {
     e.preventDefault();
-    let url = "http://localhost:3000/api/category";
+    let url = "https://technofadakar.liara.run/api/category";
     let body = { id: categoryID };
 
     await swal({

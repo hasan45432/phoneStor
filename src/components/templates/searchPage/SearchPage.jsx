@@ -14,7 +14,7 @@ export default function SearchPage() {
 
   const resultSearch = async () => {
     let searchInput = useCombinedStore.getState().searchInput;
-    let url = "http://localhost:3000/api/products";
+    let url = "https://technofadakar.liara.run/api/products";
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
 

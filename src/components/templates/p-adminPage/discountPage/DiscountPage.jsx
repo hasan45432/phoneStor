@@ -29,7 +29,7 @@ export default function DiscountPage() {
   const [maxUseError, setMaxUseError] = useState("");
 
   const getProducts = async () => {
-    let url = "http://localhost:3000/api/products";
+    let url = "https://technofadakar.liara.run/api/products";
     await fetchData(url);
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
@@ -37,7 +37,7 @@ export default function DiscountPage() {
   };
 
   const getDiscount = async () => {
-    let url = "http://localhost:3000/api/discounts";
+    let url = "https://technofadakar.liara.run/api/discounts";
     await fetchData(url);
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
@@ -69,7 +69,7 @@ export default function DiscountPage() {
       }
     }
 
-    let url = "http://localhost:3000/api/discounts";
+    let url = "https://technofadakar.liara.run/api/discounts";
     let body = { code, percent, maxUse, product: categoryProduct };
     await fetchPost({ url: url, body: body });
     let statesResponse = useCombinedStore.getState().statesResponse;
@@ -93,7 +93,7 @@ export default function DiscountPage() {
 
   const deleteDiscount = async (e, discountID) => {
     e.preventDefault();
-    let url = "http://localhost:3000/api/discounts";
+    let url = "https://technofadakar.liara.run/api/discounts";
     let body = { id: discountID };
     await fetchDelete({ url: url, body: body });
     let statesResponse = useCombinedStore.getState().statesResponse;

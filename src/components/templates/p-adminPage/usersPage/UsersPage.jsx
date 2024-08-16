@@ -13,7 +13,7 @@ export default function UsersPage() {
   const { fetchDelete } = useDelete();
 
   const getUsersData = async () => {
-    let url = "http://localhost:3000/api/user";
+    let url = "https://technofadakar.liara.run/api/user";
     await fetchData(url);
 
     let statesData = useCombinedStore.getState().statesData;
@@ -22,7 +22,7 @@ export default function UsersPage() {
 
   const deleteUser = async (e, userID) => {
     e.preventDefault();
-    let url = "http://localhost:3000/api/user";
+    let url = "https://technofadakar.liara.run/api/user";
     let body = { id: userID };
     await swal({
       title: "ایا از حذف این کاربر مطمعا هستید",

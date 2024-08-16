@@ -70,7 +70,7 @@ export default function ProductsPage() {
     formData.append("category", category);
     formData.append("img", img);
 
-    let url = "http://localhost:3000/api/products";
+    let url = "https://technofadakar.liara.run/api/products";
 
     await fetchPost({ url: url, formData: formData });
     let response = useCombinedStore.getState().statesResponse;
@@ -97,7 +97,7 @@ export default function ProductsPage() {
 
   const deleteProduct = async (e, productID) => {
     e.preventDefault();
-    let url = "http://localhost:3000/api/products";
+    let url = "https://technofadakar.liara.run/api/products";
     let body = { id: productID };
     await swal({
       title: "ایا از حذف این محصول مطمعا هستید",
@@ -111,14 +111,14 @@ export default function ProductsPage() {
     fetchDataServer();
   };
   const getCategory = async () => {
-    let url = "http://localhost:3000/api/category";
+    let url = "https://technofadakar.liara.run/api/category";
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     setCategoriesProducts(statesData);
   };
 
   const fetchDataServer = async () => {
-    await fetchData("http://localhost:3000/api/products");
+    await fetchData("https://technofadakar.liara.run/api/products");
     const statesData = useCombinedStore.getState().statesData;
 
     setProducts(statesData);

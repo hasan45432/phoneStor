@@ -65,7 +65,7 @@ export default function RegisterDetails() {
       return setAlertPasswordLength("طول پسورد باید بیش تر از 8 کاراکتر باشد");
     }
 
-    let url = "http://localhost:3000/api/auth/signup";
+    let url = "https://technofadakar.liara.run/api/auth/signup";
     let body = {
       name,
       email,
@@ -89,7 +89,7 @@ export default function RegisterDetails() {
   };
 
   const getMy = async () => {
-    let url = "http://localhost:3000/api/auth/me";
+    let url = "https://technofadakar.liara.run/api/auth/me";
 
     await fetchData(url);
     const statesData = await useCombinedStore.getState().statesData;

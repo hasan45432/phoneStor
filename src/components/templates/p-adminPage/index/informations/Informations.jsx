@@ -11,7 +11,7 @@ export default function Informations() {
   const [products, setProducts] = useState([]);
 
   const getUsersData = async () => {
-    let url = "http://localhost:3000/api/user";
+    let url = "https://technofadakar.liara.run/api/user";
     await fetchData(url);
 
     let statesData = useCombinedStore.getState().statesData;
@@ -19,14 +19,14 @@ export default function Informations() {
   };
 
   const getCategory = async () => {
-    let url = "http://localhost:3000/api/category";
+    let url = "https://technofadakar.liara.run/api/category";
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     setCategory(statesData);
   };
 
   const getComments = async () => {
-    let url = "http://localhost:3000/api/comments";
+    let url = "https://technofadakar.liara.run/api/comments";
     await fetchData(url);
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
@@ -37,7 +37,7 @@ export default function Informations() {
   };
 
   const fetchDataProducts = async () => {
-    await fetchData("http://localhost:3000/api/products");
+    await fetchData("https://technofadakar.liara.run/api/products");
     const statesData = useCombinedStore.getState().statesData;
 
     setProducts(statesData);

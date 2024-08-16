@@ -1,6 +1,6 @@
 
 import React from "react";
-import RegisterDetails from "@/components/templates/registerDetails/registerDetails";
+import RegisterDetails from "@/components/templates/registerDetails/RegisterDetails";
 import Footer from "@/components/Modules/footer/Footer";
 import MobilNavbar from "@/components/Modules/mobilNavbar/MobilNavbar";
 import Navbar from "@/components/Modules/navbar/Navbar";

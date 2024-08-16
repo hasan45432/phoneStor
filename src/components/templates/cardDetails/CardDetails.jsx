@@ -51,7 +51,7 @@ export default function CardDetails() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/api/discounts/use", {
+      const res = await fetch("https://technofadakar.liara.run/api/discounts/use", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
