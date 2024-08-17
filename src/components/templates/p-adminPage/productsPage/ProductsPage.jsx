@@ -7,6 +7,7 @@ import useFetch from "@/cutomHooks/useFetch";
 import usePost from "@/cutomHooks/usePost";
 import useDelete from "@/cutomHooks/useDelete";
 import swal from "sweetalert";
+import Image from "next/image";
 
 export default function ProductsPage() {
   const { fetchData } = useFetch();
@@ -38,7 +39,6 @@ export default function ProductsPage() {
       return setAlert("لطفا مقداری را وارد کنید");
     }
 
-
     if (!price.trim().length) {
       return setAlert("لطفا مقداری را وارد کنید");
     }
@@ -51,12 +51,10 @@ export default function ProductsPage() {
     if (!shortDescription.trim().length) {
       return setAlert("لطفا مقداری را وارد کنید");
     }
-   
 
     if (!longDescription.trim().length) {
       return setAlert("لطفا مقداری را وارد کنید");
     }
- 
 
     if (!img) {
       return setAlert("لطفا مقداری را وارد کنید");
@@ -415,11 +413,13 @@ export default function ProductsPage() {
                               {product.longDescription}
                             </td>
                             <td className="w-[130px] pr-6 h-[100px]">
-                              <img
+                              <Image
+                                width={500}
+                                height={500}
                                 className="w-[90px] h-[90px] rounded-[100%]"
                                 src={product.img}
                                 alt="Product Image" // برای دسترسی‌پذیری و SEO
-                              />
+                              ></Image>
                             </td>
                             <td className="px-4 py-4 text-sm whitespace-nowrap">
                               <div className="flex items-center gap-x-6">

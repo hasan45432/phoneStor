@@ -2,11 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 export default function PopularCategory(props) {
- 
   return (
     <>
       <Link href={`/singleproduct/${props._id}`}>
-        <div className="flex flex-col items-center mt-[50px]">
+        <div className="flex flex-col items-center mt-[15px] sm:mt-[30px]">
           <Image
             src={props.img}
             width={1200}

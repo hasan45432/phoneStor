@@ -24,7 +24,7 @@ export default function PopularProducts() {
       <div
         data-aos="fade-up"
         data-aos-duration="1500"
-        className=" md:p-[80px]  grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+        className=" md:p-[70px]    grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
       >
         {products.slice(25, 30).map((product) => {
           return <Product key={product._id} {...product} />;

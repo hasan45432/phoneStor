@@ -57,7 +57,7 @@ export default function Product(props) {
       });
     }
     let result = card.reduce((prev, item) => prev + item.count, 0);
-  
+
     getUserOrders(result);
   };
 
@@ -71,14 +71,14 @@ export default function Product(props) {
 
   return (
     <>
-      <div className="w-[115px] h-[350px]    sm:w-[214px] sm:h-[360px] ">
+      <div className="w-[120px] h-[350px] mx-auto  sm:w-[214px] sm:h-[360px] ">
         <Link href={`singleproduct/${props._id}`}>
           <div className="flex flex-col items-center">
             <Image
               src={props.img}
               width={1200}
               height={900}
-              className="w-[130px] h-[150px] sm:w-[192px] sm:h-[199px] mr-10"
+              className="w-[130px] h-[150px] sm:w-[192px] sm:h-[199px] "
               alt="shop"
             ></Image>
             <p className="text-[15px] font-bold text-left">{props.name}</p>

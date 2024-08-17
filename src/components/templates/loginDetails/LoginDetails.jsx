@@ -75,7 +75,6 @@ export default function LoginDetails() {
     if (statesResponse.status === 200) {
       router.push("/");
     }
-   
   };
 
   const getMy = async () => {
@@ -92,8 +91,6 @@ export default function LoginDetails() {
     ) {
       router.push("/");
     }
-
-    
   };
 
   useEffect(() => {
@@ -105,7 +102,7 @@ export default function LoginDetails() {
     let card = JSON.parse(localStorage.getItem("card")) || [];
 
     let result = card.reduce((prev, item) => prev + item.count, 0);
-    
+
     getUserOrders(result);
   }, []);
   return (
@@ -113,7 +110,7 @@ export default function LoginDetails() {
       <div
         data-aos="zoom-in"
         data-aos-duration="1500"
-        className="flex   flex-col mb-[15px] lg:mb-0 lg:flex-row-reverse justify-between items-center ml-[60px]"
+        className="flex   flex-col mb-[15px] lg:mb-0 lg:flex-row-reverse  justify-around items-center ml-[60px]"
       >
         <div className="p-[90px]  w-[350px] sm:w-auto">
           <Image
@@ -125,17 +122,19 @@ export default function LoginDetails() {
           ></Image>
         </div>
         <div className="flex flex-col w-[100%] md:w-[50%] mr-8 sm:mr-0">
-          <div className="flex flex-col items-end">
-            <p className="text-[20px] sm:text-[30px] text-[#1ABA1A] font-bold">
+          <div className=" mx-auto  md:pr-8 xl:pr-5 2xl:pr-3">
+          <p className="text-[20px] sm:text-[30px] text-[#1ABA1A] font-bold">
               خوش امدید لطفا وارد شوید
             </p>
+        
           </div>
+          
 
-          <form className="flex flex-col items-end text-left mt-4">
+          <form className="flex flex-col items-end mt-4">
             <input
               type="email"
-              placeholder="Example@gmail.com"
-              className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px]"
+              placeholder="لطفا ایمیل را وارد کنید"
+              className="border w-[90%] xl:w-[75%] h-[43px]  pr-2 rounded-[6px]"
               onChange={(e) => {
                 const newEmail = e.target.value;
                 setEmail(newEmail);
@@ -154,8 +153,8 @@ export default function LoginDetails() {
 
             <input
               type="password"
-              placeholder="....password"
-              className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
+              placeholder="لطفا رمز عبور خود را وارد کنید"
+              className="border w-[90%] xl:w-[75%] h-[43px] pr-2 rounded-[6px] mt-[15px]"
               onChange={(e) => {
                 const newPassword = e.target.value;
                 setPassword(newPassword);
@@ -171,19 +170,20 @@ export default function LoginDetails() {
               <p className="text-red-600 text-[14px]">{alertPasswordLength}</p>
             )}
 
-         
-            <button
-              onClick={loginUser}
-              className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[22px] pb-1  w-[138px] h-[50px] rounded-[10px] "
-            >
-              ورود
-            </button>
-            <Link
-              href="/register"
-              className="text-[#1ABA1A] text-[15px] mt-[15px]"
-            >
-              ثبت نام
-            </Link>
+            <div className="flex flex-col items-start justify-center w-[90%]    xl:w-[75%]">
+              <button
+                onClick={loginUser}
+                className=" hover:text-white hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[22px] pb-1  w-[138px] h-[50px] rounded-[10px] "
+              >
+                ورود
+              </button>
+              <Link
+                href="/register"
+                className="text-[#1ABA1A] text-[15px] mt-[15px]"
+              >
+                ثبت نام
+              </Link>
+            </div>
           </form>
         </div>
       </div>

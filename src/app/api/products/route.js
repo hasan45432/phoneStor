@@ -1,12 +1,12 @@
 import connectToDB from "../../../../configs/db";
 import ProductModel from "../../../../models/Product";
 // import fs from "fs";
-import { writeFile } from "fs/promises";
+const fs = require("fs");
 import path from "path";
 
 export async function POST(req) {
   try {
-    connectToDB();
+    await connectToDB();
     const formData = await req.formData();
     const name = formData.get("name");
     const price = formData.get("price");
@@ -18,8 +18,7 @@ export async function POST(req) {
     const buffer = Buffer.from(await img.arrayBuffer());
     const filename = Date.now() + img.name;
     const imgPath = path.join(process.cwd(), "public/uploads/" + filename);
-
-    await writeFile(imgPath, buffer);
+    fs.writeFileSync(imgPath, buffer);
 
     const product = await ProductModel.create({
       name,
@@ -27,7 +26,7 @@ export async function POST(req) {
       category,
       shortDescription,
       longDescription,
-      img: `http://localhost:3000/uploads/${filename}`,
+      img: `https://technofadakar.liara.run/uploads/${filename}`,
     });
 
     return Response.json(
@@ -67,7 +66,6 @@ export async function PUT(req) {
       { status: 201 }
     );
   } catch (err) {
-    
     return Response.json({ message: err.message }, { status: 500 });
   }
 }

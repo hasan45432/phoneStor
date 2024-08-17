@@ -12,12 +12,12 @@ export default function AboutPage() {
         <MobilNavbar />
       </div>
 
-      <div className="w-[100%] bg-white rounded-[10px] mt-[15px] mb-[15px] 2xl:w-[85%]">
-        <div className="w-[100%] p-[30px]">
+      <div className="w-[100%]  bg-white rounded-[10px] mt-[15px] mb-[15px] 2xl:w-[85%]">
+        <div className="w-[100%] flex flex-col p-[30px]">
           <p className=" text-[25px] font-bold">
             زبان ها و ابزارهای استفاده شده در توسعه این وبسایت:
           </p>
-          <div className="flex gap-8">
+          <div className="flex flex-col gap-4">
             <p>
               <span className="text-[18px] font-bold">زبان ها :</span> html ,
               css , js
@@ -28,7 +28,7 @@ export default function AboutPage() {
               sweetalert , jsonwebtoken , recharts
             </p>
           </div>
-          <div className="flex gap-8">
+          <div className="flex flex-col mt-4 gap-4">
             <p>
               <span className="text-[18px] font-bold"> ابزار ها : </span>postman
               , mongoDB , zustand , mongoose
@@ -39,7 +39,7 @@ export default function AboutPage() {
             </p>
           </div>
           <p>
-            <span className="text-[18px] font-bold">
+            <span className="text-[18px] mt-4 font-bold">
               {" "}
               تعداد کل صفحات سایت :{" "}
             </span>

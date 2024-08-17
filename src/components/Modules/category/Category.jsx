@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Category() {
   return (
     <>
-      <div className="w-[145px] sm:w-[200px] flex   sm:mr-0 items-center">
+      <div className="w-[145px] sm:w-[200px] flex mx-auto  sm:mr-0 items-center">
         <div>
           <Image
             src="/img/imageHomePage/prod20.png.png"

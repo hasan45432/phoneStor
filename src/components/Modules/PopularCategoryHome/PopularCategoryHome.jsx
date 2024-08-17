@@ -17,14 +17,13 @@ export default function PopularCategoryHome(props) {
       return product.category === "کیس";
     });
     setPopular(filterProducts);
-  
   };
   useEffect(() => {
     GetPopular();
   }, []);
   return (
     <div>
-      <div className="w-[300px] sm:w-[415px]  mx-auto rounded-[10px] bg-[#FFFFFF] p-9">
+      <div className="w-[300px] sm:w-[428px]  mx-auto rounded-[10px] bg-[#FFFFFF] p-9">
         <div>
           <Image
             src={props.src}
@@ -34,7 +33,7 @@ export default function PopularCategoryHome(props) {
             alt="shop"
           ></Image>
         </div>
-        <div className="grid grid-cols-2 items-center mr-[30px] gap-10 mt-[30px]">
+        <div className="grid grid-cols-2 items-center ml-1 gap-12 mt-[30px]">
           {popular.slice(0, 4).map((product) => {
             return <PopularCategory key={product._id} {...product} />;
           })}

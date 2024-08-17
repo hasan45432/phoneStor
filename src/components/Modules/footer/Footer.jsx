@@ -10,28 +10,28 @@ export default function Footer() {
         <div
           data-aos="fade-up"
           data-aos-duration="1500"
-          className=" grid gap-8 xl:gap-1 grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:grid-cols-5    text-left pt-16  "
+          className=" grid gap-8 sm:gap-x-[150px] md:gap-0  xl:gap-0 grid-cols-2  md:grid-cols-4   xl:grid-cols-5    text-left pt-16  "
         >
           <div className="">
             <p className="text-[20px] font-bold">top Categories</p>
             <ul className=" child-hover:text-[#1ABA1A] child-hover:transition-colors child-hover:duration-300 child:mt-4 child:text-[14px]  text-[#666666]">
               <li>
-                <Link href="/">Laptops</Link>
+                <Link href="/laptops">Laptops</Link>
               </li>
               <li>
-                <Link href="/">PC & Computers</Link>
+                <Link href="/cases">PC & Computers</Link>
               </li>
               <li>
-                <Link href="/">Cell Phones</Link>
+                <Link href="/mobiles">mobiles</Link>
               </li>
               <li>
-                <Link href="/">Tablets</Link>
+                <Link href="/tablets">Tablets</Link>
               </li>
               <li>
-                <Link href="/">Gaming & VR</Link>
+                <Link href="/keyboards">keyboards</Link>
               </li>
               <li>
-                <Link href="/">networks</Link>
+                <Link href="/watches">watches</Link>
               </li>
             </ul>
           </div>
@@ -66,7 +66,7 @@ export default function Footer() {
               <li>Sitemap</li>
             </ul>
           </div>
-          <div className="lg:mt-8 2xl:pl-[40px] 2-[200px] pr-3 pl-3 xl:w-[250px] xl:mt-0 mx-auto xl:mr-0 xl:ml-20  ">
+          <div className="lg:mt-8 xl:pl-[40px] hidden lg:block 2-[200px] pr-3 pl-3 xl:w-[250px] xl:mt-0 mx-auto xl:mr-0 xl:ml-20  ">
             <p className="text-[20px] font-bold">
               Swoo - 1st NYC tech online market
             </p>
@@ -117,9 +117,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="sm:mt-16 mt-8 mb-4 ">
-          <p className="text-[20px]  font-bold text-center">
+          <p className="text-[15px] sm:text-[20px]   font-bold text-center">
             subscribe & get{" "}
-            <span className="text-[#F1352B] text-[20px]">10% off</span> for your
+            <span className="text-[#F1352B] text-[15px] sm:text-[20px]">10% off</span> for your
             first order
           </p>
           <div className=" hidden  sm:flex items-center justify-center">

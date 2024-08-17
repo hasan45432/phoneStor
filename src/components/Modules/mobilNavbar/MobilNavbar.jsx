@@ -21,7 +21,7 @@ export default function MobilNavbar() {
 
   const { fetchPost } = usePost();
   const { fetchData } = useFetch();
-  const { getUserOrders } = useCombinedStore();
+  const { getSearchValue } = useCombinedStore();
 
   const getMy = async () => {
     let url = "https://technofadakar.liara.run/api/auth/me";
@@ -164,7 +164,7 @@ export default function MobilNavbar() {
           className="w-[161px] h-[40px] mt-4 hidden sm:block"
           priority
         />
-        <nav className="duration-500">
+        <nav className="duration-500 transition-all">
           <section className="MOBILE-MENU  flex lg:hidden ">
             <div
               className="HAMBURGER-ICON  space-y-2 p-6"
@@ -236,7 +236,8 @@ export default function MobilNavbar() {
 
         <style>{`
       .hideMenuNav {
-        display: none;
+       display: none;
+
       }
       .showMenuNav {
         display: block;
@@ -263,21 +264,24 @@ export default function MobilNavbar() {
       <div className="w-[100%] h-[75px] rounded-[10px]  bg-[#1ABA1A] flex">
         <div className=" mx-auto relative">
           <input
+            onChange={(e) => getSearchValue(e.target.value)}
             className="h-[35px] w-[250px] sm:w-[400px] lg:w-[360px] xl:w-[500px] sm:h-[45px] pr-3 rounded-[30px] bg-[#FFFFFF] mt-[20px] sm:mt-[15px]"
             placeholder="جستجوی محصول....."
           ></input>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="size-6 absolute bottom-[24px] left-[10px]"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-              clipRule="evenodd"
-            />
-          </svg>
+          <Link href="/search">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="size-6 absolute bottom-[24px] left-[10px]"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
         </div>
       </div>
     </>

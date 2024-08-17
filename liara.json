@@ -1,0 +1,12 @@
+{
+    "disks": [
+        {
+           "name": "mydisk1",
+           "mountTo":"/app/public/uploads"
+        },
+        {
+            "name": "mydisk2",
+            "mountTo": "/my-app/public/uploads"
+        }
+    ]
+}

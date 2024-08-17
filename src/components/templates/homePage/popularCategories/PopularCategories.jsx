@@ -19,20 +19,20 @@ export default function PopularCategories() {
         <div
           data-aos="fade-up"
           data-aos-duration="1200"
-          className="sm:flex hidden flex-col xl:flex-row items-center justify-center gap-[17px] mb-[20px]"
+          className="sm:flex hidden  xl:flex-row items-center justify-center gap-[17px] mb-[20px]"
         >
           <Image
             src="/img/imageHomePage/mainFooter1.png"
             width={1200}
             height={900}
-            className="w-[630px] 2xl:w-[642px] h-[180px] rounded-[10px]"
+            className="w-[49%] 2xl:w-[642px] h-[180px] rounded-[10px]"
             alt="shodp"
           ></Image>
           <Image
             src="/img/imageHomePage/Section.png"
             width={1200}
             height={900}
-            className="w-[630px] 2xl:w-[642px] h-[180px] rounded-[10px]"
+            className="w-[49%] 2xl:w-[642px] h-[180px] rounded-[10px]"
             alt="shodp"
           ></Image>
         </div>

@@ -133,18 +133,18 @@ export default function RegisterDetails() {
             alt="shop"
           ></Image>
         </div>
-        <div className="flex flex-col w-[100%] md:w-[50%] mr-8 sm:mr-0">
-          <div className="flex flex-col items-end">
-            <p className="text-[20px] sm:text-[30px] text-[#1ABA1A] font-bold">
+        <div className="flex flex-col  w-[100%] sm:w-[80%] md:w-[55%] mr-8 sm:mr-0">
+          <div className=" flex justify-center items-start sm:pl-10 md:pl-0 md:pr-3 lg:pl-5 xl:pl-0  xl:pr-2">
+            <p className="text-[20px] sm:text-[30px]  text-[#1ABA1A] font-bold">
               خوش امدید لطفا وارد شوید
             </p>
           </div>
 
-          <form className="flex flex-col items-end text-left mt-4 mb-4">
+          <form className="flex flex-col items-end mt-4 mb-4">
             <input
               type="text"
               placeholder="نام خود را وارد کنید"
-              className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px]"
+              className="border w-[90%] xl:w-[75%] h-[43px]  pr-2 rounded-[6px]"
               onInput={(e) => {
                 setName(e.target.value);
                 if (typeasd) {
@@ -158,7 +158,7 @@ export default function RegisterDetails() {
             <input
               type="email"
               placeholder="ایمیل خود را وارد کنید"
-              className="border w-[90%] xl:w-[75%] mt-[15px] h-[43px] text-left pl-2 rounded-[6px]"
+              className="border w-[90%] xl:w-[75%] mt-[15px] h-[43px] pr-2 rounded-[6px]"
               onChange={(e) => {
                 setEmail(e.target.value);
                 if (email.length) {
@@ -178,8 +178,8 @@ export default function RegisterDetails() {
 
             <input
               type="password"
-              placeholder="....password"
-              className="border w-[90%] xl:w-[75%] h-[43px] text-left pl-2 rounded-[6px] mt-[15px]"
+              placeholder="رمز عبور خود را وارد کنید"
+              className="border w-[90%] xl:w-[75%] h-[43px] pr-2 rounded-[6px] mt-[15px]"
               onChange={(e) => {
                 const newPassword = e.target.value;
                 setPassword(newPassword);
@@ -196,18 +196,20 @@ export default function RegisterDetails() {
               <p className="text-red-600 text-[14px]">{alertPasswordLength}</p>
             )}
 
-            <button
-              onClick={registerUser}
-              className=" hover:text-white pb-2 hover:bg-[#1ABA1A] transition-all duration-500 bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1  w-[138px] h-[50px] rounded-[10px] "
-            >
-              ثبت نام
-            </button>
-            <Link
-              href="/login"
-              className="text-[#1ABA1A] text-[15px] mt-[15px]"
-            >
-              ورود
-            </Link>
+            <div className=" flex flex-col items-start justify-center w-[90%]    xl:w-[75%]">
+              <button
+                onClick={registerUser}
+                className=" hover:text-white pb-2 hover:bg-[#1ABA1A] transition-all duration-500  bg-green-100 text-[#1ABA1A] mt-[25px] text-[20px] pt-1  w-[138px] h-[50px] rounded-[10px] "
+              >
+                ثبت نام
+              </button>
+              <Link
+                href="/login"
+                className="text-[#1ABA1A] text-[15px] mt-[15px]"
+              >
+                ورود
+              </Link>
+            </div>
           </form>
         </div>
       </div>
