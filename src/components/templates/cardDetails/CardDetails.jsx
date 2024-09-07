@@ -147,7 +147,7 @@ export default function CardDetails() {
   return (
     <>
       {orders.length ? (
-        orders.map((order, index) => (
+        orders.map((orde, index) => (
           <div
             key={index}
             data-aos="zoom-in"
