@@ -71,7 +71,7 @@ export default function Product(props) {
 
   return (
     <>
-      <div className="w-[120px] h-[350px] mx-auto  sm:w-[214px] sm:h-[360px] ">
+      <div className="w-[120px] h-[350px] mx-auto flex flex-col items-center  sm:w-[214px] sm:h-[360px] ">
         <Link href={`singleproduct/${props._id}`}>
           <div className="flex flex-col items-center">
             <Image
