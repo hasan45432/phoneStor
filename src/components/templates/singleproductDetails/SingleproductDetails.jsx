@@ -109,7 +109,7 @@ export default function SingleProductDetails() {
       <div className="flex flex-row-reverse ">
         <div className="">
           <Image
-            src={`/uploads/${props.img}`}
+            src={`/uploads/${product.img}`}
             width={400}
             height={300}
             className="w-[250px] mb-10 mt-8  sm:w-[500px] bg-cover bg-center pl-7  xl:mt-[85px]  xl:h-[500px] rounded-[10px]"
