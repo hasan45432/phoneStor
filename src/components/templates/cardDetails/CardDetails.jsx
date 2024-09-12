@@ -51,7 +51,7 @@ export default function CardDetails() {
     }
 
     try {
-      const res = await fetch("https://technofadakar.liara.run/api/discounts/use", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_link}/api/discounts/use`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -147,7 +147,7 @@ export default function CardDetails() {
   return (
     <>
       {orders.length ? (
-        orders.map((orde, index) => (
+        orders.map((order, index) => (
           <div
             key={index}
             data-aos="zoom-in"

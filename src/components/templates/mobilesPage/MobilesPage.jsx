@@ -10,7 +10,7 @@ export default function MobilesPage() {
   const { fetchData } = useFetch();
   const [mobiles, setMobiles] = useState([]);
   const getCases = async () => {
-    let url = "https://technofadakar.liara.run/api/products";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/products`;
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     let filerProducts = statesData.filter((cases) => {

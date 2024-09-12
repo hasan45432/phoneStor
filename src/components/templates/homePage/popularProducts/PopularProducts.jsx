@@ -10,7 +10,7 @@ export default function PopularProducts() {
   const [products, setProducts] = useState([]);
 
   const handleChange = async () => {
-    let url = "https://technofadakar.liara.run/api/products";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/products`;
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     setProducts(statesData);

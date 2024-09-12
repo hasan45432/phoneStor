@@ -11,7 +11,7 @@ export default function Informations() {
   const [products, setProducts] = useState([]);
 
   const getUsersData = async () => {
-    let url = "https://technofadakar.liara.run/api/user";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/user`;
     await fetchData(url);
 
     let statesData = useCombinedStore.getState().statesData;
@@ -19,14 +19,14 @@ export default function Informations() {
   };
 
   const getCategory = async () => {
-    let url = "https://technofadakar.liara.run/api/category";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/category`;
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     setCategory(statesData);
   };
 
   const getComments = async () => {
-    let url = "https://technofadakar.liara.run/api/comments";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/comments`;
     await fetchData(url);
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
@@ -37,7 +37,7 @@ export default function Informations() {
   };
 
   const fetchDataProducts = async () => {
-    await fetchData("https://technofadakar.liara.run/api/products");
+    await fetchData(`${process.env.NEXT_PUBLIC_link}/api/products`);
     const statesData = useCombinedStore.getState().statesData;
 
     setProducts(statesData);

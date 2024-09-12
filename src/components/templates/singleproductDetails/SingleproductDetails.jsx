@@ -14,7 +14,7 @@ export default function SingleProductDetails() {
   const navigate = useRouter();
   const [product, setProduct] = useState({});
   const getSingleProduct = async () => {
-    let url = "https://technofadakar.liara.run/api/products";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/products`;
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     let findProduct = statesData.find((product) => {

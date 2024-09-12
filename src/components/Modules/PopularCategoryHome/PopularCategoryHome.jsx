@@ -9,7 +9,7 @@ export default function PopularCategoryHome(props) {
 
   const { fetchData } = useFetch();
   const GetPopular = async () => {
-    let url = "https://technofadakar.liara.run/api/products";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/products`;
     await fetchData(url);
 
     let statesData = useCombinedStore.getState().statesData;

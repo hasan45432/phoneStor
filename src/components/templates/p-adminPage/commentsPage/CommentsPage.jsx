@@ -15,7 +15,7 @@ export default function CommentsPage() {
   const [commentName, setCommentName] = useState([]);
 
   const getComments = async () => {
-    let url = "https://technofadakar.liara.run/api/comments";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/comments`;
     await fetchData(url);
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;
@@ -26,7 +26,7 @@ export default function CommentsPage() {
   };
 
   const getProduct = async () => {
-    let url = "https://technofadakar.liara.run/api/products";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/products`;
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     let filterProduct = await statesData.filter((product) => {
@@ -42,7 +42,7 @@ export default function CommentsPage() {
   const notAcceptComment = async (e, commentID) => {
     e.preventDefault();
     let id = { id: commentID };
-    await fetch("https://technofadakar.liara.run/api/comments/reject", {
+    await fetch(`${process.env.NEXT_PUBLIC_link}/api/comments/reject`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export default function CommentsPage() {
   const AcceptComment = async (e, commentID) => {
     e.preventDefault();
     let id = { id: commentID };
-    await fetch("https://technofadakar.liara.run/api/comments/accept", {
+    await fetch(`${process.env.NEXT_PUBLIC_link}/api/comments/accept`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function CommentsPage() {
 
   const deleteComment = async (e, commentID) => {
     e.preventDefault();
-    let url = "https://technofadakar.liara.run/api/comments";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/comments`;
     let body = { id: commentID };
     await fetchDelete({ url: url, body: body });
     getComments();

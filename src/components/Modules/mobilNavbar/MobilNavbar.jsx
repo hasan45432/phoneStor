@@ -24,7 +24,7 @@ export default function MobilNavbar() {
   const { getSearchValue } = useCombinedStore();
 
   const getMy = async () => {
-    let url = "https://technofadakar.liara.run/api/auth/me";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/auth/me`;
 
     await fetchData(url);
     const statesData = await useCombinedStore.getState().statesData;
@@ -60,7 +60,7 @@ export default function MobilNavbar() {
       buttons: ["نه", "اره"],
     }).then(async (res) => {
       if (res) {
-        let url = "https://technofadakar.liara.run/api/auth/signout";
+        let url = `${process.env.NEXT_PUBLIC_link}/api/auth/signout`;
         await fetchPost({ url: url });
         setValid(false);
         router.push("/");

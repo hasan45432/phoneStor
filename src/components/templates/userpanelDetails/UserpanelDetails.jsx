@@ -11,7 +11,7 @@ export default function UserpanelDetails() {
   const { fetchData } = useFetch();
 
   const getMy = async () => {
-    let url = "https://technofadakar.liara.run/api/auth/me";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/auth/me`;
 
     await fetchData(url);
     const statesResponse = useCombinedStore.getState().statesResponse;

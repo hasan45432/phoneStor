@@ -46,7 +46,7 @@ export default function CreateComment() {
       }
     }
 
-    let urlGetMy = "https://technofadakar.liara.run/api/auth/me";
+    let urlGetMy = `${process.env.NEXT_PUBLIC_link}/api/auth/me`;
 
     await fetchData(urlGetMy);
     const statesDataurlGetMy = await useCombinedStore.getState().statesData;
@@ -62,7 +62,7 @@ export default function CreateComment() {
     } else {
       let stateCommentName = useCombinedStore.getState().stateCommentName;
       console.log(stateCommentName);
-      let url = "https://technofadakar.liara.run/api/comments";
+      let url = `${process.env.NEXT_PUBLIC_link}/api/comments`;
       let body = {
         description,
         username,
@@ -86,7 +86,7 @@ export default function CreateComment() {
   };
 
   const getComments = async () => {
-    let url = "https://technofadakar.liara.run/api/comments";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/comments`;
     await fetchData(url);
     let statesResponse = useCombinedStore.getState().statesResponse;
     let statesData = useCombinedStore.getState().statesData;

@@ -26,7 +26,7 @@ export async function POST(req) {
       category,
       shortDescription,
       longDescription,
-      img: `https://technofadakar.liara.run/uploads/${filename}`,
+      img: `${process.env.NEXT_PUBLIC_link}/uploads/${filename}`,
     });
 
     return Response.json(

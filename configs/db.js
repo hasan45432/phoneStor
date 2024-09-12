@@ -6,7 +6,7 @@ const connectToDB = async () => {
     if (mongoose.connection.readyState !== 0) {
       return true; // متصل هستیم
     }
-    await mongoose.connect(process.env.DATABASE_URL, {
+    await mongoose.connect(process.env.MONGODB_URI, {
       authSource: "admin",
     });
     console.log("Connect To DB Successfully :))");

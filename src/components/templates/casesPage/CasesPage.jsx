@@ -10,7 +10,7 @@ export default function CasesPage() {
   const { fetchData } = useFetch();
   const [cases, setCases] = useState([]);
   const getCases = async () => {
-    let url = "https://technofadakar.liara.run/api/products";
+    let url = `${process.env.NEXT_PUBLIC_link}/api/products`;
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     let filerProducts = statesData.filter((cases) => {
