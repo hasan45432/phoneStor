@@ -26,7 +26,7 @@ export async function POST(req) {
       category,
       shortDescription,
       longDescription,
-      img: `${process.env.NEXT_PUBLIC_link}/uploads/${filename}`,
+      img: `${filename}`,
     });
 
     return Response.json(

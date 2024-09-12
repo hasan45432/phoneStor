@@ -34,7 +34,6 @@ export default function SingleProductDetails() {
 
   const addToCard = () => {
     let card = JSON.parse(localStorage.getItem("card")) || [];
-   
 
     if (card.length) {
       let isInCard = card.some((item) => item.id === router.split("/").pop());
@@ -86,7 +85,7 @@ export default function SingleProductDetails() {
     }
 
     let result = card.reduce((prev, item) => prev + item.count, 0);
-   
+
     getUserOrders(result);
   };
 
@@ -110,7 +109,7 @@ export default function SingleProductDetails() {
       <div className="flex flex-row-reverse ">
         <div className="">
           <Image
-            src={product.img}
+            src={`/uploads/${props.img}`}
             width={400}
             height={300}
             className="w-[250px] mb-10 mt-8  sm:w-[500px] bg-cover bg-center pl-7  xl:mt-[85px]  xl:h-[500px] rounded-[10px]"

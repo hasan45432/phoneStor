@@ -75,7 +75,7 @@ export default function Product(props) {
         <Link href={`singleproduct/${props._id}`}>
           <div className="flex flex-col items-center">
             <Image
-              src={props.img}
+              src={`/uploads/${props.img}`}
               width={1200}
               height={900}
               className="w-[130px] h-[150px] sm:w-[192px] sm:h-[199px] "
