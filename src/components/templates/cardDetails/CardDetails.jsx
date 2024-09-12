@@ -157,7 +157,7 @@ export default function CardDetails() {
             <div className="w-[80%] lg:w-[65%] rounded-[15px] justify-around flex flex-col gap-10 md:flex-row-reverse items-center text-left bg-[#FAFAFA]">
               <div className="lg:h-[100%]">
                 <Image
-                  src={order.img}
+                  src={`/uploads/${order.img}`}
                   width={900}
                   height={600}
                   className="w-[200px] lg:w-[260px] h-[190px] md:h-[230px] lg:h-full  pl-[15px]"
