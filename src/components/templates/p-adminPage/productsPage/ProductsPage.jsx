@@ -68,7 +68,7 @@ export default function ProductsPage() {
     formData.append("category", category);
     formData.append("img", img);
 
-    let url = `${process.env.NEXT_PUBLIC_link}/api/products`;
+    let url = `http://localhost:3000/api/products`;
 
     await fetchPost({ url: url, formData: formData });
     let response = useCombinedStore.getState().statesResponse;
@@ -95,7 +95,7 @@ export default function ProductsPage() {
 
   const deleteProduct = async (e, productID) => {
     e.preventDefault();
-    let url = `${process.env.NEXT_PUBLIC_link}/api/products`;
+    let url = `http://localhost:3000/api/products`;
     let body = { id: productID };
     await swal({
       title: "ایا از حذف این محصول مطمعا هستید",
@@ -109,14 +109,14 @@ export default function ProductsPage() {
     fetchDataServer();
   };
   const getCategory = async () => {
-    let url = `${process.env.NEXT_PUBLIC_link}/api/category`;
+    let url = `http://localhost:3000/api/category`;
     await fetchData(url);
     let statesData = useCombinedStore.getState().statesData;
     setCategoriesProducts(statesData);
   };
 
   const fetchDataServer = async () => {
-    await fetchData(`${process.env.NEXT_PUBLIC_link}/api/products`);
+    await fetchData(`http://localhost:3000/api/products`);
     const statesData = useCombinedStore.getState().statesData;
 
     setProducts(statesData);
